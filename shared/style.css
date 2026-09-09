@@ -79,12 +79,19 @@ header {
 }
 
 /* Stadt-Zürich-Logo links und OGD-Sticker rechts teilen sich dieselbe
-   Flex-Basis, damit der Titel exakt in der Seitenmitte steht. Die
-   sichtbare Logogrösse wird innerhalb dieser Box über die Höhe gesteuert
-   (SVG 250 × 59.4 → 27px Höhe entspricht 113px Breite). */
+   Flex-Basis, damit der Titel exakt in der Seitenmitte steht.
+
+   Die Logohöhe entspricht dem Textblock aus Titel und Untertitel:
+     h1  1.8rem × line-height 1.2 = 34.6px
+     p   1rem   × line-height 1.4 = 22.4px
+                                  = 57px
+   Das SVG misst 250 × 59.4, 57px Höhe ergeben also 240px Breite — daher
+   die Flex-Basis von 240px auf beiden Seiten. Die line-height von h1 ist
+   unten fix gesetzt, damit diese Rechnung nicht von den Schriftmetriken
+   des jeweiligen Systems abhängt. */
 .header-logo-stzh {
-  flex: 0 0 170px;
-  height: 27px;
+  flex: 0 0 240px;
+  height: 57px;
   object-fit: contain;
   object-position: left center;
   z-index: 1;
@@ -100,6 +107,7 @@ header h1 {
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 header p {
@@ -111,7 +119,7 @@ header p {
 }
 
 .header-logo {
-  flex: 0 0 170px;
+  flex: 0 0 240px;
   height: 88px;
   object-fit: contain;
   object-position: right center;

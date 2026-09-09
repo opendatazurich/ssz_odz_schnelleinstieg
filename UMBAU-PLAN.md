@@ -61,8 +61,10 @@ Betrifft alle 5 HTML-Seiten.
 - [x] `.header-eye`-Regel in `shared/style.css` durch `.header-logo-stzh` ersetzt
 - [x] Header-Layout neu ausbalanciert: Logo links und OGD-Sticker rechts erhalten dieselbe
       Flex-Basis (`170px`), damit der Titel exakt mittig steht
-- [x] Logogrösse um ein Drittel reduziert (170px → 113px Breite, gesteuert über
-      `height: 27px` innerhalb der unveränderten 170px-Box, damit die Zentrierung hält)
+- [x] Logogrösse auf die Höhe des Textblocks aus Titel und Untertitel gesetzt
+      (57px hoch → 240px breit; Flex-Basis beider Seiten entsprechend auf 240px).
+      `header h1` hat dafür eine fixe `line-height: 1.2` bekommen, damit die
+      Höhenrechnung nicht von den Schriftmetriken des Systems abhängt.
 - [x] Bilddateien gelöscht: `eth_Auge1_transparent.png`, `eth_Auge1_CMYK_100Prozent.jpg`,
       `Scientifica_Auge_Einzel.png`, `Scientifica_Augen_Keyvisual.jpg`,
       `scientifica_wide.jpg` (~7.9 MB)
