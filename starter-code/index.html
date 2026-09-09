@@ -402,8 +402,8 @@
       <h2>Jetzt selber ausprobieren</h2>
       <div class="try-cta-buttons">
         <div class="try-cta-option">
-          <button class="try-cta-examples" onclick="document.getElementById('examples').toggleAttribute('open')">Beispielauswertungen anzeigen</button>
-          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — direkt hier auf der Seite</span>
+          <button class="try-cta-examples" onclick="toggleExamples(this)" aria-expanded="true" aria-controls="examples">Beispielauswertungen ausblenden</button>
+          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — stehen unten auf dieser Seite</span>
         </div>
         <span class="try-cta-or">oder</span>
         <div class="try-cta-option">
@@ -413,7 +413,7 @@
       </div>
     </div>
 
-    <details class="examples-toggle" id="examples">
+    <details class="examples-toggle" id="examples" open>
       <summary style="display:none;"></summary>
 
       <div class="example-block">
@@ -683,6 +683,17 @@ df_namen &lt;- df %&gt;%
   </div>
 
   <script>
+    /* Die Beispielauswertungen sind von Anfang an aufgeklappt; der Knopf im
+       CTA-Banner blendet sie bei Bedarf aus. Die Beschriftung folgt dem
+       Zustand, sonst verspricht sie nach dem ersten Klick das Falsche. */
+    function toggleExamples(btn) {
+      var box = document.getElementById('examples');
+      var offen = box.toggleAttribute('open');
+      btn.textContent = offen ? 'Beispielauswertungen ausblenden'
+                              : 'Beispielauswertungen anzeigen';
+      btn.setAttribute('aria-expanded', offen);
+    }
+
     function switchTab(btn, panelId) {
       var block = btn.closest('.example-block');
       block.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
