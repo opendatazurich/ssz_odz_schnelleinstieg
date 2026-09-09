@@ -58,7 +58,12 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Die Karten sind Flex-Spalten in einem Grid und damit gleich hoch.
+       margin-top: auto schiebt Meta-Zeile und GitHub-Link ans untere Ende,
+       sodass die Links aller Karten auf einer Linie liegen — unabhängig
+       davon, wie viel Text darüber steht. */
     .server-meta {
+      margin-top: auto;
       font-size: 0.82rem;
       color: var(--text-light);
       font-weight: 600;
@@ -289,11 +294,6 @@
     var maxH = 0;
     descriptions.forEach(function(p) { if (p.offsetHeight > maxH) maxH = p.offsetHeight; });
     descriptions.forEach(function(p) { p.style.minHeight = maxH + 'px'; });
-
-    var queries = document.querySelectorAll('.server-card .example-queries');
-    var maxQ = 0;
-    queries.forEach(function(q) { if (q.offsetHeight > maxQ) maxQ = q.offsetHeight; });
-    queries.forEach(function(q) { q.style.minHeight = maxQ + 'px'; });
 
     document.querySelectorAll('.example-query').forEach(function(el) {
       el.addEventListener('click', function() {
