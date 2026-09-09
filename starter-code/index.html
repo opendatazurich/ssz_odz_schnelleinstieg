@@ -104,32 +104,48 @@
       line-height: 1.4;
     }
 
-    .try-cta-or {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-
-    .try-cta-examples {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.7);
-      padding: 0.7rem 2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, transform 0.15s;
-      font-family: inherit;
-    }
-
-    .try-cta-examples:hover {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
-      transform: scale(1.03);
-    }
-
     .examples-toggle {
       margin-bottom: 2.5rem;
+    }
+
+    /* Die Beispielauswertungen sind aufgeklappt; das <summary> dient als
+       Abschnittstitel und klappt sie bei Bedarf zu. Das übernimmt <details>
+       von sich aus — kein JavaScript nötig. */
+    .examples-summary {
+      font-family: var(--stzh-font-heavy);
+      font-size: var(--stzh-font-deca);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .examples-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .examples-summary::after {
+      content: '\25BE';
+      font-size: 0.7em;
+      color: var(--accent);
+      transition: transform 0.15s ease;
+    }
+
+    .examples-toggle:not([open]) .examples-summary {
+      margin-bottom: 0;
+    }
+
+    .examples-toggle:not([open]) .examples-summary::after {
+      transform: rotate(-90deg);
+    }
+
+    .examples-summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
 
@@ -402,11 +418,6 @@
       <h2>Jetzt selber ausprobieren</h2>
       <div class="try-cta-buttons">
         <div class="try-cta-option">
-          <button class="try-cta-examples" onclick="toggleExamples(this)" aria-expanded="true" aria-controls="examples">Beispielauswertungen ausblenden</button>
-          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — stehen unten auf dieser Seite</span>
-        </div>
-        <span class="try-cta-or">oder</span>
-        <div class="try-cta-option">
           <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">Datenkatalog öffnen</a>
           <span class="try-cta-desc">Alle 900+ Datensätze durchsuchen und eigenen Starter Code starten</span>
         </div>
@@ -414,7 +425,7 @@
     </div>
 
     <details class="examples-toggle" id="examples" open>
-      <summary style="display:none;"></summary>
+      <summary class="examples-summary">Beispielauswertungen</summary>
 
       <div class="example-block">
         <div class="example-header">
@@ -683,17 +694,6 @@ df_namen &lt;- df %&gt;%
   </div>
 
   <script>
-    /* Die Beispielauswertungen sind von Anfang an aufgeklappt; der Knopf im
-       CTA-Banner blendet sie bei Bedarf aus. Die Beschriftung folgt dem
-       Zustand, sonst verspricht sie nach dem ersten Klick das Falsche. */
-    function toggleExamples(btn) {
-      var box = document.getElementById('examples');
-      var offen = box.toggleAttribute('open');
-      btn.textContent = offen ? 'Beispielauswertungen ausblenden'
-                              : 'Beispielauswertungen anzeigen';
-      btn.setAttribute('aria-expanded', offen);
-    }
-
     function switchTab(btn, panelId) {
       var block = btn.closest('.example-block');
       block.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
