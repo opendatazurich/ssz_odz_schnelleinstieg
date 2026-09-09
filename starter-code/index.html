@@ -87,6 +87,7 @@
        wie lang die Beschreibungen darunter sind. */
     .try-cta-buttons {
       display: grid;
+      margin-top: var(--stzh-space-xlarge);
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       justify-items: center;
@@ -94,6 +95,13 @@
       row-gap: 0.7rem;
       max-width: 780px;
       margin: 0 auto;
+    }
+
+    /* Dekorativ, darum aria-hidden im Markup. Sie erben sonst das Heavy
+       der Überschrift und sitzen zu eng am Text. */
+    .cta-emoji {
+      font-weight: 400;
+      margin: 0 0.6rem;
     }
 
     .try-cta-examples  { grid-area: 1 / 1; }
@@ -411,7 +419,7 @@
     </div>
 
     <div class="try-cta">
-      <h2>Jetzt selber ausprobieren</h2>
+      <h2><span class="cta-emoji" aria-hidden="true">🧪</span>Jetzt selber ausprobieren<span class="cta-emoji" aria-hidden="true">📊</span></h2>
       <div class="try-cta-buttons">
         <button class="try-cta-examples" onclick="toggleExamples(this)" aria-expanded="false" aria-controls="examples">Beispielauswertungen anzeigen</button>
         <span class="try-cta-or">oder</span>
