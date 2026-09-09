@@ -51,8 +51,10 @@ normale Webseite.
 ├── starter-code/index.html Starter Code: Video, Schritte, Beispielauswertungen
 ├── UMBAU-PLAN.md           Stand und offene Schritte des Umbaus
 └── shared/
-    ├── style.css           Gemeinsames CSS (CI/CD-Farben Stadt Zürich)
+    ├── tokens.css          Design-Tokens Stadt Zürich (Farben, Typo, Abstände)
+    ├── style.css           Gemeinsames CSS, nutzt ausschliesslich Tokens
     ├── kiosk.js            Kiosk-Modus, nur aktiv mit ?kiosk=1
+    ├── fonts/              Helvetica Neue (Hausschrift, 5 Schnitte)
     └── logo_stzh_rgb_weiss_digital.svg
 ```
 
@@ -60,7 +62,8 @@ normale Webseite.
 
 Rein statische HTML/CSS/JS-Seiten ohne Build-System oder Abhängigkeiten.
 
-- Gemeinsames CSS über `shared/style.css` (Farbpalette Stadt Zürich)
+- Design-Tokens der Stadt Zürich in `shared/tokens.css` (Farben, Typoskala,
+  Abstände, Hausschrift Helvetica Neue); `shared/style.css` nutzt ausschliesslich diese
 - Starter Code: Tab-Wechsel Python/R, Copy-Buttons, aufklappbare `<details>`
 - MCP-Abfragen: Beispiel-Chips öffnen `claude.ai/new?q=...` mit Server-Prefix,
   JS-Höhenangleichung der Karten

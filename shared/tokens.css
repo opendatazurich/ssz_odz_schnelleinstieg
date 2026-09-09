@@ -13,6 +13,55 @@
  * (border-radius: 0 durchgehend). Diese Seite behält ihre Rundungen.
  */
 
+/* ---- Hausschrift ----
+ *
+ * Helvetica Neue in den Schnitten, die auch der Stadtauftritt ausliefert.
+ * Anders als dort sind hier alle Schnitte zu EINER Familie zusammengefasst
+ * und über font-weight unterschieden — so wählt jedes font-weight im CSS
+ * automatisch die richtige Datei, statt dass die Familie gewechselt werden
+ * muss. Ohne das käme auf einen bereits fetten Schnitt noch künstliches
+ * Fetten obendrauf.
+ */
+@font-face {
+  font-family: "Helvetica Neue LT";
+  src: url("fonts/HelveticaNeueLTW01_41488878.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "Helvetica Neue LT";
+  src: url("fonts/HelveticaNeueLTW01_55Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "Helvetica Neue LT";
+  src: url("fonts/HelveticaNeueLTW05_65Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "Helvetica Neue LT";
+  src: url("fonts/HelveticaNeueLTW05_66MediumIt.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "Helvetica Neue LT";
+  src: url("fonts/HelveticaNeueLTW05_85Heavy.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+}
+
 :root {
 
   /* ---- Farben: Primär = Midnightblue (Züriblau-Familie) ---- */
@@ -58,12 +107,13 @@
   --stzh-sunnyyellow70: #C08600;
 
   /* ---- Schrift ----
-     Die lizenzierten Helvetica-Neue-Schnitte werden ergänzt, sobald die
-     WOFF2-Dateien unter shared/fonts/ liegen; bis dahin greift der
-     Fallback-Stack, den auch das Stadt-CD selbst vorsieht. */
-  --stzh-font-regular: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --stzh-font-medium:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --stzh-font-heavy:   "Helvetica Neue", Helvetica, Arial, sans-serif;
+     Alle drei Variablen nennen dieselbe Familie; unterschieden wird über
+     font-weight (300 Light, 400 Regular, 500 Medium, 700 Heavy). Die drei
+     Namen bleiben bestehen, weil style.css sie so verwendet und sie die
+     Absicht an der Fundstelle lesbar machen. Fallback wie im Stadt-CD. */
+  --stzh-font-regular: "Helvetica Neue LT", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --stzh-font-medium:  "Helvetica Neue LT", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --stzh-font-heavy:   "Helvetica Neue LT", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --stzh-font-mono:    "Cascadia Code", "Consolas", "SF Mono", monospace;
 
   /* ---- Typoskala (Standardmodus) ---- */

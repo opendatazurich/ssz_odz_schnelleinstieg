@@ -129,8 +129,8 @@ Nachträglich eingeschoben: Der Stil soll den städtischen Vorgaben folgen.
       entsprechend nachgerechnet (57 → 56px, Flex-Basis 240 → 236px)
 - [x] Vorbestehender Fehler behoben: `var(--font)` auf der MCP-Seite war nirgends
       definiert
-- [ ] Lizenzierte Helvetica-Neue-WOFF2-Dateien nach `shared/fonts/` legen und
-      `@font-face` ergänzen — **wartet auf die Dateien**
+- [x] Helvetica-Neue-Schnitte nach `shared/fonts/` übernommen (5 WOFF2, je ~17 KB)
+      und `@font-face` in `tokens.css` ergänzt; Nutzungsberechtigung bestätigt
 
 **Entschieden abweichend vom CD:** abgerundete Ecken bleiben (`--radius: 12px`).
 Das Stadt-CD setzt `border-radius: 0` durchgehend.
@@ -204,17 +204,11 @@ Ebenfalls unverändert bleiben:
 
 ## 4. Offene Punkte
 
-### Wartet auf Zulieferung
+### Zulieferung
 
-**1. Lizenzierte Helvetica-Neue-Schnitte** — solange sie fehlen, greift der
-Fallback `"Helvetica Neue", Helvetica, Arial, sans-serif`. Auf macOS ist das echtes
-Helvetica Neue, auf Windows Arial. Benötigt werden mindestens Regular, Medium und
-Heavy als WOFF2 in `shared/fonts/`. Die Dateien liegen auf dem Stadtserver unter
-`www.stadt-zuerich.ch/etc.clientlibs/webcomponents/clientlibs/resources/4.15.0/stzh-components/assets/fonts/`
-(je rund 17 KB, abrufbar). Zu klären ist nur, ob die Lizenz die Einbettung auf
-dieser Publikation deckt — insbesondere bei einem Hosting auf `github.io`.
-Danach: `@font-face`-Block anlegen und die Familiennamen in
-`--stzh-font-regular/medium/heavy` in `tokens.css` voranstellen.
+**1. Schriften — erledigt.** Die fünf Helvetica-Neue-Schnitte liegen unter
+`shared/fonts/`, die `@font-face`-Regeln in `tokens.css`. Nutzungsberechtigung
+bestätigt.
 
 **2. Logo-Regeln** — Schutzraum, Mindestgrösse und Platzierungsvorgaben stehen nur
 im Handbuch unter `designsystem.stadt-zuerich.ch`, nicht im ausgelieferten CSS.
