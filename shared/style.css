@@ -18,11 +18,18 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Nur im Kiosk-Modus (?kiosk=1) wird das Markieren von Text unterbunden,
+   damit Besucher*innen am Gerät nichts versehentlich selektieren.
+   Code-Blöcke bleiben auch dort kopierbar. */
+body.kiosk {
   cursor: default;
   user-select: none;
 }
 
-pre, code {
+body.kiosk pre,
+body.kiosk code {
   user-select: text;
   cursor: text;
 }
@@ -72,10 +79,14 @@ header {
 }
 
 /* Stadt-Zürich-Logo links und OGD-Sticker rechts teilen sich dieselbe
-   Flex-Basis, damit der Titel exakt in der Seitenmitte steht. */
+   Flex-Basis, damit der Titel exakt in der Seitenmitte steht. Die
+   sichtbare Logogrösse wird innerhalb dieser Box über die Höhe gesteuert
+   (SVG 250 × 59.4 → 27px Höhe entspricht 113px Breite). */
 .header-logo-stzh {
   flex: 0 0 170px;
-  height: auto;
+  height: 27px;
+  object-fit: contain;
+  object-position: left center;
   z-index: 1;
 }
 

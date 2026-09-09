@@ -2,6 +2,9 @@
 
 **Stand:** 2026-09-09 · **Repo:** `ssz_odz_entdecken` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
+> **Fortschritt:** Phasen 0–3 erledigt, Teile von Phase 6 vorgezogen.
+> **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
+
 ## 1. Vorhaben
 
 Die für die [Scientifica 2026](https://scientifica.ch) gebaute OGD-Station wird zu einer
@@ -58,6 +61,8 @@ Betrifft alle 5 HTML-Seiten.
 - [x] `.header-eye`-Regel in `shared/style.css` durch `.header-logo-stzh` ersetzt
 - [x] Header-Layout neu ausbalanciert: Logo links und OGD-Sticker rechts erhalten dieselbe
       Flex-Basis (`170px`), damit der Titel exakt mittig steht
+- [x] Logogrösse um ein Drittel reduziert (170px → 113px Breite, gesteuert über
+      `height: 27px` innerhalb der unveränderten 170px-Box, damit die Zentrierung hält)
 - [x] Bilddateien gelöscht: `eth_Auge1_transparent.png`, `eth_Auge1_CMYK_100Prozent.jpg`,
       `Scientifica_Auge_Einzel.png`, `Scientifica_Augen_Keyvisual.jpg`,
       `scientifica_wide.jpg` (~7.9 MB)
@@ -68,26 +73,40 @@ Betrifft alle 5 HTML-Seiten.
 > ausserhalb davon nicht weiterverwendet werden. Diese Dateien müssen weg — das ist kein
 > optionaler Schönheitsschritt.
 
-### Phase 2 — Kiosk-Logik entschärfen
+### Phase 2 — Kiosk-Logik entschärfen ✅ erledigt
 
-- [ ] `shared/kiosk.js`: Overlay-Logik nur starten, wenn `?kiosk=1` in der URL steht
-- [ ] `shared/kiosk.js` auf allen Seiten einbinden — aktuell fehlt das Script auf `index.html`
-      (Inkonsistenz aus dem Ausgangsstand)
-- [ ] `body { user-select: none }` in `shared/style.css:22` entfernen; die Ausnahme für
-      `pre, code` wird damit hinfällig
-- [ ] Reset-Overlay-Markup in den 4 Themenseiten belassen (`katalog:262`, `anwendungen:102`,
-      `mcp-abfragen:278`, `starter-code:679`) — es ist ohne aktiven Kiosk-Modus unsichtbar
+- [x] `shared/kiosk.js` komplett überarbeitet: Die Logik startet nur noch, wenn `?kiosk=1`
+      in der URL steht. Im Normalbetrieb passiert nichts.
+- [x] Kiosk-Parameter wird beim Navigieren automatisch an interne Links weitergegeben
+      (`propagateKioskParam()`) — sonst wäre der Modus nach dem ersten Klick weg.
+      Externe Links, Anker und `mailto:` bleiben unangetastet.
+- [x] Null-Guards ergänzt: Das Script lief bisher auf Seiten ohne Overlay-Markup auf einen
+      Fehler.
+- [x] `shared/kiosk.js` und Reset-Overlay auf `index.html` ergänzt — beides fehlte dort
+- [x] `body { user-select: none }` entfernt; gilt jetzt nur noch unter `body.kiosk`,
+      die Klasse setzt das Script im Kiosk-Modus
+- [x] Reset-Overlay-Markup in allen 5 Seiten belassen — ohne aktiven Kiosk-Modus unsichtbar
 
-### Phase 3 — Startseite entrümpeln (`index.html`)
+**Kiosk-Betrieb neu:** `chrome.exe --kiosk --noerrdialogs "http://localhost:8080/?kiosk=1"`
 
-- [ ] «Station 1»–«Station 4» entfernen bzw. durch Themenlabels ersetzen (`.station-number`)
-- [ ] Skill-Badges «Einstieg / Erkunden / Vertiefen» **behalten** — sie sind generisch und
-      ohne Event-Rundgang sogar wertvoller als vorher
-- [ ] Kachel-Reihenfolge an die Navigation angleichen (aktuell Rundgang-Logik:
-      Anwendungen zuerst)
-- [ ] Viewport-Fixierung lösen: `min-height: 360px`, `flex: 1` und das feste 2×2-Raster
-      dürfen scrollen (bisher bewusst nicht)
-- [ ] CSS-Klassen umbenennen: `.station-*` → `.topic-*` (optional, kosmetisch)
+### Phase 3 — Startseite entrümpeln (`index.html`) ✅ erledigt
+
+- [x] «Station 1»–«Station 4» durch die Navigationsbezeichnungen ersetzt
+      («Daten erleben», «Daten finden», «Daten abfragen», «Daten nutzen»); CSS-Klasse
+      `.station-number` → `.station-topic`. Das erhält die Bildkomposition der Kachel und
+      stellt zugleich den Bezug zur Navigation her.
+- [x] Skill-Badges «Einstieg / Erkunden / Vertiefen» behalten
+- [x] Viewport-Fixierung gelöst: `flex: 1`, `grid-template-rows` und `min-height: 360px`
+      entfernt, `main`-Padding von `0.6rem` auf `2rem`, Footer-Sonderpadding entfernt
+      (nutzt jetzt den gemeinsamen Stil aus `style.css`)
+- [x] Kachel-Header von `85px` auf `100px` erhöht — die gequetschte Höhe war eine Folge
+      der Viewport-Fixierung
+- [ ] CSS-Klassen `.station-*` → `.topic-*` umbenennen (optional, rein kosmetisch; die
+      Klassennamen sind der letzte verbliebene Event-Begriff im Code)
+
+> **Korrektur zum ursprünglichen Plan:** Die Kachel-Reihenfolge musste nicht angepasst
+> werden — sie entsprach bereits der Navigationsreihenfolge (Anwendungen, Katalog, MCP,
+> Starter Code). Der Punkt entfällt.
 
 ### Phase 4 — Responsive Layout
 
@@ -121,8 +140,10 @@ An der Scientifica erklärte Standpersonal die Station. Im Web muss die Seite da
 
 - [ ] `anwendungen/index.html`: 2 Links enthalten hartkodiert `anwendungen-2026` — auf eine
       jahresunabhängige URL umstellen oder als Wartungspunkt dokumentieren
-- [ ] `README.md` neu schreiben (aktuell vollständig Scientifica-bezogen)
-- [ ] `CLAUDE.md` neu schreiben (dito; liegt in `.gitignore`, also nur lokal)
+- [x] `README.md` neu geschrieben (vorgezogen, damit der Einstieg beim Weiterarbeiten stimmt)
+- [x] `CLAUDE.md` neu geschrieben (dito; liegt in `.gitignore`, also nur lokal). Die
+      detaillierten Beschreibungen der vier Themenseiten sind unverändert übernommen —
+      sie stimmen weiterhin.
 - [ ] `farbskalen.html` bleibt als internes Arbeitsdokument liegen — steht bereits
       in `.gitignore` und wird nicht publiziert
 - [ ] `shared/starterCode.mp4` (1.8 MB) funktioniert nur über HTTP, nicht via `file:///` —

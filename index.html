@@ -6,22 +6,15 @@
   <title>Open Government Data entdecken — Stadt Zürich</title>
   <link rel="stylesheet" href="shared/style.css">
   <style>
-    body {
-      min-height: 100vh;
-    }
-
+    /* Das Kachelraster füllte an der Scientifica exakt den Viewport der
+       Event-Laptops (1280×800 CSS-Pixel). Für den Webbetrieb wachsen die
+       Kacheln mit ihrem Inhalt und die Seite darf scrollen. */
     main {
-      padding: 0.6rem 3rem;
-      flex: 1;
-      display: flex;
-      min-height: 0;
+      padding: 2rem 3rem;
     }
 
     .cards {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      flex: 1;
-      min-height: 360px;
     }
 
     .station-card {
@@ -37,7 +30,6 @@
       text-decoration: none;
       color: inherit;
       padding: 0;
-      min-height: 0;
     }
 
     .station-card:hover, .station-card:focus-visible {
@@ -49,7 +41,7 @@
 
     .station-header {
       position: relative;
-      height: 85px;
+      height: 100px;
       flex-shrink: 0;
       display: flex;
       align-items: flex-end;
@@ -74,7 +66,7 @@
       justify-content: space-between;
     }
 
-    .station-number {
+    .station-topic {
       font-size: 0.7rem;
       font-weight: 700;
       color: rgba(255,255,255,0.85);
@@ -176,9 +168,6 @@
       transform: translateX(4px);
     }
 
-    footer {
-      padding: 0.5rem 3rem;
-    }
   </style>
 </head>
 <body>
@@ -207,7 +196,7 @@
         <div class="station-header" style="background: linear-gradient(135deg, #1a3a88 0%, #2550a0 100%);">
           <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Anwendungen"> -->
           <div class="station-top">
-            <span class="station-number">Station 1</span>
+            <span class="station-topic">Daten erleben</span>
             <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
           </div>
           <span class="station-name">Anwendungen</span>
@@ -232,7 +221,7 @@
         <div class="station-header" style="background: linear-gradient(135deg, #2870b8 0%, #3590cc 100%);">
           <!-- Bild hier einfügen: <img src="DEINE_URL" alt="OGD-Katalog"> -->
           <div class="station-top">
-            <span class="station-number">Station 2</span>
+            <span class="station-topic">Daten finden</span>
             <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
           </div>
           <span class="station-name">OGD-Katalog</span>
@@ -257,7 +246,7 @@
         <div class="station-header" style="background: linear-gradient(135deg, #2a8cb8 0%, #3a9fcc 100%);">
           <!-- Bild hier einfügen: <img src="DEINE_URL" alt="MCP-Abfragen"> -->
           <div class="station-top">
-            <span class="station-number">Station 3</span>
+            <span class="station-topic">Daten abfragen</span>
             <span class="station-level"><span class="dots"><span class="dot-filled">●●</span><span class="dot-empty">●</span></span>Erkunden</span>
           </div>
           <span class="station-name">MCP-Abfragen</span>
@@ -282,7 +271,7 @@
         <div class="station-header" style="background: linear-gradient(135deg, #4ab0d0 0%, #5cc0de 100%);">
           <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Starter Code"> -->
           <div class="station-top">
-            <span class="station-number">Station 4</span>
+            <span class="station-topic">Daten nutzen</span>
             <span class="station-level"><span class="dots"><span class="dot-filled">●●●</span></span>Vertiefen</span>
           </div>
           <span class="station-name">Starter Code</span>
@@ -314,5 +303,11 @@
     </p>
   </footer>
 
+  <div class="reset-overlay" id="resetOverlay">
+    <h2>Willkommen!</h2>
+    <p>Berühren Sie den Bildschirm, um zu starten.</p>
+  </div>
+
+  <script src="shared/kiosk.js"></script>
 </body>
 </html>
