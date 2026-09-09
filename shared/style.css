@@ -1,18 +1,13 @@
-:root {
-  --blue: #0F05A0;
-  --blue-light: #e8e7f6;
-  --accent: #009ee0;
-  --text: #1a1a2e;
-  --text-light: #555;
-  --bg: #f5f5fa;
-  --card-bg: #fff;
-  --radius: 12px;
-}
+/*
+ * Gemeinsame Styles. Die Werte kommen aus shared/tokens.css (Design-Tokens
+ * Stadt Zürich); hier stehen nur noch Zuordnungen, keine losen Zahlen.
+ */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: var(--stzh-font-regular);
+  font-size: var(--stzh-font-milli);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -35,18 +30,18 @@ body.kiosk code {
 }
 
 nav {
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 0 3rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--stzh-grey20);
+  padding: 0 var(--stzh-container-margin);
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: var(--stzh-space-xxsmall);
   overflow-x: auto;
 }
 
 nav a {
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
+  padding: var(--stzh-space-small) var(--stzh-space-medium);
+  font-size: var(--stzh-font-micro);
   font-weight: 500;
   color: var(--text-light);
   text-decoration: none;
@@ -67,12 +62,12 @@ nav a.active {
 
 header {
   background: var(--blue);
-  color: #fff;
-  padding: 1.2rem 3rem;
+  color: var(--stzh-white);
+  padding: var(--stzh-space-large) var(--stzh-container-margin);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--stzh-space-xxlarge);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -82,16 +77,16 @@ header {
    Flex-Basis, damit der Titel exakt in der Seitenmitte steht.
 
    Die Logohöhe entspricht dem Textblock aus Titel und Untertitel:
-     h1  1.8rem × line-height 1.2 = 34.6px
-     p   1rem   × line-height 1.4 = 22.4px
-                                  = 57px
-   Das SVG misst 250 × 59.4, 57px Höhe ergeben also 240px Breite — daher
-   die Flex-Basis von 240px auf beiden Seiten. Die line-height von h1 ist
+     h1  hecto 1.75rem × line-height 1.2 = 33.6px
+     p   milli 1rem    × line-height 1.4 = 22.4px
+                                         = 56px
+   Das SVG misst 250 × 59.4, 56px Höhe ergeben also 236px Breite — daher
+   die Flex-Basis von 236px auf beiden Seiten. Die line-height von h1 ist
    unten fix gesetzt, damit diese Rechnung nicht von den Schriftmetriken
    des jeweiligen Systems abhängt. */
 .header-logo-stzh {
-  flex: 0 0 240px;
-  height: 57px;
+  flex: 0 0 236px;
+  height: 56px;
   object-fit: contain;
   object-position: left center;
   z-index: 1;
@@ -104,14 +99,15 @@ header {
 }
 
 header h1 {
-  font-size: 1.8rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-hecto);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
 header p {
-  font-size: 1rem;
+  font-size: var(--stzh-font-milli);
   opacity: 0.88;
   max-width: 700px;
   margin: 0 auto;
@@ -119,7 +115,7 @@ header p {
 }
 
 .header-logo {
-  flex: 0 0 240px;
+  flex: 0 0 236px;
   height: 88px;
   object-fit: contain;
   object-position: right center;
@@ -128,7 +124,7 @@ header p {
 
 main {
   flex: 1;
-  padding: 2.5rem 3rem;
+  padding: var(--stzh-space-xxxlarge) var(--stzh-container-margin);
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -137,7 +133,7 @@ main {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.5rem;
+  gap: var(--stzh-space-xlarge);
 }
 
 .card {
@@ -169,34 +165,35 @@ main {
 }
 
 .card-body {
-  padding: 1.5rem;
+  padding: var(--stzh-space-xlarge);
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .card h2 {
-  font-size: 1.3rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-deci);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--stzh-space-xsmall);
   color: var(--text);
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: var(--stzh-font-milli);
   color: var(--text-light);
   line-height: 1.55;
   flex: 1;
 }
 
 .card-cta {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: var(--stzh-space-medium);
+  font-size: var(--stzh-font-micro);
   font-weight: 600;
   color: var(--accent);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: var(--stzh-space-xxsmall);
 }
 
 .card-cta::after {
@@ -210,9 +207,9 @@ main {
 
 footer {
   text-align: center;
-  padding: 1.5rem 3rem 2rem;
+  padding: var(--stzh-space-xlarge) var(--stzh-container-margin) var(--stzh-space-xxlarge);
   color: var(--text-light);
-  font-size: 0.95rem;
+  font-size: var(--stzh-font-milli);
 }
 
 footer a {
@@ -228,9 +225,9 @@ footer a:hover {
 /* Intro */
 .intro {
   display: flex;
-  gap: 2.5rem;
+  gap: var(--stzh-space-xxxlarge);
   align-items: flex-start;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--stzh-space-xxxlarge);
 }
 
 .intro-text {
@@ -238,17 +235,18 @@ footer a:hover {
 }
 
 .intro-text h2 {
-  font-size: 1.5rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-deca);
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--stzh-space-small);
   color: var(--text);
 }
 
 .intro-text p {
-  font-size: 1rem;
+  font-size: var(--stzh-font-milli);
   line-height: 1.6;
   color: var(--text-light);
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--stzh-space-small);
 }
 
 .intro-image {
@@ -260,9 +258,10 @@ footer a:hover {
 
 /* Section titles */
 .section-title {
-  font-size: 1.4rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-deca);
   font-weight: 700;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--stzh-space-large);
   color: var(--text);
 }
 
@@ -270,26 +269,26 @@ footer a:hover {
 .features, .benefits {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2.5rem;
+  gap: var(--stzh-space-medium);
+  margin-bottom: var(--stzh-space-xxxlarge);
 }
 
 .feature, .benefit {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: var(--stzh-space-large);
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .feature strong, .benefit strong {
   display: block;
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
+  font-size: var(--stzh-font-milli);
+  margin-bottom: var(--stzh-space-xxsmall);
   color: var(--text);
 }
 
 .feature span, .benefit span {
-  font-size: 0.88rem;
+  font-size: var(--stzh-font-micro);
   color: var(--text-light);
   line-height: 1.5;
 }
@@ -297,32 +296,33 @@ footer a:hover {
 /* CTA banner */
 .try-cta {
   background: var(--blue);
-  color: #fff;
+  color: var(--stzh-white);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: var(--stzh-space-xxlarge);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--stzh-space-xxxlarge);
 }
 
 .try-cta h2 {
-  font-size: 1.4rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-deca);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--stzh-space-xsmall);
 }
 
 .try-cta p {
-  font-size: 1rem;
+  font-size: var(--stzh-font-milli);
   opacity: 0.88;
-  margin-bottom: 1rem;
+  margin-bottom: var(--stzh-space-medium);
 }
 
 .try-cta a {
   display: inline-block;
-  background: #fff;
+  background: var(--stzh-white);
   color: var(--blue);
   font-weight: 700;
-  font-size: 1rem;
-  padding: 0.7rem 2rem;
+  font-size: var(--stzh-font-milli);
+  padding: var(--stzh-space-small) var(--stzh-space-xxlarge);
   border-radius: 8px;
   text-decoration: none;
   transition: transform 0.15s ease;
@@ -336,9 +336,9 @@ footer a:hover {
 .info-note, .tech-note {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
+  padding: var(--stzh-space-large) var(--stzh-space-xlarge);
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  font-size: 0.9rem;
+  font-size: var(--stzh-font-micro);
   color: var(--text-light);
   line-height: 1.6;
 }
@@ -357,15 +357,16 @@ footer a:hover {
 .steps {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 1.5rem 2rem;
+  padding: var(--stzh-space-xlarge) var(--stzh-space-xxlarge);
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--stzh-space-xxxlarge);
 }
 
 .steps h3 {
-  font-size: 1.1rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-centi);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: var(--stzh-space-medium);
   color: var(--text);
 }
 
@@ -378,9 +379,9 @@ footer a:hover {
 .steps li {
   counter-increment: step;
   position: relative;
-  padding-left: calc(28px + 0.75rem);
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem;
+  padding-left: calc(28px + var(--stzh-space-small));
+  margin-bottom: var(--stzh-space-small);
+  font-size: var(--stzh-font-milli);
   line-height: 1.55;
   color: var(--text-light);
 }
@@ -397,9 +398,9 @@ footer a:hover {
   height: 28px;
   border-radius: 50%;
   background: var(--blue);
-  color: #fff;
+  color: var(--stzh-white);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: var(--stzh-font-micro);
 }
 
 .steps li a {
@@ -418,7 +419,7 @@ footer a:hover {
   position: fixed;
   inset: 0;
   background: rgba(15, 5, 160, 0.92);
-  color: #fff;
+  color: var(--stzh-white);
   z-index: 1000;
   flex-direction: column;
   align-items: center;
@@ -431,11 +432,12 @@ footer a:hover {
 }
 
 .reset-overlay h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-family: var(--stzh-font-heavy);
+  font-size: var(--stzh-font-mega);
+  margin-bottom: var(--stzh-space-medium);
 }
 
 .reset-overlay p {
-  font-size: 1.3rem;
+  font-size: var(--stzh-font-deci);
   opacity: 0.85;
 }

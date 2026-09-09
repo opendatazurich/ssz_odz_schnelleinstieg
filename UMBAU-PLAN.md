@@ -2,7 +2,7 @@
 
 **Stand:** 2026-09-09 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
-> **Fortschritt:** Phasen 0–3 erledigt, Teile von Phase 6 vorgezogen.
+> **Fortschritt:** Phasen 0–3 und 3b erledigt, Teile von Phase 6 vorgezogen.
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
 
 ## 1. Vorhaben
@@ -111,6 +111,33 @@ Betrifft alle 5 HTML-Seiten.
 > werden — sie entsprach bereits der Navigationsreihenfolge (Anwendungen, Katalog, MCP,
 > Starter Code). Der Punkt entfällt.
 
+### Phase 3b — Anbindung ans Corporate Design ✅ erledigt
+
+Nachträglich eingeschoben: Der Stil soll den städtischen Vorgaben folgen.
+
+- [x] Design-Tokens aus dem real ausgelieferten Stylesheet des Stadtauftritts
+      ausgelesen (`stzh-components.css` 4.15.0) — die Storybook-Doku unter
+      `designsystem.stadt-zuerich.ch` ist aus dieser Umgebung nicht erreichbar (502)
+- [x] `shared/tokens.css` angelegt: Farbpalette, Typoskala, Abstandsskala,
+      Schriftfamilien, dazu die semantische Zuordnung für diese Seite
+- [x] `shared/style.css` vollständig auf Tokens umgestellt — keine losen Zahlen mehr
+- [x] `tokens.css` auf allen 5 Seiten vor `style.css` eingebunden
+- [x] Akzentfarbe `#009ee0` → Cyan 50 `#0098C6` (der alte Wert stand in keiner
+      Palette; der Code-Kommentar hatte das schon vermerkt)
+- [x] Schrift von `Segoe UI` auf den Helvetica-Neue-Stack des CD
+- [x] Titelgrösse auf die Skala gesetzt (1.8rem → hecto 1.75rem), Logohöhe
+      entsprechend nachgerechnet (57 → 56px, Flex-Basis 240 → 236px)
+- [x] Vorbestehender Fehler behoben: `var(--font)` auf der MCP-Seite war nirgends
+      definiert
+- [ ] Lizenzierte Helvetica-Neue-WOFF2-Dateien nach `shared/fonts/` legen und
+      `@font-face` ergänzen — **wartet auf die Dateien**
+
+**Entschieden abweichend vom CD:** abgerundete Ecken bleiben (`--radius: 12px`).
+Das Stadt-CD setzt `border-radius: 0` durchgehend.
+
+**Noch offen:** Logo-Regeln (Schutzraum, Mindestgrösse) stehen nur im Handbuch
+selbst, nicht im ausgelieferten CSS — nicht auslesbar.
+
 ### Phase 4 — Responsive Layout
 
 Grösster technischer Posten: Im gesamten Projekt existiert **keine einzige `@media`-Regel**.
@@ -171,7 +198,7 @@ werden dort nur Header, Titel und das Responsive-Verhalten.
 
 Ebenfalls unverändert bleiben:
 
-- Farbpalette und CI/CD der Stadt Zürich (`--blue: #0F05A0`, `--accent: #009ee0`)
+- Die Bindung ans Corporate Design der Stadt Zürich (jetzt über `shared/tokens.css`)
 - Der Ansatz «rein statisches HTML/CSS/JS ohne Build-System»
 - Navigationsstruktur: Übersicht / Daten erleben / Daten finden / Daten abfragen / Daten nutzen
 

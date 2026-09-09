@@ -1,0 +1,117 @@
+/*
+ * Design-Tokens Stadt Zürich
+ *
+ * Übernommen aus dem ausgelieferten Stylesheet des Stadtauftritts
+ * (stzh-components.css 4.15.0, https://www.stadt-zuerich.ch). Die Namen
+ * folgen dem Original, damit sich Werte gegen die Quelle prüfen lassen.
+ *
+ * Übernommen sind die Skalen im Standardmodus. Das Original kennt zusätzlich
+ * die Dichtemodi "compact" und "spacious" (data-stzh-density) mit je eigenen
+ * Schriftgrössen und Abständen — die brauchen wir hier nicht.
+ *
+ * Bewusste Abweichung: Das Stadt-CD kennt keine abgerundeten Ecken
+ * (border-radius: 0 durchgehend). Diese Seite behält ihre Rundungen.
+ */
+
+:root {
+
+  /* ---- Farben: Primär = Midnightblue (Züriblau-Familie) ---- */
+  --stzh-midnightblue10:  #EFF5FF;
+  --stzh-midnightblue20:  #C5DBFF;
+  --stzh-midnightblue30:  #94B7F8;
+  --stzh-midnightblue40:  #6496FF;
+  --stzh-midnightblue50:  #3D6BFF;
+  --stzh-midnightblue60:  #3431DE;
+  --stzh-midnightblue70:  #0F05A0;  /* Züriblau */
+  --stzh-midnightblue80:  #070066;
+  --stzh-midnightblue90:  #070046;
+  --stzh-midnightblue100: #070030;
+
+  /* ---- Farben: Sekundär = Cobaltblue ---- */
+  --stzh-cobaltblue10:  #E6F7FF;
+  --stzh-cobaltblue30:  #88CFFF;
+  --stzh-cobaltblue50:  #0A8DF6;
+  --stzh-cobaltblue60:  #0353DC;
+  --stzh-cobaltblue70:  #002F96;
+
+  /* ---- Farben: Cyan (Akzent dieser Seite) ---- */
+  --stzh-cyan10: #DFFCFF;
+  --stzh-cyan30: #7BDCF9;
+  --stzh-cyan40: #23C3F1;
+  --stzh-cyan50: #0098C6;
+  --stzh-cyan60: #0076AA;
+
+  /* ---- Farben: Neutral ---- */
+  --stzh-white:      #FFFFFF;
+  --stzh-black:      #000000;
+  --stzh-grey10:     #F4F4F4;
+  --stzh-grey20:     #E8E8E8;
+  --stzh-grey30:     #D2D2D2;
+  --stzh-grey70:     #7C7C7C;
+  --stzh-grey80:     #606060;
+  --stzh-coolgrey10: #F4F7F9;
+  --stzh-coolgrey20: #D9E9EF;
+  --stzh-coolgrey30: #B2CCD7;
+
+  /* ---- Farben: Signalfarben für Codebeispiele und Hinweise ---- */
+  --stzh-shamrock70: #06751E;
+  --stzh-sunnyyellow70: #C08600;
+
+  /* ---- Schrift ----
+     Die lizenzierten Helvetica-Neue-Schnitte werden ergänzt, sobald die
+     WOFF2-Dateien unter shared/fonts/ liegen; bis dahin greift der
+     Fallback-Stack, den auch das Stadt-CD selbst vorsieht. */
+  --stzh-font-regular: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --stzh-font-medium:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --stzh-font-heavy:   "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --stzh-font-mono:    "Cascadia Code", "Consolas", "SF Mono", monospace;
+
+  /* ---- Typoskala (Standardmodus) ---- */
+  --stzh-font-pico:   0.75rem;
+  --stzh-font-nano:   0.8125rem;
+  --stzh-font-micro:  0.875rem;
+  --stzh-font-milli:  1rem;
+  --stzh-font-centi:  1.125rem;
+  --stzh-font-deci:   1.25rem;
+  --stzh-font-deca:   1.5rem;
+  --stzh-font-hecto:  1.75rem;
+  --stzh-font-kilo:   2rem;
+  --stzh-font-mega:   2.5rem;
+  --stzh-font-giga:   3rem;
+  --stzh-font-hero:   3.5rem;
+
+  /* ---- Abstände (Standardmodus) ---- */
+  --stzh-space-xxsmall:  0.25rem;
+  --stzh-space-xsmall:   0.5rem;
+  --stzh-space-small:    0.75rem;
+  --stzh-space-medium:   1rem;
+  --stzh-space-large:    1.25rem;
+  --stzh-space-xlarge:   1.5rem;
+  --stzh-space-xxlarge:  2rem;
+  --stzh-space-xxxlarge: 2.5rem;
+  --stzh-space-big:      3.5rem;
+  --stzh-space-xbig:     4rem;
+  --stzh-space-huge:     5rem;
+
+  /* ---- Seitenrand (entspricht container-margin-small, spacious) ---- */
+  --stzh-container-margin: 3rem;
+
+
+  /* =========================================================
+     Semantische Zuordnung für diese Seite
+     ========================================================= */
+
+  --blue:       var(--stzh-midnightblue70);  /* Züriblau: Header, CTA, Steps */
+  --blue-light: var(--stzh-midnightblue10);  /* Chips, Tags, Flächen */
+  --accent:     var(--stzh-cyan50);          /* Links, Hover, aktive Navigation */
+  --accent-dark: var(--stzh-cyan60);         /* Hover auf Akzentflächen */
+
+  --text:       var(--stzh-black);
+  --text-light: var(--stzh-grey80);
+  --bg:         var(--stzh-coolgrey10);
+  --card-bg:    var(--stzh-white);
+  --rule:       var(--stzh-grey30);
+
+  /* Bewusste Abweichung vom CD, siehe Kopfkommentar */
+  --radius: 12px;
+}
