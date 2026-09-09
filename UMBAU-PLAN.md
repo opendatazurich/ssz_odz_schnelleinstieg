@@ -1,6 +1,6 @@
 # Umbau-Plan: von der Scientifica-Station zur allgemeinen OGD-Webseite
 
-**Stand:** 2026-09-09 · **Repo:** `ssz_odz_entdecken` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
+**Stand:** 2026-09-09 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
 > **Fortschritt:** Phasen 0–3 erledigt, Teile von Phase 6 vorgezogen.
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
@@ -27,7 +27,7 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 
 | Frage | Entscheid | Begründung |
 |---|---|---|
-| Neues Repo oder Branch? | **Neues Repo** (`ssz_odz_entdecken`) | Scientifica-Repo bleibt als Event-Archiv eingefroren; die Versionen driften auseinander (Kiosk vs. offenes Web) |
+| Neues Repo oder Branch? | **Neues Repo** (`ssz_odz_schnelleinstieg`) | Scientifica-Repo bleibt als Event-Archiv eingefroren; die Versionen driften auseinander (Kiosk vs. offenes Web) |
 | Haupttitel (H1) | **«Schnelleinstieg Open Government Data»** | Zeitlos, kein Jahr/Event, benennt den Zweck der Seite und behält den Fachbegriff für Auffindbarkeit und Verwaltungskontext. «der Stadt Zürich» weggelassen — das sagen Logo, Sticker und Footer bereits dreifach. Das Kürzel «OGD» wäre für ein breites Publikum zu voraussetzungsreich. |
 | Untertitel | Bleiben seitenspezifisch wie bisher | Sind bereits event-neutral formuliert |
 | Kiosk-Modus | Bleibt erhalten, aber **opt-in via `?kiosk=1`** | Wiederverwendbar für den nächsten Anlass, ohne die normale Webseite zu stören |
@@ -39,7 +39,8 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 
 ### Phase 0 — Setup ✅ erledigt
 
-- [x] Kopie nach `G:\sszsim\1_github_odz\ssz_odz_entdecken` (ohne `.git`)
+- [x] Kopie nach `G:\sszsim\1_github_odz\ssz_odz_schnelleinstieg` (ohne `.git`) — zuerst
+      als `ssz_odz_entdecken` angelegt, mit dem Titelentscheid umbenannt
 - [x] Neues Git-Repo initialisiert, Branch `main`
 - [x] Baseline-Commit als 1:1-Kopie des Ausgangsstands
 - [x] Dieses Dokument
@@ -154,7 +155,7 @@ An der Scientifica erklärte Standpersonal die Station. Im Web muss die Seite da
 
 ### Phase 7 — Veröffentlichung
 
-- [ ] GitHub-Repo unter `opendatazurich/` anlegen und Remote setzen
+- [ ] GitHub-Repo `opendatazurich/ssz_odz_schnelleinstieg` anlegen und Remote setzen
 - [ ] GitHub Pages aktivieren
 - [ ] Verlinkung ab `stadt-zuerich.ch/opendata` mit STEZ/Kommunikation absprechen
 - [ ] Vorschaubild und Meta-Tags (`og:title`, `og:description`, `og:image`) ergänzen —
