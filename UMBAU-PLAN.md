@@ -2,7 +2,8 @@
 
 **Stand:** 2026-09-09 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
-> **Fortschritt:** Phasen 0–3 und 3b erledigt, Teile von Phase 6 vorgezogen.
+> **Fortschritt:** Phasen 0–3 und 3b erledigt, Teile von Phase 6 vorgezogen, dazu eine
+> Feinschliff-Runde an Startseite, MCP- und Starter-Code-Seite (Phase 3c).
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
 
 ## 1. Vorhaben
@@ -140,6 +141,34 @@ Das Stadt-CD setzt `border-radius: 0` durchgehend.
 **Noch offen:** Logo-Regeln (Schutzraum, Mindestgrösse) stehen nur im Handbuch
 selbst, nicht im ausgelieferten CSS — nicht auslesbar.
 
+### Phase 3c — Feinschliff ✅ erledigt
+
+Kleinere Korrekturen aus dem Durchgang am Bildschirm.
+
+**Startseite**
+- [x] Kachelköpfe auf `84px`, aus dem Höhenbudget bei 1280×800 abgeleitet
+- [x] «Öffnen»-Hinweis im Kachelrumpf durch einen Pfeil im Kachelkopf ersetzt — der
+      Text war kein Link, die ganze Kachel ist das `<a>`
+- [x] Navigation unter den Header verschoben, wie beim Stadtauftritt
+
+**MCP-Seite**
+- [x] GitHub-Links aller Server-Karten auf einer Linie (`margin-top: auto` statt
+      JS-Höhenangleichung)
+- [x] Meta-Zeilen ebenfalls bündig (`min-height` für zwei Zeilen)
+
+**Starter-Code-Seite**
+- [x] Aktionsbanner überarbeitet: Raster statt Flex-Zeile, damit Knopf und Link auf
+      einer Linie sitzen; Knopf gefüllt wie der Link daneben; Beschreibungen in
+      Midnightblue 10 / milli / Medium statt kleiner Weisstöne mit Deckkraft;
+      Überschrift von zwei Emojis flankiert, 2rem Abstand zu den Schaltflächen
+- [x] Beispielauswertungen bleiben standardmässig zugeklappt
+
+**Verworfen** (in der History nachvollziehbar, nicht erneut versuchen):
+- Navigationsband in Midnightblue 10 — CD-konform, hebt sich aber nur um 1.02:1 vom
+  Seitengrund ab
+- Ausklapper am Abschnitt statt im Banner, Beispiele vor dem Banner, zweites Banner
+  mit Direktlink ins Notebook — beide Aufrufe gehören in ein Banner
+
 ### Phase 4 — Responsive Layout
 
 Grösster technischer Posten: Im gesamten Projekt existiert **keine einzige `@media`-Regel**.
@@ -151,8 +180,14 @@ Die Seite ist hart auf die Event-Laptops optimiert (1920×1200 bei 150 % = 1280�
 - [ ] Schriftgrössen und Header-Höhe skalieren
 - [ ] Navigation auf schmalen Bildschirmen prüfen (scrollt aktuell horizontal — akzeptabel,
       aber testen)
-- [ ] `mcp-abfragen/index.html`: die JS-Höhenangleichung der Karten muss bei `resize`
-      neu rechnen und auf Mobile deaktiviert werden
+- [ ] `mcp-abfragen/index.html`: die verbliebene JS-Höhenangleichung der
+      Beschreibungsabsätze muss bei `resize` neu rechnen und auf Mobile deaktiviert
+      werden (die der Chip-Blöcke ist entfallen, das macht jetzt CSS)
+- [ ] `starter-code/index.html`: `.try-cta-buttons` ist ein Raster mit drei festen
+      Spalten und bricht nicht um — auf schmalen Bildschirmen braucht es eine
+      einspaltige Variante
+- [ ] `index.html`: der Kachelkopf ist auf `84px` fixiert, abgeleitet aus dem Budget
+      bei 1280×800; auf anderen Höhen sollte er mitgehen
 - [ ] `starter-code/index.html`: das links gefloatete Video auf Mobile über den Text stellen
 - [ ] Test auf Mobile, Tablet, Desktop
 
