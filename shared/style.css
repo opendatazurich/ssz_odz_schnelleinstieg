@@ -29,9 +29,14 @@ body.kiosk code {
   cursor: text;
 }
 
+/* Die Navigationsleiste liegt direkt unter dem Züriblau-Header. Ein weisses
+   Band ergäbe dort einen harten Sprung, deshalb Midnightblue 10 — die Farbe,
+   die das Stadt-CD für die Menüfläche vorsieht
+   (`--stzh-header-menu-background-color`). Die Werte staffeln sich damit von
+   #0F05A0 über #EFF5FF auf den Seitengrund #F4F7F9. */
 nav {
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--stzh-grey20);
+  background: var(--blue-light);
+  border-bottom: 1px solid var(--stzh-coolgrey20);
   padding: 0 var(--stzh-container-margin);
   display: flex;
   align-items: center;
