@@ -204,6 +204,30 @@ Ebenfalls unverändert bleiben:
 
 ## 4. Offene Punkte
 
+### Wartet auf Zulieferung
+
+**1. Lizenzierte Helvetica-Neue-Schnitte** — solange sie fehlen, greift der
+Fallback `"Helvetica Neue", Helvetica, Arial, sans-serif`. Auf macOS ist das echtes
+Helvetica Neue, auf Windows Arial. Benötigt werden mindestens Regular, Medium und
+Heavy als WOFF2 in `shared/fonts/`. Die Dateien liegen auf dem Stadtserver unter
+`www.stadt-zuerich.ch/etc.clientlibs/webcomponents/clientlibs/resources/4.15.0/stzh-components/assets/fonts/`
+(je rund 17 KB, abrufbar). Zu klären ist nur, ob die Lizenz die Einbettung auf
+dieser Publikation deckt — insbesondere bei einem Hosting auf `github.io`.
+Danach: `@font-face`-Block anlegen und die Familiennamen in
+`--stzh-font-regular/medium/heavy` in `tokens.css` voranstellen.
+
+**2. Logo-Regeln** — Schutzraum, Mindestgrösse und Platzierungsvorgaben stehen nur
+im Handbuch unter `designsystem.stadt-zuerich.ch`, nicht im ausgelieferten CSS.
+Aus der Entwicklungsumgebung ist diese Domain nicht erreichbar (502 am Proxy), die
+Seite muss also von Hand aufgerufen und der Abschnitt übertragen werden.
+
+Dabei ebenfalls zu klären: Der Stadtauftritt verwendet das Logo in der Fassung
+`250.1 × 81.5` (`/content/dam/corporate-design/de/logos/stadt-zuerich.svg`), diese
+Seite die weisse Digitalfassung `250 × 59.4`. Zwei unterschiedliche Lockups — welches
+für diesen Einsatz das richtige ist, sollte jemand mit CD-Kenntnis bestätigen.
+
+### Grundsätzliches
+
 - Mehrsprachigkeit (FR/EN/IT)? Aktuell nur Deutsch, `lang="de"`. Falls je gewünscht, sollte
   die Struktur jetzt darauf vorbereitet werden statt später.
 - Soll die Seite eine eigene Domain/Subdomain bekommen oder unter `opendatazurich.github.io`
