@@ -48,12 +48,15 @@
          Rest          469px   zwei Reihen plus 24px Abstand
          pro Kachel    222px   abzüglich Rumpf 134px (Beschreibung
                                zweizeilig, schlechtester Fall)
+                             = 88px maximal möglich
 
-       Ändert sich am Seitengerüst oder am Kachelrumpf etwas, muss dieser
-       Wert nachgerechnet werden. */
+       Gesetzt sind 84px: Die Rechnung beruht auf angenommenen Zeilenhöhen
+       (line-height: normal ≈ 1.2), deshalb bleiben bewusst 9px Reserve
+       statt der rechnerisch möglichen 1px. Ändert sich am Seitengerüst
+       oder am Kachelrumpf etwas, muss der Wert nachgerechnet werden. */
     .station-header {
       position: relative;
-      height: 72px;
+      height: 84px;
       flex-shrink: 0;
       display: flex;
       align-items: flex-end;
