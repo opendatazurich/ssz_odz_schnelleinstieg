@@ -104,20 +104,20 @@
 
     /* Feste Palettenwerte statt abgeschwächter Deckkraft: heller Text auf
        dunklem Grund wirkt ausgewaschen, sobald er klein und transparent ist.
-       Dazu eine Stufe grösser (micro statt 0.82rem) und mehr Zeilenabstand. */
-    .try-cta-desc {
+       Der Kontrastwert allein taugt hier nicht als Massstab — geholfen haben
+       volle Deckkraft, grösserer Grad und der Medium-Schnitt zusammen.
+       Beschreibungen und «oder» sind einheitlich gesetzt. */
+    .try-cta-desc,
+    .try-cta-or {
       font-size: var(--stzh-font-milli);
       font-weight: 500;
       color: var(--stzh-midnightblue10);
+    }
+
+    .try-cta-desc {
       max-width: 34ch;
       text-align: center;
       line-height: 1.5;
-    }
-
-    .try-cta-or {
-      font-size: var(--stzh-font-micro);
-      font-weight: 500;
-      color: var(--stzh-midnightblue20);
     }
 
     /* Gleiche Füllung und Geometrie wie der Link daneben — beide sind
