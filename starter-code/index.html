@@ -87,17 +87,18 @@
        wie lang die Beschreibungen darunter sind. */
     .try-cta-buttons {
       display: grid;
-      /* Der Abstand zur Überschrift steht allein hier: Der margin-bottom der
-         Überschrift (xsmall) fällt mit diesem Rand zusammen, wirksam ist der
-         grössere der beiden — nicht die Summe. */
-      margin-top: var(--stzh-space-big);
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       justify-items: center;
       column-gap: 1.5rem;
       row-gap: 0.7rem;
       max-width: 780px;
-      margin: 0 auto;
+      /* Oben der Abstand zur Überschrift, seitlich zentriert, unten nichts.
+         Als Kurzform, weil ein separates margin-top von einem späteren
+         `margin`-Shorthand in derselben Regel überschrieben würde.
+         Der margin-bottom der Überschrift fällt mit dem oberen Rand
+         zusammen — wirksam ist der grössere der beiden, nicht die Summe. */
+      margin: var(--stzh-space-big) auto 0;
     }
 
     /* Dekorativ, darum aria-hidden im Markup. Sie erben sonst das Heavy
