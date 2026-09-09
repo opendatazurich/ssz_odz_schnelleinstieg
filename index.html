@@ -46,7 +46,7 @@
          Seitengerüst  331px   Navigation 45, Kopfbereich 128,
                                main-Padding 64, Fusszeile 94
          Rest          469px   zwei Reihen plus 24px Abstand
-         pro Kachel    222px   abzüglich Rumpf 150px (Beschreibung
+         pro Kachel    222px   abzüglich Rumpf 134px (Beschreibung
                                zweizeilig, schlechtester Fall)
 
        Ändert sich am Seitengerüst oder am Kachelrumpf etwas, muss dieser
@@ -57,6 +57,7 @@
       flex-shrink: 0;
       display: flex;
       align-items: flex-end;
+      justify-content: space-between;
       padding: 0.6rem 1.2rem;
     }
 
@@ -138,13 +139,6 @@
       line-height: 1.55;
     }
 
-    .station-meta {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     .station-tags {
       display: flex;
       flex-wrap: wrap;
@@ -162,21 +156,19 @@
       white-space: nowrap;
     }
 
-    .station-cta {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .station-cta::after {
-      content: '\2192';
+    /* Der Pfeil ist die einzige Klickaufforderung der Kachel — die ganze
+       Kachel ist der Link, ein zusätzlicher Beschriftungstext wäre doppelt.
+       Er sitzt auf der Grundlinie des Kachelnamens statt unter den
+       Themen-Chips, wo er zu eng stand. */
+    .station-open {
+      font-size: 1.4rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.9);
+      z-index: 1;
       transition: transform 0.15s ease;
     }
 
-    .station-card:hover .station-cta::after {
+    .station-card:hover .station-open {
       transform: translateX(4px);
     }
 
@@ -212,6 +204,7 @@
             <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
           </div>
           <span class="station-name">Anwendungen</span>
+          <span class="station-open" aria-hidden="true">→</span>
         </div>
         <div class="station-body">
           <h2>Was wurde mit offenen Daten bereits erstellt?</h2>
@@ -222,9 +215,6 @@
             <span class="station-tag">Strassennamen</span>
             <span class="station-tag">OGD4All</span>
             <span class="station-tag">Baumbestand</span>
-          </div>
-          <div class="station-meta">
-            <span class="station-cta">Öffnen</span>
           </div>
         </div>
       </a>
@@ -237,6 +227,7 @@
             <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
           </div>
           <span class="station-name">OGD-Katalog</span>
+          <span class="station-open" aria-hidden="true">→</span>
         </div>
         <div class="station-body">
           <h2>Wo finde ich offene Verwaltungsdaten?</h2>
@@ -247,9 +238,6 @@
             <span class="station-tag">Mobilität</span>
             <span class="station-tag">Bauen</span>
             <span class="station-tag">Politik</span>
-          </div>
-          <div class="station-meta">
-            <span class="station-cta">Öffnen</span>
           </div>
         </div>
       </a>
@@ -262,6 +250,7 @@
             <span class="station-level"><span class="dots"><span class="dot-filled">●●</span><span class="dot-empty">●</span></span>Erkunden</span>
           </div>
           <span class="station-name">MCP-Abfragen</span>
+          <span class="station-open" aria-hidden="true">→</span>
         </div>
         <div class="station-body">
           <h2>Wie kann ich Daten in natürlicher Sprache abfragen?</h2>
@@ -272,9 +261,6 @@
             <span class="station-tag">Abfall</span>
             <span class="station-tag">Parlament</span>
             <span class="station-tag">Tourismus</span>
-          </div>
-          <div class="station-meta">
-            <span class="station-cta">Öffnen</span>
           </div>
         </div>
       </a>
@@ -287,6 +273,7 @@
             <span class="station-level"><span class="dots"><span class="dot-filled">●●●</span></span>Vertiefen</span>
           </div>
           <span class="station-name">Starter Code</span>
+          <span class="station-open" aria-hidden="true">→</span>
         </div>
         <div class="station-body">
           <h2>Wie kann ich sofort mit offenen Daten loslegen?</h2>
@@ -297,9 +284,6 @@
             <span class="station-tag">SQL</span>
             <span class="station-tag">Luftqualität</span>
             <span class="station-tag">Vornamen</span>
-          </div>
-          <div class="station-meta">
-            <span class="station-cta">Öffnen</span>
           </div>
         </div>
       </a>
