@@ -61,10 +61,18 @@
     /* Die Karten sind Flex-Spalten in einem Grid und damit gleich hoch.
        margin-top: auto schiebt Meta-Zeile und GitHub-Link ans untere Ende,
        sodass die Links aller Karten auf einer Linie liegen — unabhängig
-       davon, wie viel Text darüber steht. */
+       davon, wie viel Text darüber steht.
+
+       Die Meta-Zeile reserviert zwei Zeilen Höhe, damit auch ihre erste
+       Zeile über alle Karten hinweg auf gleicher Höhe sitzt: Bei drei
+       Spalten bricht der längste Eintrag («onData (Italien) · TypeScript ·
+       MIT-Lizenz», 54 Zeichen auf 323px Kartenbreite) um, die kürzeren
+       nicht. Ohne die Reservierung würde er die Karte nach oben aufreissen. */
     .server-meta {
       margin-top: auto;
       font-size: 0.82rem;
+      line-height: 1.4;
+      min-height: calc(2 * 1.4em + 0.75rem);
       color: var(--text-light);
       font-weight: 600;
       padding-top: 0.75rem;
