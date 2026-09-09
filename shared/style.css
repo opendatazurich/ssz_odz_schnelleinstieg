@@ -71,16 +71,12 @@ header {
   flex-shrink: 0;
 }
 
-.header-eye {
-  position: absolute;
-  left: -80px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 50%;
-  pointer-events: none;
+/* Stadt-Zürich-Logo links und OGD-Sticker rechts teilen sich dieselbe
+   Flex-Basis, damit der Titel exakt in der Seitenmitte steht. */
+.header-logo-stzh {
+  flex: 0 0 170px;
+  height: auto;
+  z-index: 1;
 }
 
 .header-text {
@@ -104,10 +100,10 @@ header p {
 }
 
 .header-logo {
-  width: 100px;
-  height: 100px;
-  flex-shrink: 0;
+  flex: 0 0 170px;
+  height: 88px;
   object-fit: contain;
+  object-position: right center;
   z-index: 1;
 }
 

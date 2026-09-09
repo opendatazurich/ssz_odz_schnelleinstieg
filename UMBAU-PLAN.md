@@ -28,6 +28,7 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 | Haupttitel (H1) | **«Open Government Data entdecken»** | Zeitlos, kein Jahr/Event, beschreibt die vier Themen, passt in die Header-Breite |
 | Untertitel | Bleiben seitenspezifisch wie bisher | Sind bereits event-neutral formuliert |
 | Kiosk-Modus | Bleibt erhalten, aber **opt-in via `?kiosk=1`** | Wiederverwendbar für den nächsten Anlass, ohne die normale Webseite zu stören |
+| Ersatz für das Scientifica-Auge | **Stadt-Zürich-Logo** (`logo_stzh_rgb_weiss_digital.svg`) | Offizielles Absenderlogo, weiss auf Züriblau, als SVG frei skalierbar |
 
 ---
 
@@ -46,21 +47,22 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 > dadurch keine neue Exposition. Wer eine saubere History will, squasht die ersten beiden
 > Commits vor dem ersten Push.
 
-### Phase 1 — Branding und Titel
+### Phase 1 — Branding und Titel ✅ erledigt
 
 Betrifft alle 5 HTML-Seiten.
 
-- [ ] `<h1>` ersetzen: `Scientifica 2026: Open Government Data` → `Open Government Data entdecken`
-      — `index.html:197`, `katalog/index.html:115`, `starter-code/index.html:348`,
-      `mcp-abfragen/index.html:164`, `anwendungen/index.html:22`
-- [ ] `<title>` ersetzen (jeweils Zeile 6), Schema: `Open Government Data entdecken — <Seitenthema>`
-- [ ] `<img class="header-eye">` aus allen 5 Seiten entfernen (`index.html:195`,
-      `katalog:113`, `starter-code:346`, `mcp-abfragen:162`, `anwendungen:20`)
-- [ ] `.header-eye`-Regel aus `shared/style.css` entfernen
-- [ ] Header-Layout ohne Auge neu ausbalancieren (Titel und OGD-Sticker)
-- [ ] Bilddateien löschen: `shared/eth_Auge1_transparent.png`, `shared/eth_Auge1_CMYK_100Prozent.jpg`,
-      `shared/Scientifica_Auge_Einzel.png`, `shared/Scientifica_Augen_Keyvisual.jpg`,
-      `shared/scientifica_wide.jpg` (~8 MB)
+- [x] `<h1>` ersetzt: `Scientifica 2026: Open Government Data` → `Open Government Data entdecken`
+- [x] `<title>` ersetzt, Schema: `Open Government Data entdecken — <Seitenthema>`
+- [x] `<img class="header-eye">` durch `<img class="header-logo-stzh">` mit dem
+      Stadt-Zürich-Logo ersetzt
+- [x] `.header-eye`-Regel in `shared/style.css` durch `.header-logo-stzh` ersetzt
+- [x] Header-Layout neu ausbalanciert: Logo links und OGD-Sticker rechts erhalten dieselbe
+      Flex-Basis (`170px`), damit der Titel exakt mittig steht
+- [x] Bilddateien gelöscht: `eth_Auge1_transparent.png`, `eth_Auge1_CMYK_100Prozent.jpg`,
+      `Scientifica_Auge_Einzel.png`, `Scientifica_Augen_Keyvisual.jpg`,
+      `scientifica_wide.jpg` (~7.9 MB)
+- [x] Geprüft: alle 5 Seiten und alle lokalen Assets liefern HTTP 200, keine toten
+      Referenzen mehr auf gelöschte Dateien
 
 > **Rechtlich:** Das ETH-/Scientifica-Keyvisual (Auge) ist an das Event gebunden und darf
 > ausserhalb davon nicht weiterverwendet werden. Diese Dateien müssen weg — das ist kein
