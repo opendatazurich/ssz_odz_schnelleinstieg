@@ -109,22 +109,23 @@
       opacity: 0.7;
     }
 
+    /* Gleiche Füllung und Geometrie wie der Link daneben — beide sind
+       gleichrangige Handlungsaufforderungen im selben Banner. Werte
+       gespiegelt aus `.try-cta a` in shared/style.css. */
     .try-cta-examples {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.7);
-      padding: 0.7rem 2rem;
+      background: var(--stzh-white);
+      color: var(--blue);
+      border: none;
+      padding: var(--stzh-space-small) var(--stzh-space-xxlarge);
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: var(--stzh-font-milli);
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+      transition: transform 0.15s ease;
       font-family: inherit;
     }
 
     .try-cta-examples:hover {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
       transform: scale(1.03);
     }
 
@@ -402,8 +403,8 @@
       <h2>Jetzt selber ausprobieren</h2>
       <div class="try-cta-buttons">
         <div class="try-cta-option">
-          <button class="try-cta-examples" onclick="toggleExamples(this)" aria-expanded="true" aria-controls="examples">Beispielauswertungen ausblenden</button>
-          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — stehen unten auf dieser Seite</span>
+          <button class="try-cta-examples" onclick="toggleExamples(this)" aria-expanded="false" aria-controls="examples">Beispielauswertungen anzeigen</button>
+          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — direkt hier auf der Seite</span>
         </div>
         <span class="try-cta-or">oder</span>
         <div class="try-cta-option">
@@ -413,7 +414,7 @@
       </div>
     </div>
 
-    <details class="examples-toggle" id="examples" open>
+    <details class="examples-toggle" id="examples">
       <summary style="display:none;"></summary>
 
       <div class="example-block">
