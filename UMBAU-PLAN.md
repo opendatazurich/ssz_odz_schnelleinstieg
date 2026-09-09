@@ -28,7 +28,7 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 | Frage | Entscheid | Begründung |
 |---|---|---|
 | Neues Repo oder Branch? | **Neues Repo** (`ssz_odz_entdecken`) | Scientifica-Repo bleibt als Event-Archiv eingefroren; die Versionen driften auseinander (Kiosk vs. offenes Web) |
-| Haupttitel (H1) | **«Open Government Data entdecken»** | Zeitlos, kein Jahr/Event, beschreibt die vier Themen, passt in die Header-Breite |
+| Haupttitel (H1) | **«Schnelleinstieg Open Government Data»** | Zeitlos, kein Jahr/Event, benennt den Zweck der Seite und behält den Fachbegriff für Auffindbarkeit und Verwaltungskontext. «der Stadt Zürich» weggelassen — das sagen Logo, Sticker und Footer bereits dreifach. Das Kürzel «OGD» wäre für ein breites Publikum zu voraussetzungsreich. |
 | Untertitel | Bleiben seitenspezifisch wie bisher | Sind bereits event-neutral formuliert |
 | Kiosk-Modus | Bleibt erhalten, aber **opt-in via `?kiosk=1`** | Wiederverwendbar für den nächsten Anlass, ohne die normale Webseite zu stören |
 | Ersatz für das Scientifica-Auge | **Stadt-Zürich-Logo** (`logo_stzh_rgb_weiss_digital.svg`) | Offizielles Absenderlogo, weiss auf Züriblau, als SVG frei skalierbar |
@@ -54,8 +54,8 @@ darum überschaubar; der grösste technische Posten ist das fehlende Responsive-
 
 Betrifft alle 5 HTML-Seiten.
 
-- [x] `<h1>` ersetzt: `Scientifica 2026: Open Government Data` → `Open Government Data entdecken`
-- [x] `<title>` ersetzt, Schema: `Open Government Data entdecken — <Seitenthema>`
+- [x] `<h1>` ersetzt: `Scientifica 2026: Open Government Data` → `Schnelleinstieg Open Government Data`
+- [x] `<title>` ersetzt, Schema: `Schnelleinstieg Open Government Data — <Seitenthema>`
 - [x] `<img class="header-eye">` durch `<img class="header-logo-stzh">` mit dem
       Stadt-Zürich-Logo ersetzt
 - [x] `.header-eye`-Regel in `shared/style.css` durch `.header-logo-stzh` ersetzt

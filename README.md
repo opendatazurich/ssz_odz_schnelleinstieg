@@ -1,4 +1,4 @@
-# Open Government Data entdecken — Stadt Zürich
+# Schnelleinstieg Open Government Data — Stadt Zürich
 
 Eine Webseite von Statistik Stadt Zürich (SSZ), die zeigt, was mit den offenen Daten der
 Stadt Zürich möglich ist: bestehende Anwendungen anschauen, den Datenkatalog durchsuchen,
