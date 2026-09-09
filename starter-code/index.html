@@ -148,6 +148,18 @@
       outline-offset: 3px;
     }
 
+    .examples-lead {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-light);
+      max-width: 68ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .examples-toggle:not([open]) .examples-lead {
+      display: none;
+    }
+
 
 
     .example-block {
@@ -414,18 +426,9 @@
       </ol>
     </div>
 
-    <div class="try-cta">
-      <h2>Jetzt selber ausprobieren</h2>
-      <div class="try-cta-buttons">
-        <div class="try-cta-option">
-          <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">Datenkatalog öffnen</a>
-          <span class="try-cta-desc">Alle 900+ Datensätze durchsuchen und eigenen Starter Code starten</span>
-        </div>
-      </div>
-    </div>
-
     <details class="examples-toggle" id="examples" open>
       <summary class="examples-summary">Beispielauswertungen</summary>
+      <p class="examples-lead">Der einfachste Einstieg: eine fertige Auswertung öffnen, die Zellen ausführen und danach eigene Werte einsetzen. Nichts zu installieren — ein Browser genügt.</p>
 
       <div class="example-block">
         <div class="example-header">
@@ -631,6 +634,16 @@ df_namen &lt;- df %&gt;%
       </div>
 
     </details>
+    <div class="try-cta">
+      <h2>Jetzt mit eigenen Daten</h2>
+      <div class="try-cta-buttons">
+        <div class="try-cta-option">
+          <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">Datenkatalog öffnen</a>
+          <span class="try-cta-desc">Alle 900+ Datensätze durchsuchen und eigenen Starter Code starten</span>
+        </div>
+      </div>
+    </div>
+
 
     <h2 class="section-title">Was ist im Notebook enthalten?</h2>
 
