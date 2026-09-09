@@ -2,8 +2,9 @@
 
 **Stand:** 2026-09-09 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
-> **Fortschritt:** Phasen 0–3 und 3b erledigt, Teile von Phase 6 vorgezogen, dazu eine
-> Feinschliff-Runde an Startseite, MCP- und Starter-Code-Seite (Phase 3c).
+> **Fortschritt:** Phasen 0–3, 3b und 3c erledigt, Teile von Phase 6 vorgezogen.
+> Das Repo liegt seit dem 9. September 2026 auf GitHub, GitHub Pages ist noch nicht
+> aktiviert.
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
 
 ## 1. Vorhaben
@@ -217,13 +218,28 @@ An der Scientifica erklärte Standpersonal die Station. Im Web muss die Seite da
       unter GitHub Pages unproblematisch, aber nach dem Deployment verifizieren
 - [ ] Alle externen Links durchklicken
 
-### Phase 7 — Veröffentlichung
+### Phase 7 — Veröffentlichung (teilweise erledigt)
 
-- [ ] GitHub-Repo `opendatazurich/ssz_odz_schnelleinstieg` anlegen und Remote setzen
-- [ ] GitHub Pages aktivieren
+- [x] GitHub-Repo **https://github.com/opendatazurich/ssz_odz_schnelleinstieg** angelegt
+      (öffentlich), Remote gesetzt, `main` gepusht — 9. September 2026
+- [x] History vor dem ersten Push bereinigt: die fünf Scientifica-/ETH-Bilder aus allen
+      Commits entfernt (`git filter-branch --index-filter`), Sicherungsbranch,
+      `refs/original` und Reflog aufgeräumt, neu gepackt. 8.74 → 2.51 MiB. Der
+      Dateistand blieb dabei identisch, nur die History wurde umgeschrieben.
+- [ ] GitHub Pages aktivieren — Settings → Pages → «Deploy from a branch», `main`,
+      Ordner `/ (root)`. Ziel-URL: `opendatazurich.github.io/ssz_odz_schnelleinstieg/`
+- [ ] Nach dem ersten Deployment prüfen: Video (`starterCode.mp4`, läuft nur über HTTP),
+      Schriften, extern eingebundene Bilder von `stadt-zuerich.ch` und
+      `statistik.stadt-zuerich.ch`
 - [ ] Verlinkung ab `stadt-zuerich.ch/opendata` mit STEZ/Kommunikation absprechen
 - [ ] Vorschaubild und Meta-Tags (`og:title`, `og:description`, `og:image`) ergänzen —
       fehlen bisher komplett, relevant sobald der Link geteilt wird
+
+> **Offen und zeitkritisch: die Schriftlizenz.** Die fünf Helvetica-Neue-WOFF2-Dateien
+> liegen jetzt in einem öffentlichen Repository und sind damit für jeden herunterladbar.
+> Die Berechtigung zur *Verwendung* liegt vor; ob die Lizenz auch diese Weitergabe
+> deckt, ist ungeklärt. Falls nicht, müssen sie erneut aus der History entfernt werden —
+> gleicher Aufwand wie oben, aber je früher, desto weniger Klone existieren.
 
 ---
 

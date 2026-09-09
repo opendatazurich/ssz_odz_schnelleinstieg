@@ -8,6 +8,9 @@ Die Seite ist aus der OGD-Station für die [Scientifica 2026](https://scientific
 hervorgegangen und für den dauerhaften Betrieb ausserhalb eines Anlasses umgebaut.
 Der Umbau ist in [UMBAU-PLAN.md](UMBAU-PLAN.md) dokumentiert — dort steht auch, was noch offen ist.
 
+> **Stand:** Die Seite ist noch nicht über GitHub Pages veröffentlicht und noch nicht
+> responsiv. Beides ist im Umbauplan als nächster Schritt vermerkt.
+
 ## Inhalt
 
 | Seite | Beschreibung |
