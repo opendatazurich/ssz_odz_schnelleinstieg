@@ -103,7 +103,9 @@ Betrifft alle 5 HTML-Seiten.
       entfernt, `main`-Padding von `0.6rem` auf `2rem`, Footer-Sonderpadding entfernt
       (nutzt jetzt den gemeinsamen Stil aus `style.css`)
 - [x] Kachel-Header von `85px` auf `100px` erhöht — die gequetschte Höhe war eine Folge
-      der Viewport-Fixierung
+      der Viewport-Fixierung. **Später auf `72px` korrigiert**, damit bei 1280×800 alle
+      vier Kacheln ohne Scrollen sichtbar bleiben; die Rechnung dazu steht als Kommentar
+      in `index.html`.
 - [ ] CSS-Klassen `.station-*` → `.topic-*` umbenennen (optional, rein kosmetisch; die
       Klassennamen sind der letzte verbliebene Event-Begriff im Code)
 

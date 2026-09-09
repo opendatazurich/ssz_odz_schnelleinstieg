@@ -40,9 +40,20 @@
       outline: none;
     }
 
+    /* Kachelkopf-Höhe folgt dem vertikalen Budget bei 1280×800 CSS-Pixeln,
+       der Zielauflösung der Event-Geräte:
+
+         Seitengerüst  331px   Navigation 45, Kopfbereich 128,
+                               main-Padding 64, Fusszeile 94
+         Rest          469px   zwei Reihen plus 24px Abstand
+         pro Kachel    222px   abzüglich Rumpf 150px (Beschreibung
+                               zweizeilig, schlechtester Fall)
+
+       Ändert sich am Seitengerüst oder am Kachelrumpf etwas, muss dieser
+       Wert nachgerechnet werden. */
     .station-header {
       position: relative;
-      height: 100px;
+      height: 72px;
       flex-shrink: 0;
       display: flex;
       align-items: flex-end;
