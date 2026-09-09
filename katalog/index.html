@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientifica 2026: OGD-Katalog</title>
+  <link rel="stylesheet" href="../shared/style.css">
+  <style>
+    .intro-image-link {
+      flex-shrink: 0;
+      width: 360px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .intro-image-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .intro-image {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius);
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 2px solid transparent;
+    }
+
+    .category-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border-color: var(--accent);
+    }
+
+    .category-img {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      display: block;
+      padding: 1rem;
+    }
+
+    .category-body {
+      padding: 0.75rem 1rem;
+    }
+
+    .category-body strong {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .category-body span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.15rem;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .format-tag {
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .format-tag:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../anwendungen/index.html">Daten erleben</a>
+    <a class="active" href="../katalog/index.html">Daten finden</a>
+    <a href="../mcp-abfragen/index.html">Daten abfragen</a>
+    <a href="../starter-code/index.html">Daten nutzen</a>
+  </nav>
+
+  <header>
+    <img class="header-eye" src="../shared/eth_Auge1_transparent.png" alt="">
+    <div class="header-text">
+      <h1>Scientifica 2026: Open Government Data</h1>
+      <p>Der Open-Data-Katalog — Ihr zentraler Einstiegspunkt zu offenen Datensätzen der Stadt Zürich.</p>
+    </div>
+    <img class="header-logo" src="../shared/OGD_STICKER_final_zueriblau_hintergrund_quadr_noFill.png" alt="Open Data Zürich">
+  </header>
+
+  <main>
+
+    <div class="intro">
+      <div class="intro-text">
+        <h2>Was ist Open Government Data?</h2>
+        <p>Open Government Data (OGD) sind Verwaltungsdaten, die von der Stadt Zürich der Öffentlichkeit frei zugänglich gemacht werden. Die Daten können von allen — Bürger*innen, Unternehmen, Forschenden, Medien — kostenlos und ohne Einschränkungen genutzt werden.</p>
+        <p>Im Open-Data-Katalog finden Sie die offenen Daten der Stadt Zürich. Der Datenbestand wird laufend erweitert und auf aktuellem Stand gehalten. Die Daten werden detailliert mit Metadaten beschrieben und in unterschiedlichen offenen und häufig verwendeten Datenformaten angeboten.</p>
+      </div>
+      <a class="intro-image-link" href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">
+        <img class="intro-image" src="../shared/startseite_ogd_katalog.png" alt="Open-Data-Katalog der Stadt Zürich">
+      </a>
+    </div>
+
+    <h2 class="section-title">So finden Sie offene Verwaltungsdaten der Stadt Zürich</h2>
+
+    <div class="steps">
+      <h3>In 3 Schritten zum Datensatz</h3>
+      <ol>
+        <li><strong>Katalog öffnen</strong> — Gehen Sie zu <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">data.stadt-zuerich.ch</a> und nutzen Sie die Suchfunktion, stöbern Sie in den <a href="https://data.stadt-zuerich.ch/dataset" target="_blank" rel="noopener">Datensätzen</a> oder <a href="https://data.stadt-zuerich.ch/group" target="_blank" rel="noopener">Kategorien</a>.</li>
+        <li><strong>Datensatz auswählen</strong> — Jeder Datensatz ist mit Metadaten beschrieben: Titel, Beschreibung, Publisher, Tags, Aktualisierungsintervall und Lizenz.</li>
+        <li><strong>Daten nutzen</strong> — Laden Sie die Ressource im gewünschten Format herunter oder nutzen Sie die API für den direkten Zugriff.</li>
+      </ol>
+    </div>
+
+    <div class="try-cta">
+      <h2>Jetzt den Katalog durchsuchen</h2>
+      <p>Der Datenkatalog ist Ihr zentraler Einstiegspunkt zur Suche und Nutzung von offenen Daten der Stadt Zürich.</p>
+      <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">data.stadt-zuerich.ch öffnen</a>
+    </div>
+
+    <h2 class="section-title">Merkmale des Katalogs</h2>
+
+    <div class="features">
+      <div class="feature">
+        <strong>Ohne Nutzungseinschränkungen</strong>
+        <span>Alle Datensätze unter offener Lizenz — frei nutzbar, teilbar und weiterverarbeitbar.</span>
+      </div>
+      <div class="feature">
+        <strong>Kostenlos</strong>
+        <span>Alle Daten stehen gratis zur Verfügung — für kommerzielle und nicht-kommerzielle Nutzung.</span>
+      </div>
+      <div class="feature">
+        <strong>Laufend aktualisiert</strong>
+        <span>Der Datenbestand wird laufend erweitert und auf aktuellem Stand gehalten.</span>
+      </div>
+      <div class="feature">
+        <strong>Ausführliche Beschreibungen</strong>
+        <span>Jeder Datensatz enthält detaillierte Metadaten zu Inhalt, Herkunft und Aktualisierung.</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Über 900 Datensätze in vielen Kategorien</h2>
+
+    <div class="categories">
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/umwelt" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-17.png" alt="Umwelt">
+        <div class="category-body">
+          <strong>Umwelt</strong>
+          <span>276 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/bevolkerung" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/modules/ogd_bspe/group_pics/kategorien-04.png" alt="Bevölkerung">
+        <div class="category-body">
+          <strong>Bevölkerung</strong>
+          <span>222 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/bauen-und-wohnen" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/modules/ogd_bspe/group_pics/kategorien-03.png" alt="Bauen und Wohnen">
+        <div class="category-body">
+          <strong>Bauen und Wohnen</strong>
+          <span>194 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/verwaltung" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-18.png" alt="Verwaltung">
+        <div class="category-body">
+          <strong>Verwaltung</strong>
+          <span>132 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/basiskarten" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-02.png" alt="Basiskarten">
+        <div class="category-body">
+          <strong>Basiskarten</strong>
+          <span>134 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/mobilitat" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-12.png" alt="Mobilität">
+        <div class="category-body">
+          <strong>Mobilität</strong>
+          <span>123 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/volkswirtschaft" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-19.png" alt="Volkswirtschaft">
+        <div class="category-body">
+          <strong>Volkswirtschaft</strong>
+          <span>59 Datensätze</span>
+        </div>
+      </a>
+      <a class="category-card" href="https://data.stadt-zuerich.ch/group/politik" target="_blank" rel="noopener">
+        <img class="category-img" src="https://statistik.stadt-zuerich.ch/Modules/ogd_bspe/group_pics/kategorien-13.png" alt="Politik">
+        <div class="category-body">
+          <strong>Politik</strong>
+          <span>43 Datensätze</span>
+        </div>
+      </a>
+    </div>
+
+    <h2 class="section-title">Verfügbare Datenformate</h2>
+
+    <div class="formats">
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=csv" target="_blank" rel="noopener" title="Comma-Separated Values">CSV</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=json" target="_blank" rel="noopener" title="JavaScript Object Notation">JSON</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=geojson" target="_blank" rel="noopener" title="Geographic JSON">GeoJSON</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=parquet" target="_blank" rel="noopener" title="Apache Parquet (spaltenorientiertes Datenformat)">Parquet</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=xml" target="_blank" rel="noopener" title="Extensible Markup Language">XML</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=rdf" target="_blank" rel="noopener" title="Resource Description Framework">RDF</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=gpkg" target="_blank" rel="noopener" title="GeoPackage">GPKG</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=shp" target="_blank" rel="noopener" title="Shapefile">SHP</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=wfs" target="_blank" rel="noopener" title="Web Feature Service">WFS</a>
+      <a class="format-tag" href="https://data.stadt-zuerich.ch/dataset?res_format=wms" target="_blank" rel="noopener" title="Web Map Service">WMS</a>
+    </div>
+
+    <div class="info-note">
+      Weitere Informationen zu Open Data, Anwendungsbeispiele und gesetzliche Rahmenbedingungen finden Sie auf <a href="https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data.html" target="_blank" rel="noopener">stadt-zuerich.ch</a>.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      Statistik Stadt Zürich — Open Government Data
+      <br>
+      <a href="https://www.stadt-zuerich.ch/opendata" target="_blank" rel="noopener">Mehr Informationen auf stadt-zuerich.ch/opendata</a>
+    </p>
+  </footer>
+
+  <div class="reset-overlay" id="resetOverlay">
+    <h2>Willkommen!</h2>
+    <p>Berühren Sie den Bildschirm, um zu starten.</p>
+  </div>
+
+  <script src="../shared/kiosk.js"></script>
+</body>
+</html>

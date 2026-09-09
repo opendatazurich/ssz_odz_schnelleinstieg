@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientifica 2026: Open Government Data — Stadt Zürich</title>
+  <link rel="stylesheet" href="shared/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+    }
+
+    main {
+      padding: 0.6rem 3rem;
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      flex: 1;
+      min-height: 360px;
+    }
+
+    .station-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-decoration: none;
+      color: inherit;
+      padding: 0;
+      min-height: 0;
+    }
+
+    .station-card:hover, .station-card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .station-header {
+      position: relative;
+      height: 85px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.6rem 1.2rem;
+    }
+
+    .station-header img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .station-top {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.8rem;
+      right: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .station-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .station-level {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.05em;
+      background: rgba(0,0,0,0.4);
+      padding: 0.2rem 0.5rem;
+      border-radius: 1rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .station-level .dots {
+      margin-right: 0.25rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+
+    .station-level .dot-empty {
+      opacity: 0.35;
+    }
+
+    .station-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+      z-index: 1;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .station-body {
+      padding: 0.8rem 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .station-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .station-card p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.55;
+    }
+
+    .station-meta {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .station-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .station-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .station-cta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .station-cta::after {
+      content: '\2192';
+      transition: transform 0.15s ease;
+    }
+
+    .station-card:hover .station-cta::after {
+      transform: translateX(4px);
+    }
+
+    footer {
+      padding: 0.5rem 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="active" href="index.html">Übersicht</a>
+    <a href="anwendungen/index.html">Daten erleben</a>
+    <a href="katalog/index.html">Daten finden</a>
+    <a href="mcp-abfragen/index.html">Daten abfragen</a>
+    <a href="starter-code/index.html">Daten nutzen</a>
+  </nav>
+
+  <header>
+    <img class="header-eye" src="shared/eth_Auge1_transparent.png" alt="">
+    <div class="header-text">
+      <h1>Scientifica 2026: Open Government Data</h1>
+      <p>Entdecken Sie, was mit offenen Daten der Stadt Zürich möglich ist.</p>
+    </div>
+    <img class="header-logo" src="shared/OGD_STICKER_final_zueriblau_hintergrund_quadr_noFill.png" alt="Open Data Zürich">
+  </header>
+
+  <main>
+    <div class="cards">
+
+      <a class="station-card" href="anwendungen/index.html">
+        <div class="station-header" style="background: linear-gradient(135deg, #1a3a88 0%, #2550a0 100%);">
+          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Anwendungen"> -->
+          <div class="station-top">
+            <span class="station-number">Station 1</span>
+            <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
+          </div>
+          <span class="station-name">Anwendungen</span>
+        </div>
+        <div class="station-body">
+          <h2>Was wurde mit offenen Daten bereits erstellt?</h2>
+          <p>Beispielanwendungen, die auf offenen Verwaltungsdaten basieren.</p>
+          <div class="station-tags">
+            <span class="station-tag">Kirschblüten</span>
+            <span class="station-tag">Velounfälle</span>
+            <span class="station-tag">Strassennamen</span>
+            <span class="station-tag">OGD4All</span>
+            <span class="station-tag">Baumbestand</span>
+          </div>
+          <div class="station-meta">
+            <span class="station-cta">Öffnen</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="station-card" href="katalog/index.html">
+        <div class="station-header" style="background: linear-gradient(135deg, #2870b8 0%, #3590cc 100%);">
+          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="OGD-Katalog"> -->
+          <div class="station-top">
+            <span class="station-number">Station 2</span>
+            <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
+          </div>
+          <span class="station-name">OGD-Katalog</span>
+        </div>
+        <div class="station-body">
+          <h2>Wo finde ich offene Verwaltungsdaten?</h2>
+          <p>Über 900 Datensätze der Stadt Zürich durchsuchen, filtern und entdecken.</p>
+          <div class="station-tags">
+            <span class="station-tag">Umwelt</span>
+            <span class="station-tag">Bevölkerung</span>
+            <span class="station-tag">Mobilität</span>
+            <span class="station-tag">Bauen</span>
+            <span class="station-tag">Politik</span>
+          </div>
+          <div class="station-meta">
+            <span class="station-cta">Öffnen</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="station-card" href="mcp-abfragen/index.html">
+        <div class="station-header" style="background: linear-gradient(135deg, #2a8cb8 0%, #3a9fcc 100%);">
+          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="MCP-Abfragen"> -->
+          <div class="station-top">
+            <span class="station-number">Station 3</span>
+            <span class="station-level"><span class="dots"><span class="dot-filled">●●</span><span class="dot-empty">●</span></span>Erkunden</span>
+          </div>
+          <span class="station-name">MCP-Abfragen</span>
+        </div>
+        <div class="station-body">
+          <h2>Wie kann ich Daten in natürlicher Sprache abfragen?</h2>
+          <p>Fragen an städtische Daten stellen — in natürlicher Sprache unter Verwendung von MCP-Servern.</p>
+          <div class="station-tags">
+            <span class="station-tag">Wetter</span>
+            <span class="station-tag">Parkplätze</span>
+            <span class="station-tag">Abfall</span>
+            <span class="station-tag">Parlament</span>
+            <span class="station-tag">Tourismus</span>
+          </div>
+          <div class="station-meta">
+            <span class="station-cta">Öffnen</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="station-card" href="starter-code/index.html">
+        <div class="station-header" style="background: linear-gradient(135deg, #4ab0d0 0%, #5cc0de 100%);">
+          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Starter Code"> -->
+          <div class="station-top">
+            <span class="station-number">Station 4</span>
+            <span class="station-level"><span class="dots"><span class="dot-filled">●●●</span></span>Vertiefen</span>
+          </div>
+          <span class="station-name">Starter Code</span>
+        </div>
+        <div class="station-body">
+          <h2>Wie kann ich sofort mit offenen Daten loslegen?</h2>
+          <p>Erste Schritte mit offenen Daten — Code-Beispiele zum Anpassen und Ausführen.</p>
+          <div class="station-tags">
+            <span class="station-tag">Python</span>
+            <span class="station-tag">R</span>
+            <span class="station-tag">SQL</span>
+            <span class="station-tag">Luftqualität</span>
+            <span class="station-tag">Vornamen</span>
+          </div>
+          <div class="station-meta">
+            <span class="station-cta">Öffnen</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      Statistik Stadt Zürich — Open Government Data
+      <br>
+      <a href="https://www.stadt-zuerich.ch/opendata" target="_blank" rel="noopener">Mehr Informationen auf stadt-zuerich.ch/opendata</a>
+    </p>
+  </footer>
+
+</body>
+</html>

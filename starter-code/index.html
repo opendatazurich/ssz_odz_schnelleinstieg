@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientifica 2026: Starter Code</title>
+  <link rel="stylesheet" href="../shared/style.css">
+  <style>
+    .hero-video {
+      float: left;
+      width: 400px;
+      margin: 0 2rem 1.5rem 0;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .notebook-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .notebook-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.5rem 1.25rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid #e8e8ee;
+    }
+
+    .notebook-card h3 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #888;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notebook-card ol {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    .notebook-card li {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.55;
+      margin-bottom: 0.3rem;
+    }
+
+    .notebook-card li::marker {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .audience {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .audience-item {
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-align: center;
+    }
+
+    .try-cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .try-cta-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .try-cta-desc {
+      font-size: 0.82rem;
+      opacity: 0.75;
+      max-width: 280px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .try-cta-or {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .try-cta-examples {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.7);
+      padding: 0.7rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+      font-family: inherit;
+    }
+
+    .try-cta-examples:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+      transform: scale(1.03);
+    }
+
+    .examples-toggle {
+      margin-bottom: 2.5rem;
+    }
+
+
+
+    .example-block {
+      background: #e8eaed;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .example-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #d0d4da;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .example-header h3 {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #888;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .example-header p {
+      font-size: 1rem;
+      color: var(--text);
+      margin: 0;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .query-question {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 600;
+      font-style: italic;
+      margin: 0.75rem 0 0.3rem;
+    }
+
+    .query-question:first-of-type {
+      margin-top: 0;
+    }
+
+    .lang-tabs {
+      display: flex;
+      background: #dde0e4;
+      border-bottom: 1px solid #d0d4da;
+    }
+
+    .lang-tab {
+      padding: 0.45rem 1.2rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #666;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .lang-tab:hover { color: var(--text); }
+
+    .lang-tab.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    .lang-panel {
+      display: none;
+      padding: 1rem 1.25rem;
+    }
+
+    .lang-panel.active { display: block; }
+
+    .example-steps {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .example-steps .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #fff;
+      border: 1px solid #d0d4da;
+      border-radius: 6px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .example-steps .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .example-steps .step.renku .step-num {
+      background: #24b064;
+    }
+
+    .example-steps .step.sqlwb .step-num {
+      background: #e6a817;
+    }
+
+    .example-steps .step-arrow {
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+
+    .example-steps a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .example-steps a:hover { text-decoration: underline; }
+
+    .lang-panel pre,
+    .example-block pre {
+      background: #f4f5f7;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: #2a2a2a;
+      margin: 0;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #e2e4e8;
+      border: none;
+      border-radius: 4px;
+      padding: 0.3rem;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy-btn:hover { opacity: 1; }
+
+    .copy-btn.copied {
+      opacity: 1;
+      background: #c6efce;
+    }
+
+    .copy-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: #444;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .copy-btn.copied svg { stroke: #1a7d2f; }
+
+    .example-block .btn-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin: 1rem 1.25rem 1.25rem;
+      transition: opacity 0.15s;
+    }
+
+    .example-block .btn-link:hover { opacity: 0.85; }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../anwendungen/index.html">Daten erleben</a>
+    <a href="../katalog/index.html">Daten finden</a>
+    <a href="../mcp-abfragen/index.html">Daten abfragen</a>
+    <a class="active" href="../starter-code/index.html">Daten nutzen</a>
+  </nav>
+
+  <header>
+    <img class="header-eye" src="../shared/eth_Auge1_transparent.png" alt="">
+    <div class="header-text">
+      <h1>Scientifica 2026: Open Government Data</h1>
+      <p>Vom Datenkatalog direkt ins Notebook — ohne Installation, ohne Setup. Ein Browser genügt.</p>
+    </div>
+    <img class="header-logo" src="../shared/OGD_STICKER_final_zueriblau_hintergrund_quadr_noFill.png" alt="Open Data Zürich">
+  </header>
+
+  <main>
+
+    <div class="clearfix">
+      <video class="hero-video" autoplay loop muted playsinline controls>
+        <source src="../shared/starterCode.mp4" type="video/mp4">
+      </video>
+      <div class="intro-text">
+        <h2>Was ist Starter Code?</h2>
+        <p>Der Open-Data-Katalog der Stadt Zürich bietet eine neue Funktion: <strong>Starter Code</strong>. Mit einem einzigen Klick öffnen Sie zu jedem tabellarischen (CSV) oder geografischen (GeoJSON) Datensatz eine fix fertige Analyseumgebung in der Cloud — inklusive vorbereiteter Code-Bausteine in Python oder R.</p>
+        <p>Der Weg vom Datenkatalog zur ersten Analyse ist so kurz wie nie — ohne technische Hürden, direkt im Browser.</p>
+
+        <div class="benefits">
+      <div class="benefit">
+        <strong>Kein Setup nötig</strong>
+        <span>Kein Python, kein R, keine Packages lokal installieren. Alles läuft in der Cloud.</span>
+      </div>
+      <div class="benefit">
+        <strong>Sofortiger Einstieg</strong>
+        <span>Der Starter Code übernimmt die typischen ersten Schritte. Sie konzentrieren sich auf die Analyse.</span>
+      </div>
+      <div class="benefit">
+        <strong>Für alle zugänglich</strong>
+        <span>Ob Data Scientist, Journalistin, Studierende oder interessierte Bürgerin.</span>
+      </div>
+      <div class="benefit">
+        <strong>Reproduzierbar</strong>
+        <span>Jede Session ist nachvollziehbar und teilbar. Ergebnisse lassen sich weitergeben.</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <h2 class="section-title">So funktioniert es</h2>
+
+    <div class="steps">
+      <h3>In 4 Schritten zur Analyse</h3>
+      <ol>
+        <li><strong>Datensatz im Katalog öffnen</strong> — Navigieren Sie zu einem beliebigen Datensatz auf <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">data.stadt-zuerich.ch</a>.</li>
+        <li><strong>Ressource auswählen</strong> — Klicken Sie auf die gewünschte Ressource (CSV oder GeoJSON).</li>
+        <li><strong>Starter Code starten (Python/R)</strong> — Klicken Sie auf das Renku-Logo (Python oder R). Es öffnet sich eine vorkonfigurierte Session auf RenkuLab.io mit einem fertigen Notebook.</li>
+        <li><strong>SQL Workbench starten (DuckDB)</strong> — Klicken Sie auf das SQL-Logo. Es öffnet sich eine SQL Workbench, in der Sie den Datensatz direkt per SQL abfragen können.</li>
+        <li><strong>Loslegen</strong> — Je nach Wahl arbeiten Sie im Notebook (Python/R) oder in der SQL Workbench.</li>
+      </ol>
+    </div>
+
+    <div class="try-cta">
+      <h2>Jetzt selber ausprobieren</h2>
+      <div class="try-cta-buttons">
+        <div class="try-cta-option">
+          <button class="try-cta-examples" onclick="document.getElementById('examples').toggleAttribute('open')">Beispielauswertungen anzeigen</button>
+          <span class="try-cta-desc">Fertige Analysen zum Nachmachen — direkt hier auf der Seite</span>
+        </div>
+        <span class="try-cta-or">oder</span>
+        <div class="try-cta-option">
+          <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">Datenkatalog öffnen</a>
+          <span class="try-cta-desc">Alle 900+ Datensätze durchsuchen und eigenen Starter Code starten</span>
+        </div>
+      </div>
+    </div>
+
+    <details class="examples-toggle" id="examples">
+      <summary style="display:none;"></summary>
+
+      <div class="example-block">
+        <div class="example-header">
+          <h3>Luftqualität und Grenzwerte</h3>
+          <p>Werden die Feinstaub-Grenzwerte in Zürich überschritten?</p>
+        </div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchTab(this, 'luft-py')">Python</button>
+          <button class="lang-tab" onclick="switchTab(this, 'luft-r')">R</button>
+        </div>
+        <div id="luft-py" class="lang-panel active">
+          <div class="example-steps">
+            <span class="step"><span class="step-num">1</span> <a href="https://renkulab.io/p/opendatazurich/starter-code/sessions/01KC1K2SN2GAQSGJ3NY602EA95/start?PACKAGE_ID=ugz_luftschadstoffmessung_tageswerte&RESOURCE_ID=75fbb34e-2dd1-4a4b-b992-53127c6820dd" target="_blank" rel="noopener">Notebook öffnen</a></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">2</span> <strong>Run → Run all cells</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">3</span> Code unten kopieren und in neue Zelle einfügen → <strong>Ctrl+Enter</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">4</span> Nächstes Beispiel? Session via 🗑️ (oben links) beenden</span>
+          </div>
+          <pre><code><span style="color:#0F05A0;font-weight:700">import</span> plotly.express <span style="color:#0F05A0;font-weight:700">as</span> px
+<span style="color:#0F05A0;font-weight:700">import</span> plotly.io <span style="color:#0F05A0;font-weight:700">as</span> pio
+pio.renderers.default = <span style="color:#a31515">"iframe"</span>
+
+df1 = df[df[<span style="color:#a31515">"Parameter"</span>]==<span style="color:#a31515">"PM10"</span>]
+<span style="color:#6a9955"># 24h-Mittelwert; darf höchstens einmal pro Jahr überschritten werden</span>
+grenzwert = <span style="color:#098658">50</span>
+fig = px.<span style="color:#795e26">line</span>(
+    df1,
+    x=<span style="color:#a31515">"Datum"</span>,
+    y=<span style="color:#a31515">"Wert"</span>,
+    facet_col=<span style="color:#a31515">"Parameter"</span>,
+    facet_row=<span style="color:#a31515">"Standort"</span>,
+    color=<span style="color:#a31515">"Einheit"</span>,
+    title=<span style="color:#a31515">"Tagesmittelwerte für Feinstaub (PM10)"</span>,
+)
+fig.<span style="color:#795e26">update_yaxes</span>(matches=<span style="color:#0F05A0;font-weight:700">None</span>)
+fig.<span style="color:#795e26">update_layout</span>(
+    height=<span style="color:#098658">1000</span>,
+    width=<span style="color:#098658">1000</span>
+)
+fig.<span style="color:#795e26">add_hline</span>(
+    y=grenzwert,
+    line_dash=<span style="color:#a31515">"dash"</span>,
+    line_color=<span style="color:#a31515">"red"</span>,
+)
+fig.<span style="color:#795e26">show</span>()</code></pre>
+        </div>
+        <div id="luft-r" class="lang-panel">
+          <div class="example-steps">
+            <span class="step"><span class="step-num">1</span> <a href="https://renkulab.io/p/opendatazurich/starter-code/sessions/01K7HKDF1S55RHSZPCK4SHTX1H/start?PACKAGE_ID=ugz_luftschadstoffmessung_tageswerte&RESOURCE_ID=75fbb34e-2dd1-4a4b-b992-53127c6820dd" target="_blank" rel="noopener">Notebook öffnen</a> &rarr;</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">2</span> <strong>Run → Run all</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">3</span> Code unten kopieren und in neue Zelle einfügen → <strong>Ctrl+Enter</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">4</span> Nächstes Beispiel? Session via 🗑️ (oben links) beenden</span>
+          </div>
+          <pre><code><span style="color:#6a9955"># Daten filtern</span>
+df1 &lt;- df %&gt;%
+  <span style="color:#795e26">filter</span>(Parameter == <span style="color:#a31515">"PM10"</span>)
+
+<span style="color:#6a9955"># Grenzwert</span>
+grenzwert &lt;- <span style="color:#098658">50</span>
+
+<span style="color:#6a9955"># Plot</span>
+<span style="color:#795e26">ggplot</span>(df1, <span style="color:#795e26">aes</span>(x = Datum, y = Wert, color = Einheit)) +
+  <span style="color:#795e26">geom_line</span>() +
+  <span style="color:#795e26">scale_color_manual</span>(values = <span style="color:#a31515">"blue"</span>) +
+  <span style="color:#795e26">facet_grid</span>(Standort ~ Parameter, scales = <span style="color:#a31515">"free_y"</span>) +
+  <span style="color:#795e26">geom_hline</span>(yintercept = grenzwert,
+             linetype = <span style="color:#a31515">"dashed"</span>,
+             color = <span style="color:#a31515">"red"</span>) +
+  <span style="color:#795e26">labs</span>(
+    title = <span style="color:#a31515">"Tagesmittelwerte für Feinstaub (PM10)"</span>,
+    x = <span style="color:#a31515">"Datum"</span>,
+    y = <span style="color:#a31515">"Wert"</span>,
+    color = <span style="color:#a31515">"Einheit"</span>
+  ) +
+  <span style="color:#795e26">theme_minimal</span>()</code></pre>
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-header">
+          <h3>Vornamensstatistik</h3>
+          <p>Wie beliebt ist dein Name bei Neugeborenen?</p>
+        </div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchTab(this, 'namen-py')">Python</button>
+          <button class="lang-tab" onclick="switchTab(this, 'namen-r')">R</button>
+        </div>
+        <div id="namen-py" class="lang-panel active">
+          <div class="example-steps">
+            <span class="step"><span class="step-num">1</span> <a href="https://renkulab.io/p/opendatazurich/starter-code/sessions/01KC1K2SN2GAQSGJ3NY602EA95/start?PACKAGE_ID=bev_vornamen_baby_od3700&RESOURCE_ID=7abf8562-4568-4c8c-8f1f-a842a5a54616" target="_blank" rel="noopener">Notebook öffnen</a></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">2</span> <strong>Run → Run all cells</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">3</span> Code kopieren → in neue Zelle einfügen → Namen anpassen → <strong>Ctrl+Enter</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">4</span> Nächstes Beispiel? Session via 🗑️ (oben links) beenden</span>
+          </div>
+          <pre><code><span style="color:#6a9955"># füge hier die Namen ein, die dich interessieren</span>
+namen = [<span style="color:#a31515">"Andrea"</span>, <span style="color:#a31515">"Marco"</span>, <span style="color:#a31515">"Alexander"</span>]
+
+df_namen = (
+    df[df[<span style="color:#a31515">"Vorname"</span>].<span style="color:#795e26">isin</span>(namen)]
+    .<span style="color:#795e26">groupby</span>([<span style="color:#a31515">"StichtagDatJahr"</span>, <span style="color:#a31515">"Vorname"</span>])
+    .<span style="color:#795e26">agg</span>(Anzahl=(<span style="color:#a31515">"AnzGebuWir"</span>, <span style="color:#a31515">"sum"</span>))
+    .<span style="color:#795e26">reset_index</span>()
+)
+
+fig, ax = plt.<span style="color:#795e26">subplots</span>(figsize=(<span style="color:#098658">10</span>, <span style="color:#098658">5</span>))
+<span style="color:#0F05A0;font-weight:700">for</span> name <span style="color:#0F05A0;font-weight:700">in</span> namen:
+    subset = df_namen[df_namen[<span style="color:#a31515">"Vorname"</span>] == name]
+    ax.<span style="color:#795e26">plot</span>(subset[<span style="color:#a31515">"StichtagDatJahr"</span>], subset[<span style="color:#a31515">"Anzahl"</span>], marker=<span style="color:#a31515">"o"</span>, label=name)
+
+ax.<span style="color:#795e26">set_xlabel</span>(<span style="color:#a31515">"Jahr"</span>)
+ax.<span style="color:#795e26">set_ylabel</span>(<span style="color:#a31515">"Anzahl Neugeborene"</span>)
+ax.<span style="color:#795e26">set_title</span>(<span style="color:#a31515">"Vornamen – Neugeborene in Zürich"</span>)
+ax.<span style="color:#795e26">legend</span>()
+plt.<span style="color:#795e26">tight_layout</span>()
+plt.<span style="color:#795e26">show</span>()</code></pre>
+        </div>
+        <div id="namen-r" class="lang-panel">
+          <div class="example-steps">
+            <span class="step"><span class="step-num">1</span> <a href="https://renkulab.io/p/opendatazurich/starter-code/sessions/01K7HKDF1S55RHSZPCK4SHTX1H/start?PACKAGE_ID=bev_vornamen_baby_od3700" target="_blank" rel="noopener">Notebook öffnen</a></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">2</span> <strong>Run → Run all cells</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">3</span> Code kopieren → in neue Zelle einfügen → Namen anpassen → <strong>Ctrl+Enter</strong></span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step renku"><span class="step-num">4</span> Nächstes Beispiel? Session via 🗑️ (oben links) beenden</span>
+          </div>
+          <pre><code><span style="color:#6a9955"># füge hier die Namen ein, die dich interessieren</span>
+namen &lt;- <span style="color:#795e26">c</span>(<span style="color:#a31515">"Andrea"</span>, <span style="color:#a31515">"Marco"</span>, <span style="color:#a31515">"Alexander"</span>)
+
+df_namen &lt;- df %&gt;%
+    <span style="color:#795e26">filter</span>(Vorname %in% namen) %&gt;%
+    <span style="color:#795e26">group_by</span>(StichtagDatJahr, Vorname) %&gt;%
+    <span style="color:#795e26">summarise</span>(Anzahl = <span style="color:#795e26">sum</span>(AnzGebuWir), .groups = <span style="color:#a31515">"drop"</span>)
+
+<span style="color:#6a9955"># Liniendiagramm erstellen</span>
+<span style="color:#795e26">ggplot</span>(df_namen, <span style="color:#795e26">aes</span>(x = StichtagDatJahr, y = Anzahl, color = Vorname)) +
+    <span style="color:#795e26">geom_line</span>(size = <span style="color:#098658">1</span>) +
+    <span style="color:#795e26">geom_point</span>() +
+    <span style="color:#795e26">labs</span>(
+    title = <span style="color:#a31515">"Vornamen – Neugeborene in Zürich"</span>,
+    x = <span style="color:#a31515">"Jahr"</span>,
+    y = <span style="color:#a31515">"Anzahl Neugeborene"</span>,
+    color = <span style="color:#a31515">"Vorname"</span>
+    ) +
+    <span style="color:#795e26">theme_minimal</span>()</code></pre>
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-header">
+          <h3>SQL Workbench</h3>
+          <p>Wie verbreitet sind Elektrofahrzeuge oder Benziner?</p>
+        </div>
+        <div class="lang-panel active">
+          <div class="example-steps">
+            <span class="step"><span class="step-num">1</span> <a href="https://sql-workbench.com/#queries=v0,%20%20-This-is-autogenerated-code-to-analyze-(meta)-data-from-OpenDataZurich,%20%20-All-information-refers-to-the-data-set-that-can-be-found-here%3A-https%3A%2F%2Fdata.stadt%20zuerich.ch%2Fdataset%2Fa13cd99c%20f52d%204c51%208ed1%20f6dee388b9e3,%20%20-get-metadata,CREATE-TABLE-metadata-AS-SELECT-*-FROM-read_json(%22https%3A%2F%2Fdata.stadt%20zuerich.ch%2Fapi%2Faction%2Fpackage_show%3Fid%3Da13cd99c%20f52d%204c51%208ed1%20f6dee388b9e3%22)~,%20%20-use-this-to-display-metadata,%20%20-SELECT-result.title%2C-result.timeRange%2C-result.notes%2C-result.sszBemerkungen-FROM-metadata~,%20%20-get-data,CREATE-TABLE-ogdszh-AS-SELECT-*-FROM-read_csv(%22https%3A%2F%2Fcors.sqlqry.run%2F%3Furl%3Dhttps%3A%2F%2Fdata.stadt%20zuerich.ch%2Fdataset%2Fprd_ssz_fz_pw_bestand_jahr_treibstoff_fahrzeugalter_od2002%2Fdownload%2FVER200OD2002.csv%22)~,%20%20-show-the-first-5-rows-of-the-data,SELECT-*-FROM-ogdszh-LIMIT-10~" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SQL_Workbench-grey?style=flat&logo=DuckDB&logoSize=auto&labelColor=grey&color=grey" alt="SQL Workbench" title="SQL Workbench" style="height: 1.4em; vertical-align: middle;"></a> öffnen</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">2</span> Tabellenansicht: Reset-Button <svg style="width:1em;height:1em;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg> oberhalb des Diagramms klicken</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">3</span> Eine neue Zeile anfangen</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">4</span> SQL-Code schreiben (<code>;</code> am Ende nicht vergessen)</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">5</span> Zum Ausführen <strong>Ctrl+Enter</strong></span>
+          </div>
+          <p style="margin: 0 0 0.75rem; font-size: 0.8rem; color: #666;">💡 <strong>Tipp:</strong> Falls statt einer Tabelle ein Diagramm angezeigt wird, klicken Sie auf den Reset-Button <svg style="width:0.9em;height:0.9em;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg> oder wählen Sie Configure → Datagrid.</p>
+          <p style="margin: 0.75rem 0 0.4rem; font-size: 0.9rem; font-weight: 600;">Eigene SQL-Abfragen einbinden:</p>
+          <p class="query-question">Gibt es aktuell noch Autos, die über 100 Jahre alt und immer noch in Betrieb sind?</p>
+          <div class="example-steps">
+            <span class="step sqlwb"><span class="step-num">1</span> Code kopieren und in neue Zeile einfügen</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">2</span> <strong>Ctrl+Enter</strong></span>
+          </div>
+          <pre><code><span style="color:#0F05A0;font-weight:700">SELECT</span>
+  *
+<span style="color:#0F05A0;font-weight:700">FROM</span>
+  ogdszh
+<span style="color:#0F05A0;font-weight:700">WHERE</span>
+  StichtagDatJahr = <span style="color:#a31515">'2024'</span> <span style="color:#0F05A0;font-weight:700">AND</span>
+  AlterVFahrzeugNum > <span style="color:#098658">100</span>;</code></pre>
+          <p class="query-question">Wie alt ist das älteste Auto je Treibstoffart?</p>
+          <div class="example-steps">
+            <span class="step sqlwb"><span class="step-num">1</span> Code kopieren und in neue Zeile einfügen</span>
+            <span class="step-arrow">&rarr;</span>
+            <span class="step sqlwb"><span class="step-num">2</span> <strong>Ctrl+Enter</strong></span>
+          </div>
+          <pre><code><span style="color:#0F05A0;font-weight:700">SELECT</span>
+  Treibstoffart2Lang <span style="color:#0F05A0;font-weight:700">AS</span> Treibstoff,
+  <span style="color:#795e26">MAX</span>(AlterVFahrzeugNum) <span style="color:#0F05A0;font-weight:700">AS</span> hoechstes_Fahrzeugalter
+<span style="color:#0F05A0;font-weight:700">FROM</span>
+  ogdszh
+<span style="color:#0F05A0;font-weight:700">GROUP BY</span>
+  <span style="color:#0F05A0;font-weight:700">ALL</span>;</code></pre>
+        </div>
+      </div>
+
+    </details>
+
+    <h2 class="section-title">Was ist im Notebook enthalten?</h2>
+
+    <div class="notebook-content">
+      <div class="notebook-card">
+        <h3>Python (Jupyter / pandas)</h3>
+        <ol>
+          <li>Metadaten und Beschreibung des Datensatzes</li>
+          <li>Daten laden (CSV via pandas, GeoJSON via geopandas)</li>
+          <li>Leere Spalten automatisch entfernen</li>
+          <li>Überblick: Zeilen, Spalten, Duplikate, Stichprobe</li>
+          <li>Deskriptive Statistik (kategorial + numerisch)</li>
+          <li>Fehlende Werte visualisieren (missingno)</li>
+          <li>Histogramme für numerische Variablen</li>
+          <li>Freier Bereich zum Weiterarbeiten</li>
+        </ol>
+      </div>
+      <div class="notebook-card">
+        <h3>R (R Markdown)</h3>
+        <ol>
+          <li>Metadaten und Beschreibung des Datensatzes</li>
+          <li>Packages laden (skimr, tidyverse)</li>
+          <li>Daten laden (CSV via readr, Parquet via arrow)</li>
+          <li>Erste Zeilen anzeigen (head)</li>
+          <li>Struktur-Übersicht (glimpse)</li>
+          <li>Ausführliche Zusammenfassung (skim)</li>
+          <li>Freier Bereich zum Weiterarbeiten</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 class="section-title">Für wen ist es gedacht?</h2>
+
+    <div class="audience">
+      <div class="audience-item">Data Scientists</div>
+      <div class="audience-item">Journalist*innen</div>
+      <div class="audience-item">Studierende</div>
+      <div class="audience-item">Interessierte Bürger*innen</div>
+    </div>
+
+    <h2 class="section-title">Technischer Hintergrund</h2>
+
+    <div class="tech-note">
+      <p>Starter Code nutzt <a href="https://renkulab.io" target="_blank" rel="noopener">RenkuLab.io</a>, eine Open-Source-Plattform für reproduzierbare Datenanalyse, betrieben von der ETH Zürich / SDSC. Das zugrunde liegende <a href="https://github.com/opendatazurich/starter-code" target="_blank" rel="noopener">GitHub-Repository</a> enthält über 2'300 automatisch generierte Notebooks — je eines in Python und R für jeden der rund 1'170 unterstützten Datensätze. Aufbauend auf dem Starter Code des Statistischen Amts des Kantons Zürich wurde die Lösung u.a. um direkte Katalog-Verlinkung, Geodaten-Support und Parquet-Formate erweitert.</p>
+      <p style="margin-top: 1rem;"><a href="https://github.com/tobilg/sql-workbench" target="_blank" rel="noopener">SQL Workbench</a> ist eine schlanke JavaScript-Bibliothek und ermöglicht die Online-Abfrage von CSV-, JSON-, Parquet- und Arrow-Datenquellen sowie von hochgeladenen lokalen Dateien direkt über DuckDB im Browser. Ein Backend ist nicht erforderlich. Ein Schwerpunkt liegt auf dem Datenschutz: Es verlassen keine Daten den Rechner der Nutzer. Alle WASM-kompatiblen DuckDB-Erweiterungen können ebenfalls verwendet werden.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      Statistik Stadt Zürich — Open Government Data
+      <br>
+      <a href="https://www.stadt-zuerich.ch/opendata" target="_blank" rel="noopener">Mehr Informationen auf stadt-zuerich.ch/opendata</a>
+    </p>
+  </footer>
+
+  <div class="reset-overlay" id="resetOverlay">
+    <h2>Willkommen!</h2>
+    <p>Berühren Sie den Bildschirm, um zu starten.</p>
+  </div>
+
+  <script>
+    function switchTab(btn, panelId) {
+      var block = btn.closest('.example-block');
+      block.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
+      block.querySelectorAll('.lang-panel').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(panelId).classList.add('active');
+    }
+
+    document.querySelectorAll('.lang-panel pre, .example-block pre').forEach(function(pre) {
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.title = 'Code kopieren';
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+      btn.onclick = function() {
+        var code = pre.querySelector('code').textContent;
+        navigator.clipboard.writeText(code);
+        btn.classList.add('copied');
+        btn.title = 'Kopiert!';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btn.title = 'Code kopieren';
+        }, 2000);
+      };
+      pre.appendChild(btn);
+    });
+  </script>
+  <script src="../shared/kiosk.js"></script>
+</body>
+</html>

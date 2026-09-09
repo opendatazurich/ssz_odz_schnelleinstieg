@@ -1,0 +1,13 @@
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+farbskalen.html

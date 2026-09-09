@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientifica 2026: Datenabfragen via MCP</title>
+  <link rel="stylesheet" href="../shared/style.css">
+  <style>
+    .servers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .server-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid #e8e8ee;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .server-card.featured {
+      border-color: var(--blue);
+    }
+
+    .server-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--blue);
+    }
+
+    .server-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    .server-card .example-queries {
+      margin: 1rem 0;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .server-card .queries-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .server-meta {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-weight: 600;
+      padding-top: 0.75rem;
+      border-top: 1px solid #eee;
+    }
+
+    .server-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 0.4rem;
+    }
+
+    .server-link:hover {
+      text-decoration: underline;
+    }
+
+    .server-url {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-family: monospace;
+      user-select: text;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    .server-url::before {
+      content: 'Remote MCP Server URL:\A';
+      white-space: pre-wrap;
+      font-family: var(--font);
+      font-weight: 600;
+    }
+
+    .example-queries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .example-query {
+      background: var(--blue-light);
+      border: none;
+      border-radius: 6px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      color: var(--blue);
+      line-height: 1.4;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s;
+      position: relative;
+    }
+
+    .example-query:hover {
+      background: #d4d2ed;
+      transform: scale(1.02);
+    }
+
+    .example-query.copied {
+      background: #c6efce;
+      color: #1a7d2f;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #333;
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      z-index: 500;
+    }
+
+    .copy-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../anwendungen/index.html">Daten erleben</a>
+    <a href="../katalog/index.html">Daten finden</a>
+    <a class="active" href="../mcp-abfragen/index.html">Daten abfragen</a>
+    <a href="../starter-code/index.html">Daten nutzen</a>
+  </nav>
+
+  <header>
+    <img class="header-eye" src="../shared/eth_Auge1_transparent.png" alt="">
+    <div class="header-text">
+      <h1>Scientifica 2026: Open Government Data</h1>
+      <p>Offene Daten der Stadt Zürich per KI abfragen — einfach in natürlicher Sprache.</p>
+    </div>
+    <img class="header-logo" src="../shared/OGD_STICKER_final_zueriblau_hintergrund_quadr_noFill.png" alt="Open Data Zürich">
+  </header>
+
+  <main>
+
+    <div class="intro">
+      <div class="intro-text">
+        <h2>KI + Daten — wie geht das?</h2>
+        <p>KI-Assistenten wie Claude oder ChatGPT können von sich aus noch nicht auf externe Datenquellen zugreifen. Damit sie Fragen zu Zürichs offenen Daten beantworten können, brauchen sie eine Verbindung zum Datenkatalog. Genau das leisten <strong>MCP-Server</strong>.</p>
+
+        <h2>Was ist MCP?</h2>
+        <p>MCP (Model Context Protocol) ist ein offener Standard, der KI-Assistenten strukturiert mit Datenquellen verbindet. Über MCP-Server lassen sich einem KI-Agenten gezielt neue Fähigkeiten beibringen — etwa das Durchsuchen eines Datenkatalogs, das Abfragen von Statistiken oder das Lesen von Geodaten. Für die offenen Daten der Stadt Zürich gibt es aktuell drei solche Server.</p>
+      </div>
+      <img class="intro-image" src="https://www.stadt-zuerich.ch/content/web/de/politik-und-verwaltung/statistik-und-daten/open-government-data/anwendungen/anwendungen-2026/ckan-mcp-server/_jcr_content/pageimage.2520.1120.png/1779193123253.png" alt="MCP-Server für den OGD-Katalog">
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <strong>Kein technisches Vorwissen nötig</strong>
+        <span>Fragen in natürlicher Sprache stellen, Daten direkt erhalten.</span>
+      </div>
+      <div class="benefit">
+        <strong>Nur lesender Zugriff</strong>
+        <span>Die Server verändern keine Daten und speichern keine Nutzerdaten.</span>
+      </div>
+      <div class="benefit">
+        <strong>Kompatibel mit vielen KI-Assistenten</strong>
+        <span>Claude, ChatGPT, Mistral, Gemini, Kimi und weitere.</span>
+      </div>
+      <div class="benefit">
+        <strong>Alle Daten unter CC0-Lizenz</strong>
+        <span>Frei und ohne Einschränkungen nutzbar.</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">MCP-Server einrichten</h2>
+
+    <div class="steps">
+      <h3>In 4 Schritten zum ersten Ergebnis</h3>
+      <ol>
+        <li><strong>Claude.ai öffnen</strong> — Im Browser auf <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> gehen und anmelden.</li>
+        <li><strong>Konnektor hinzufügen</strong> — In den Einstellungen unter «Konnektoren» einen neuen benutzerdefinierten MCP-Konnektor hinzufügen.</li>
+        <li><strong>Server-URL einfügen</strong> — Die gehostete URL des gewünschten MCP-Servers eintragen (<a href="#server-urls">siehe Angaben unten</a>).</li>
+        <li><strong>Frage stellen</strong> — Im Chat eine Frage in natürlicher Sprache stellen — Claude greift automatisch auf die Daten zu.</li>
+      </ol>
+    </div>
+
+    <div class="try-cta">
+      <h2>Jetzt selber ausprobieren</h2>
+      <p>Die MCP-Server lassen sich direkt im Browser als Konnektor einbinden — ganz ohne lokale Installation.</p>
+      <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai öffnen</a>
+    </div>
+
+    <h2 class="section-title">Die MCP-Server im Detail</h2>
+
+    <div class="servers">
+      <div class="server-card featured">
+        <h3><svg style="width:1.2em;height:1.2em;vertical-align:-0.15em;margin-right:0.3em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="shield"><path d="M3 2h18v14a6 6 0 0 1-3 5.2L12 24l-6-2.8A6 6 0 0 1 3 16V2z"/></clipPath></defs><g clip-path="url(#shield)"><rect width="24" height="24" fill="#fff"/><polygon points="24,0 24,24 0,24" fill="var(--blue)"/></g><path d="M3 2h18v14a6 6 0 0 1-3 5.2L12 24l-6-2.8A6 6 0 0 1 3 16V2z" fill="none" stroke="var(--blue)" stroke-width="1.5"/></svg>zurich-opendata-mcp</h3>
+          <p>Spezialisierter MCP-Server für die Stadt Zürich mit 23 Tools und 6 APIs: <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">Open-Data-Katalog</a>, <a href="https://www.ogd.stadt-zuerich.ch/wfs/geoportal/" target="_blank" rel="noopener">Geodaten-Service</a>, <a href="https://www.gemeinderat-zuerich.ch" target="_blank" rel="noopener">Parlamentsinformationen</a>, <a href="https://opendatazurich.github.io/zt-api/" target="_blank" rel="noopener">Zürich Tourismus</a>, Echtzeit-Parkplatzdaten sowie Wetter, Luftqualität und Fussgängerfrequenzen.</p>
+        <div class="server-url" id="server-urls">https://zurich-opendata-mcp.liipgpt.ch/mcp</div>
+        <div class="example-queries">
+          <span class="queries-label">Beispielabfragen — klicken zum Ausprobieren</span>
+          <span class="example-query" data-query="Suche im OGD-Katalog der Stadt Zürich (data.stadt-zuerich.ch) nach dem Datensatz zum Personenwagenbestand nach Marke. Frage dann via Datastore-SQL die Bestände der Marken Tesla, Porsche und Opel seit 2002 ab. Gruppiere nach Jahr und Marke und summiere die Anzahl Fahrzeuge. Erstelle eine Liniengrafik mit einer Linie pro Marke.">Wie hat sich der Tesla-, Porsche- und Opelbestand seit 2002 entwickelt?</span>
+          <span class="example-query" data-query="Suche auf data.stadt-zuerich.ch nach dem Datensatz zum Hundebestand. Frage via Datastore-SQL die aktuellste Jahresversion ab: Gruppiere nach Hundefarbe, zähle die Anzahl Hunde pro Farbe, schliesse 'unbestimmt' aus, sortiere absteigend und zeige nur die Top 5. Gib das Ergebnis als nummerierte Liste mit Farbe und Anzahl aus.">Welche 5 Farben sind im Hundebestand der Stadt Zürich am häufigsten?</span>
+          <span class="example-query" data-query="Suche auf data.stadt-zuerich.ch nach dem Datensatz zur Sozialhilfequote nach Quartier. Frage via Datastore-SQL die Sozialhilfequoten der letzten 10 Jahre pro Quartier ab. Ermittle die 5 Quartiere mit der höchsten Quote im aktuellsten Jahr und zeige deren Verlauf über die letzten 10 Jahre als Tabelle und als interaktive Liniengrafik in einer lokalen HTML-Datei. Die Y-Achse soll bei 0 beginnen.">Welche Quartiere haben die höchsten Sozialhilfequoten?</span>
+          <span class="example-query" data-query="Suche im OGD-Katalog nach historischen Wettermessdaten und zeige mir die Temperatur von vor einem Jahr in Zürich.">Wie war die Temperatur vor einem Jahr in Zürich?</span>
+          <span class="example-query" data-query="Suche auf data.stadt-zuerich.ch nach dem Datensatz zu den Verkehrszählungen (MIV). Frage via Datastore-SQL die Anzahl Fahrzeuge ab, die gestern über die Quaibrücke in Richtung Bellevue gefahren sind. Zeige das Ergebnis als Tabelle.">Wie viele Fahrzeuge fuhren gestern über die Quaibrücke Richtung Bellevue?</span>
+        </div>
+        <div class="server-meta">Entwicklung: Hayal Oezkan &middot; Python &middot; MIT-Lizenz</div>
+        <a class="server-link" href="https://github.com/malkreide/zurich-opendata-mcp" target="_blank" rel="noopener">GitHub-Repository &rarr;</a>
+      </div>
+      <div class="server-card">
+        <h3><svg style="width:1.2em;height:1.2em;vertical-align:-0.15em;margin-right:0.3em" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>metaodi-mcp-server</h3>
+          <p>MCP-Server mit 10 Tools für zwei Datenquellen der Stadt Zürich: <a href="https://openerz.metaodi.ch" target="_blank" rel="noopener">Abfallsammeltermine</a> (Karton, Papier, Grüngut u.a. nach Region und Datum) und <a href="https://tecdottir.metaodi.ch" target="_blank" rel="noopener">Wettermessdaten</a> (Temperatur, Niederschlag, Wassertemperatur an verschiedenen Stationen).</p>
+        <div class="server-url">https://mcp.metaodi.ch/mcp</div>
+        <div class="example-queries">
+          <span class="queries-label">Beispielabfragen — klicken zum Ausprobieren</span>
+          <span class="example-query" data-query="Suche über die Abfallsammeltermine (OpenERZ) nach den nächsten drei Terminen für den mobilen Recyclinghof in der Postleitzahl 8055. Zeige Datum, Uhrzeit und Standort.">Wann ist in der PLZ 8055 der nächste mobile Recyclinghof?</span>
+          <span class="example-query" data-query="Suche über die Abfallsammeltermine (OpenERZ) den nächsten Kartonsammeltermin in der PLZ 8055. Suche dann den Folgetag dieses Termins und finde alle anderen Postleitzahlen, in denen an diesem Folgetag Karton gesammelt wird. Zeige beide Ergebnisse: den Termin in 8055 und die alternativen PLZ am Tag danach.">Wo wird am Folgetag Karton gesammelt, wenn ich die Sammlung in 8055 verpasst habe?</span>
+          <span class="example-query" data-query="Frage die Wettermessdaten der Station Mythenquai ab und zeige den Pegelstand des Zürichsees zum heutigen Datum der letzten vier Jahre im Vergleich. Zeige das Ergebnis als Tabelle mit Datum und Pegelstand.">Wie hoch ist der Pegelstand des Zürichsees heute im Vergleich zu den letzten 4 Jahren?</span>
+          <span class="example-query" data-query="Frage die Wettermessdaten der Station Tiefenbrunnen ab und zeige die Wassertemperatur des Zürichsees zum heutigen Datum der letzten vier Jahre im Vergleich. Zeige das Ergebnis als Tabelle mit Datum und Wassertemperatur.">Wie warm ist das Wasser im Tiefenbrunnen heute im Vergleich zu den letzten 4 Jahren?</span>        </div>
+        <div class="server-meta">Entwicklung: Stefan Oderbolz &middot; Python &middot; Docker</div>
+        <a class="server-link" href="https://github.com/metaodi/metaodi-mcp-server" target="_blank" rel="noopener">GitHub-Repository &rarr;</a>
+      </div>
+      <div class="server-card">
+        <h3><svg style="width:1.2em;height:1.2em;vertical-align:-0.15em;margin-right:0.3em" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>ckan-mcp-server</h3>
+          <p>Universeller MCP-Server für rund 950 CKAN-Portale weltweit mit rund 20 Tools — darunter <a href="https://data.stadt-zuerich.ch" target="_blank" rel="noopener">data.stadt-zuerich.ch</a>, <a href="https://opendata.swiss" target="_blank" rel="noopener">opendata.swiss</a>, <a href="https://data.gov" target="_blank" rel="noopener">data.gov</a> und <a href="https://data.europa.eu" target="_blank" rel="noopener">data.europa.eu</a>. Unterstützt Datensatz-Suche, SQL-Abfragen, SPARQL und Portal-Erkennung.</p>
+        <div class="server-url">https://ckan-mcp-server.andy-pr.workers.dev/mcp</div>
+        <div class="example-queries">
+          <span class="queries-label">Beispielabfragen — klicken zum Ausprobieren</span>
+          <span class="example-query" data-query="Vergleiche die CKAN-Portale von Zürich (data.stadt-zuerich.ch), Barcelona (opendata-ajuntament.barcelona.cat) und Berlin (daten.berlin.de). Wie viele offene Datensätze hat jedes Portal? Zeige das Ergebnis als Tabelle mit Stadt, Portal-URL und Anzahl Datensätze.">Wie viele offene Datensätze haben Zürich, Barcelona und Berlin auf ihren Portalen?</span>
+          <span class="example-query" data-query="Suche auf CKAN-Portalen in der Schweiz und in den Nachbarländern (Deutschland, Österreich, Frankreich, Italien) nach Datensätzen zum Thema Baumkataster. Zeige die Treffer als Tabelle mit Titel, Stadt/Land, Portal und Link zum Datensatz.">Zu welchen Schweizer Städten gibt es ein Baumkataster als Open Data — und wie sieht es in den Nachbarländern aus?</span>
+          <span class="example-query" data-query="Suche auf opendata.swiss nach den jeweils 5 neuesten Datensätzen der Städte Zürich, Basel und St. Gallen. Erstelle pro Stadt eine Tabelle mit Titel, Veröffentlichungsdatum und Link zum Datensatz.">Was sind die neuesten Datensätze von Zürich, Basel und St. Gallen auf opendata.swiss?</span>
+          <span class="example-query" data-query="Suche Datensätze zur Bevölkerungsentwicklung auf data.stadt-zuerich.ch. Zeige die Treffer als Tabelle mit Titel, Beschreibung und Link zum Datensatz.">Suche Datensätze zur Bevölkerungsentwicklung in der Stadt Zürich.</span>        </div>
+        <div class="server-meta">Entwicklung: onData (Italien) &middot; TypeScript &middot; MIT-Lizenz</div>
+        <a class="server-link" href="https://github.com/ondata/ckan-mcp-server" target="_blank" rel="noopener">GitHub-Repository &rarr;</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      Statistik Stadt Zürich — Open Government Data
+      <br>
+      <a href="https://www.stadt-zuerich.ch/opendata" target="_blank" rel="noopener">
+        Mehr Informationen auf stadt-zuerich.ch/opendata
+      </a>
+    </p>
+  </footer>
+
+  <div class="reset-overlay" id="resetOverlay">
+    <h2>Willkommen!</h2>
+    <p>Berühren Sie den Bildschirm, um zu starten.</p>
+  </div>
+
+  <div class="copy-toast" id="copyToast">Abfrage wird in Claude geöffnet...</div>
+
+  <script src="../shared/kiosk.js"></script>
+  <script>
+    var descriptions = document.querySelectorAll('.server-card p');
+    var maxH = 0;
+    descriptions.forEach(function(p) { if (p.offsetHeight > maxH) maxH = p.offsetHeight; });
+    descriptions.forEach(function(p) { p.style.minHeight = maxH + 'px'; });
+
+    var queries = document.querySelectorAll('.server-card .example-queries');
+    var maxQ = 0;
+    queries.forEach(function(q) { if (q.offsetHeight > maxQ) maxQ = q.offsetHeight; });
+    queries.forEach(function(q) { q.style.minHeight = maxQ + 'px'; });
+
+    document.querySelectorAll('.example-query').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var server = this.closest('.server-card').querySelector('h3').textContent.trim();
+        var query = this.dataset.query || this.textContent;
+        var text = 'Verwende den ' + server + ' Server: ' + query;
+        var url = 'https://claude.ai/new?q=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
