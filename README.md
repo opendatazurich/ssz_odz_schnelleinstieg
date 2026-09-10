@@ -7,8 +7,7 @@ Daten in natürlicher Sprache abfragen und mit fertigem Starter Code sofort losl
 Die Seite ist aus der OGD-Station für die [Scientifica 2026](https://scientifica.ch)
 hervorgegangen und für den dauerhaften Betrieb ausserhalb eines Anlasses umgebaut.
 
-> **Stand:** Die Seite ist noch nicht über GitHub Pages veröffentlicht und noch nicht
-> responsiv. Beides folgt als Nächstes.
+**Online:** https://opendatazurich.github.io/ssz_odz_schnelleinstieg/ (GitHub Pages, Branch `main`)
 
 ## Inhalt
 
@@ -51,12 +50,15 @@ normale Webseite.
 ├── katalog/index.html      OGD-Katalog: Einführung, Kategorien, Formate
 ├── mcp-abfragen/index.html MCP-Server: Intro, Kurzanleitung, Server-Karten
 ├── starter-code/index.html Starter Code: Video, Schritte, Beispielauswertungen
-└── shared/
-    ├── tokens.css          Design-Tokens Stadt Zürich (Farben, Typo, Abstände)
-    ├── style.css           Gemeinsames CSS, nutzt ausschliesslich Tokens
-    ├── kiosk.js            Kiosk-Modus, nur aktiv mit ?kiosk=1
-    ├── fonts/              Helvetica Neue (Hausschrift, 5 Schnitte)
-    └── logo_stzh_ssz_open_data_rgb_weiss_digital.svg
+├── shared/
+│   ├── tokens.css          Design-Tokens Stadt Zürich (Farben, Typo, Abstände, Breakpoints)
+│   ├── style.css           Gemeinsames CSS, nutzt ausschliesslich Tokens
+│   ├── kiosk.js            Kiosk-Modus, nur aktiv mit ?kiosk=1
+│   ├── fonts/              Helvetica Neue (Hausschrift, 5 Schnitte)
+│   ├── og-bild.png         Vorschaubild für geteilte Links (1200 × 630)
+│   └── logo_stzh_ssz_open_data_rgb_weiss_digital.svg
+└── tools/
+    └── og_bild.py          Erzeugt og-bild.png und die Favicons (Python mit PyMuPDF, Pillow, fontTools)
 ```
 
 ## Technologie
@@ -68,9 +70,8 @@ Rein statische HTML/CSS/JS-Seiten ohne Build-System oder Abhängigkeiten.
 - Starter Code: Tab-Wechsel Python/R, Copy-Buttons, aufklappbare `<details>`
 - MCP-Abfragen: Beispiel-Chips öffnen `claude.ai/new?q=...` mit Server-Prefix,
   JS-Höhenangleichung der Karten
-
-> **Bekannte Einschränkung:** Die Seite ist noch nicht responsiv — sie stammt aus dem
-> Kiosk-Betrieb auf Geräten mit 1280×800 CSS-Pixeln.
+- Responsive mit Breakpoints bei 1199 / 1023 / 767 / 479px; ab 1200px unverändert das
+  Layout aus dem Kiosk-Betrieb (1280×800 CSS-Pixel)
 
 ## Lizenz
 
