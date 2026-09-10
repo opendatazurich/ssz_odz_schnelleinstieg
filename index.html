@@ -38,9 +38,11 @@
        Kopfbereich), dazu diverse Voll- und Verlaufsfarben aus der
        Stadtpalette.
 
-       Die Textbreite ist so begrenzt, dass jeder Satz eine eigene Zeile
-       bekommt: Satz 1 misst 909px, mit dem ersten Wort von Satz 2 wären es
-       943px. Wird der Text geändert, die Breite prüfen. */
+       Der Text läuft ohne feste Umbrüche und ohne Breitenbegrenzung über
+       die ganze Box (1136px bei 1280px Fensterbreite). Das ergibt zwei
+       Zeilen, Umbruch nach «im» (1133px), mit Scrollleiste nach
+       «Nutzungseinschränkung» (1111px). Wird der Text geändert,
+       die Zeilenzahl prüfen — eine dritte Zeile sprengt das Budget unten. */
     .ogd-intro {
       background:
         linear-gradient(135deg, rgba(0, 64, 99, 0.2) 0%, rgba(0, 98, 144, 0.2) 100%),
@@ -52,7 +54,6 @@
     }
 
     .ogd-intro p {
-      max-width: 58rem;
       font-size: var(--stzh-font-milli);
       font-weight: 500;
       line-height: 1.5;
@@ -261,7 +262,7 @@
 
   <main>
     <div class="ogd-intro">
-      <p>Die Stadt Zürich stellt Verwaltungsdaten ohne Nutzungseinschränkungen als <strong>Open Government Data</strong> allen zur Verfügung. Hier erhalten Sie einen direkten Einstieg und sehen, was sich damit alles machen lässt:</p>
+      <p>Die Stadt Zürich stellt <strong>offene Verwaltungsdaten</strong> – das sind Datensätze, die keine schutzbedürftigen Inhalte enthalten – ohne Nutzungseinschränkung im OGD-Katalog zur Verfügung. Hier erhalten Sie einen direkten Einstieg und sehen, was sich damit alles machen lässt:</p>
     </div>
 
     <div class="cards">
