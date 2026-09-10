@@ -484,6 +484,94 @@
 
     .example-block .btn-link:hover { opacity: 0.85; }
 
+    /* ---- Responsive (Breakpoints siehe tokens.css) ---- */
+
+    /* Neben dem 400px breiten Video blieben bei 768px nur 272px für Text
+       und Vorteil-Boxen. Mit 320px Video sind es 352px. */
+    @media (max-width: 1023px) {
+      .hero-video {
+        width: 320px;
+        margin-right: var(--stzh-space-xlarge);
+      }
+    }
+
+    @media (max-width: 767px) {
+      /* Neben dem Video bliebe für den Text zu wenig Platz.
+         Es steht darum über dem Text, mittig. Auf 20rem begrenzt, weil es
+         hochkant ist: in voller Breite würde es auf dem Telefon mehr als
+         einen Bildschirm hoch. */
+      .hero-video {
+        float: none;
+        width: 100%;
+        max-width: 20rem;
+        margin: 0 auto var(--stzh-space-xlarge);
+      }
+
+      /* Grossansicht: Schaltfläche über statt neben dem Video, sonst
+         bleibt dem Video auf dem Telefon kaum Breite. column-reverse,
+         damit die Tab-Reihenfolge (Video, dann Schliessen) gleich bleibt. */
+      .video-dialog[open] {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: var(--stzh-space-xsmall);
+      }
+
+      .video-dialog video {
+        height: min(calc(100vh - 6rem), 1126px, calc((100vw - 2rem) * 1.2511));
+      }
+
+      /* Aktionsbanner einspaltig: Knopf, seine Beschreibung, «oder»,
+         Link, seine Beschreibung — jede Beschreibung bleibt direkt unter
+         ihrer Schaltfläche. */
+      .try-cta-buttons {
+        grid-template-columns: 1fr;
+        row-gap: var(--stzh-space-xsmall);
+        margin-top: var(--stzh-space-xlarge);
+      }
+
+      .try-cta-examples  { grid-area: 1 / 1; }
+      .desc-left         { grid-area: 2 / 1; }
+      .try-cta-or        { grid-area: 3 / 1; margin-block: var(--stzh-space-small); }
+      .try-cta-buttons a { grid-area: 4 / 1; }
+      .desc-right        { grid-area: 5 / 1; }
+
+      .cta-emoji {
+        margin: 0 0.4rem;
+      }
+
+      .notebook-content {
+        grid-template-columns: 1fr;
+        gap: var(--stzh-space-medium);
+      }
+    }
+
+    @media (max-width: 479px) {
+      .try-cta-examples {
+        padding-inline: var(--stzh-space-xlarge);
+      }
+
+      .audience {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--stzh-space-small);
+      }
+
+      .audience-item {
+        padding: var(--stzh-space-medium) var(--stzh-space-small);
+      }
+
+      .notebook-card {
+        padding: var(--stzh-space-large) var(--stzh-space-large) var(--stzh-space-medium);
+      }
+
+      .lang-panel {
+        padding: var(--stzh-space-small);
+      }
+
+      .example-header {
+        padding: var(--stzh-space-small);
+      }
+    }
+
   </style>
 </head>
 <body>

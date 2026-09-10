@@ -9,7 +9,7 @@
   <style>
     .servers {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
       gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
@@ -97,6 +97,9 @@
       color: var(--text-light);
       font-family: monospace;
       user-select: text;
+      /* Die URLs haben keine Trennstellen; ohne Umbruch drückten sie die
+         Karte auf Telefonen breiter als den Bildschirm. */
+      overflow-wrap: anywhere;
       margin-top: 0.5rem;
       padding-top: 0.5rem;
       border-top: 1px solid #eee;
@@ -158,6 +161,16 @@
     .copy-toast.visible {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
+    }
+
+    /* ---- Responsive (Breakpoints siehe tokens.css) ---- */
+
+    /* .servers bricht über auto-fit selbst um (zwei Spalten ab 704px
+       Inhaltsbreite, eine darunter), dafür braucht es keine Abfrage. */
+    @media (max-width: 479px) {
+      .server-card {
+        padding: var(--stzh-space-large);
+      }
     }
 
   </style>
@@ -298,10 +311,39 @@
 
   <script src="../shared/kiosk.js"></script>
   <script>
-    var descriptions = document.querySelectorAll('.server-card p');
-    var maxH = 0;
-    descriptions.forEach(function(p) { if (p.offsetHeight > maxH) maxH = p.offsetHeight; });
-    descriptions.forEach(function(p) { p.style.minHeight = maxH + 'px'; });
+    /* Beschreibungen der Server-Karten gleich hoch, damit die Server-URLs
+       auf einer Linie liegen. Nur für Karten, die nebeneinander in
+       derselben Rasterzeile stehen; untereinander hat die Angleichung
+       keinen Zweck und liesse nur Lücken. Neu gerechnet wird bei jeder
+       Grössenänderung (die Spaltenzahl wechselt) und sobald die Schrift
+       geladen ist (sie verändert die Zeilenumbrüche). */
+    function equalizeDescriptions() {
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.server-card'));
+      cards.forEach(function(card) { card.querySelector('p').style.minHeight = ''; });
+
+      var rows = {};
+      cards.forEach(function(card) {
+        (rows[card.offsetTop] = rows[card.offsetTop] || []).push(card.querySelector('p'));
+      });
+
+      Object.keys(rows).forEach(function(top) {
+        var row = rows[top];
+        if (row.length < 2) return;
+        var maxH = 0;
+        row.forEach(function(p) { if (p.offsetHeight > maxH) maxH = p.offsetHeight; });
+        row.forEach(function(p) { p.style.minHeight = maxH + 'px'; });
+      });
+    }
+
+    var equalizeFrame;
+    window.addEventListener('resize', function() {
+      cancelAnimationFrame(equalizeFrame);
+      equalizeFrame = requestAnimationFrame(equalizeDescriptions);
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(equalizeDescriptions);
+    }
+    equalizeDescriptions();
 
     document.querySelectorAll('.example-query').forEach(function(el) {
       el.addEventListener('click', function() {

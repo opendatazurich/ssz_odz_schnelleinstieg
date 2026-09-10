@@ -239,6 +239,53 @@
       transform: translateX(4px);
     }
 
+    /* ---- Responsive (Breakpoints siehe tokens.css) ---- */
+
+    /* Die 66px des Kachelkopfs sind nur dem Budget bei 800px Höhe
+       geschuldet. Auf höheren Bildschirmen bekommt er die 84px zurück, die
+       er vor der Einleitung hatte. Rechnung bei 1280 × 860: Budget oben
+       mit 2 × 84 statt 2 × 66 = 831px, passt. Die Kiosk-Geräte (800px
+       hoch) sind nicht betroffen. */
+    @media (min-height: 860px) {
+      .station-header {
+        height: 84px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .cards {
+        grid-template-columns: 1fr;
+        gap: var(--stzh-space-medium);
+      }
+
+      main {
+        padding-top: var(--stzh-space-large);
+      }
+    }
+
+    @media (max-width: 479px) {
+      .ogd-intro {
+        padding: var(--stzh-space-small) var(--stzh-space-medium);
+      }
+
+      .station-header {
+        padding-inline: var(--stzh-space-medium);
+      }
+
+      .station-top {
+        left: var(--stzh-space-small);
+        right: var(--stzh-space-small);
+      }
+
+      .station-body {
+        padding-inline: var(--stzh-space-medium);
+      }
+
+      .station-card h2 {
+        font-size: var(--stzh-font-centi);
+      }
+    }
+
   </style>
 </head>
 <body>

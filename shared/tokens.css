@@ -168,3 +168,37 @@
   /* Bewusste Abweichung vom CD, siehe Kopfkommentar */
   --radius: 12px;
 }
+
+
+/* =========================================================
+   Responsive: Seitenrand je Breite
+   =========================================================
+
+   Breakpoints dieser Seite (CSS-Variablen gehen in @media nicht, darum
+   stehen die Zahlen hier und in style.css als Literale):
+
+     ab 1200px   Ausgangslage, unverändert — deckt die Kiosk-Geräte mit
+                 1280 × 800 CSS-Pixeln ab, deren Höhenbudget auf der
+                 Startseite exakt aufgeht
+     ≤ 1199px    schmalere Ränder, Kopfbereich mit schmaleren Seitenspalten
+     ≤ 1023px    Kopfbereich gestapelt (Tablets, kleine Fenster)
+     ≤  767px    einspaltige Layouts (Tablet hochkant, Telefone)
+     ≤  479px    Feinschliff für Telefone
+
+   Alle Abfragen sind max-width, damit ab 1200px nichts greift.
+
+   Die Seitenränder folgen den Stufen des Stadtauftritts im Standardmodus
+   (container-margin-small 2rem, container-margin 1.25rem). Das Stylesheet
+   des Stadtauftritts kennt als globalen Breakpoint nur 600px; die feineren
+   Stufen setzen seine Web-Components selbst und sind nicht auslesbar. */
+@media (max-width: 1199px) {
+  :root {
+    --stzh-container-margin: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --stzh-container-margin: 1.25rem;
+  }
+}
