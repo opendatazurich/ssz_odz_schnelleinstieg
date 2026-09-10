@@ -134,9 +134,11 @@ main {
   width: 100%;
 }
 
+/* min(…, 100%): Auf Telefonen ist die Spalte schmaler als 340px — ohne
+   die Begrenzung liefe das Raster seitlich über. Breit ändert sich nichts. */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   gap: var(--stzh-space-xlarge);
 }
 
@@ -272,7 +274,7 @@ footer a:hover {
 /* Feature / Benefit boxes */
 .features, .benefits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--stzh-space-medium);
   margin-bottom: var(--stzh-space-xxxlarge);
 }
@@ -444,4 +446,158 @@ footer a:hover {
 .reset-overlay p {
   font-size: var(--stzh-font-deci);
   opacity: 0.85;
+}
+
+
+/* =========================================================
+   Responsive
+   =========================================================
+
+   Breakpoints und Begründung: siehe Kommentar «Responsive» in tokens.css.
+   Ab 1200px greift hier nichts — das Layout für die Kiosk-Geräte
+   (1280 × 800) bleibt unverändert. Seitenspezifisches steht jeweils am
+   Ende des <style>-Blocks der Seite. */
+
+/* ≤ 1199px: Zwischen den 236px breiten Seitenspalten passt der Titel
+   (534px) nur bis rund 1170px auf eine Zeile, der längste Untertitel
+   (572px) bis rund 1200px. Die Spalten schrumpfen darum auf die
+   tatsächliche Logobreite von 172px, der Abstand auf 1.5rem. Der Titel
+   steht weiterhin exakt mittig, weil beide Spalten gleich breit sind.
+   Platz für den Text bei 1024px: 1024 − 2 × 32 − 2 × 172 − 2 × 24 = 568px,
+   der Titel bleibt einzeilig. */
+@media (max-width: 1199px) {
+  header {
+    gap: var(--stzh-space-xlarge);
+  }
+
+  .header-logo-stzh,
+  .header-logo {
+    flex-basis: 172px;
+  }
+}
+
+/* ≤ 1023px: Nebeneinander reicht der Platz nicht mehr. Logo und Sticker
+   teilen sich die obere Zeile, Titel und Untertitel stehen darunter über
+   die volle Breite. Die Höhengleichheit von Logo und Textblock (siehe
+   .header-logo-stzh) gilt nur im breiten Kopfbereich. */
+@media (max-width: 1023px) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo    sticker"
+      "text    text";
+    align-items: center;
+    gap: var(--stzh-space-small) var(--stzh-space-medium);
+    padding-block: var(--stzh-space-medium) var(--stzh-space-large);
+  }
+
+  .header-logo-stzh {
+    grid-area: logo;
+    justify-self: start;
+    width: auto;
+    height: 48px;
+  }
+
+  .header-logo {
+    grid-area: sticker;
+    justify-self: end;
+    width: auto;
+    height: 64px;
+  }
+
+  .header-text {
+    grid-area: text;
+  }
+
+  /* Bricht der Titel um, verteilt balance die Wörter auf gleich lange
+     Zeilen statt ein einzelnes Wort allein in die zweite zu setzen. */
+  header h1,
+  header p {
+    text-wrap: balance;
+  }
+}
+
+/* ≤ 767px: einspaltig. */
+@media (max-width: 767px) {
+  header h1 {
+    font-size: var(--stzh-font-deca);
+  }
+
+  header p {
+    font-size: var(--stzh-font-micro);
+  }
+
+  .header-logo-stzh {
+    height: 40px;
+  }
+
+  .header-logo {
+    height: 52px;
+  }
+
+  /* Fünf Punkte passen nicht mehr in eine Zeile. Umbrechen statt
+     seitlich scrollen: So bleiben alle Punkte sichtbar, und niemand muss
+     erraten, dass rechts noch etwas kommt. */
+  nav {
+    flex-wrap: wrap;
+    column-gap: 0;
+    padding-inline: calc(var(--stzh-container-margin) - var(--stzh-space-xsmall));
+  }
+
+  nav a {
+    padding: var(--stzh-space-small) var(--stzh-space-xsmall);
+  }
+
+  main {
+    padding-block: var(--stzh-space-xlarge);
+  }
+
+  .intro {
+    flex-direction: column;
+    gap: var(--stzh-space-xlarge);
+  }
+
+  .intro-image {
+    width: 100%;
+    max-width: 32rem;
+  }
+
+  .section-title,
+  .intro-text h2,
+  .try-cta h2 {
+    font-size: var(--stzh-font-deci);
+  }
+
+  .steps {
+    padding: var(--stzh-space-large);
+  }
+
+  .try-cta {
+    padding: var(--stzh-space-xlarge) var(--stzh-space-large);
+  }
+}
+
+/* ≤ 479px: Telefone. */
+@media (max-width: 479px) {
+  header h1 {
+    font-size: var(--stzh-font-deci);
+  }
+
+  .card-body {
+    padding: var(--stzh-space-large);
+  }
+
+  .card-image {
+    height: 160px;
+  }
+
+  .info-note,
+  .tech-note {
+    padding: var(--stzh-space-medium) var(--stzh-space-large);
+  }
+
+  .try-cta a {
+    padding-inline: var(--stzh-space-xlarge);
+  }
 }
