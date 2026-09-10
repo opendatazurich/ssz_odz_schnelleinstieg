@@ -58,7 +58,7 @@ normale Webseite.
     ├── style.css           Gemeinsames CSS, nutzt ausschliesslich Tokens
     ├── kiosk.js            Kiosk-Modus, nur aktiv mit ?kiosk=1
     ├── fonts/              Helvetica Neue (Hausschrift, 5 Schnitte)
-    └── logo_stzh_rgb_weiss_digital.svg
+    └── logo_stzh_ssz_open_data_rgb_weiss_digital.svg
 ```
 
 ## Technologie

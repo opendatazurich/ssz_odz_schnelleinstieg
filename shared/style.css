@@ -80,10 +80,14 @@ header {
      h1  hecto 1.75rem × line-height 1.2 = 33.6px
      p   milli 1rem    × line-height 1.4 = 22.4px
                                          = 56px
-   Das SVG misst 250 × 59.4, 56px Höhe ergeben also 236px Breite — daher
-   die Flex-Basis von 236px auf beiden Seiten. Die line-height von h1 ist
-   unten fix gesetzt, damit diese Rechnung nicht von den Schriftmetriken
-   des jeweiligen Systems abhängt. */
+   Die line-height von h1 ist unten fix gesetzt, damit diese Rechnung
+   nicht von den Schriftmetriken des jeweiligen Systems abhängt.
+
+   Logo ist der Lockup «Stadt Zürich / Open Data» in Weiss
+   (logo_stzh_ssz_open_data_rgb_weiss_digital.svg, 250.1 × 81.5). Bei 56px
+   Höhe ist er rund 172px breit und steht linksbündig in seiner Spalte.
+   Die Flex-Basis von 236px stammt noch vom früheren, breiteren Logo
+   (250 × 59.4) und bleibt, damit Titel und Untertitel nicht verrutschen. */
 .header-logo-stzh {
   flex: 0 0 236px;
   height: 56px;
