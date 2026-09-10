@@ -98,9 +98,10 @@
                                main-Padding 16 + 8, Fusszeile 94
          Einleitung     96px   Box 72 (zwei Zeilen à 24, Innenabstand
                                12 + 12), Abstand zu den Kacheln 24
-         Kacheln       276px   Rumpf Reihe 1: 110 (Beschreibungen
-                               einzeilig), Reihe 2: 134 (zweizeilig),
-                               Rahmen 2 × 4, Reihenabstand 24
+         Kacheln       276px   Rumpf Reihe 1: 110 (Katalog, Anwendungen:
+                               Beschreibungen einzeilig), Reihe 2: 134
+                               (MCP zweizeilig), Rahmen 2 × 4,
+                               Reihenabstand 24
          Rest          137px   für zwei Kachelköpfe
                              = 68px maximal möglich
 
@@ -111,9 +112,11 @@
 
        Knapp ist Reihe 1: «Über 900 Datensätze …» belegt 506 der 538px
        Zeilenbreite. Bricht eine Beschreibung dort um, wächst die Reihe um
-       24px und die zweite Reihe rutscht aus dem Bild. Ändert sich am
-       Seitengerüst, an der Einleitung oder an den Kacheltexten etwas,
-       muss der Wert nachgerechnet werden. */
+       24px und die zweite Reihe rutscht aus dem Bild. Darum hängt das
+       Budget auch an der Reihenfolge: Die beiden zweizeiligen Kacheln
+       dürfen nicht auf zwei Reihen verteilt werden. Ändert sich am
+       Seitengerüst, an der Einleitung, an den Kacheltexten oder an der
+       Reihenfolge etwas, muss der Wert nachgerechnet werden. */
     .station-header {
       position: relative;
       height: 66px;
@@ -250,8 +253,8 @@
 
   <nav>
     <a class="active" href="index.html">Übersicht</a>
-    <a href="anwendungen/index.html">Daten erleben</a>
     <a href="katalog/index.html">Daten finden</a>
+    <a href="anwendungen/index.html">Daten erleben</a>
     <a href="mcp-abfragen/index.html">Daten abfragen</a>
     <a href="starter-code/index.html">Daten nutzen</a>
   </nav>
@@ -263,31 +266,8 @@
 
     <div class="cards">
 
-      <a class="station-card" href="anwendungen/index.html">
-        <div class="station-header" style="background: linear-gradient(135deg, #1a3a88 0%, #2550a0 100%);">
-          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Anwendungen"> -->
-          <div class="station-top">
-            <span class="station-topic">Daten erleben</span>
-            <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
-          </div>
-          <span class="station-name">Anwendungen</span>
-          <span class="station-open" aria-hidden="true">→</span>
-        </div>
-        <div class="station-body">
-          <h2>Was wurde mit offenen Daten bereits erstellt?</h2>
-          <p>Beispielanwendungen, die auf offenen Verwaltungsdaten basieren.</p>
-          <div class="station-tags">
-            <span class="station-tag">Kirschblüten</span>
-            <span class="station-tag">Velounfälle</span>
-            <span class="station-tag">Strassennamen</span>
-            <span class="station-tag">OGD4All</span>
-            <span class="station-tag">Baumbestand</span>
-          </div>
-        </div>
-      </a>
-
       <a class="station-card" href="katalog/index.html">
-        <div class="station-header" style="background: linear-gradient(135deg, #2870b8 0%, #3590cc 100%);">
+        <div class="station-header" style="background: linear-gradient(135deg, #1a3a88 0%, #2550a0 100%);">
           <!-- Bild hier einfügen: <img src="DEINE_URL" alt="OGD-Katalog"> -->
           <div class="station-top">
             <span class="station-topic">Daten finden</span>
@@ -305,6 +285,29 @@
             <span class="station-tag">Mobilität</span>
             <span class="station-tag">Bauen</span>
             <span class="station-tag">Politik</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="station-card" href="anwendungen/index.html">
+        <div class="station-header" style="background: linear-gradient(135deg, #2870b8 0%, #3590cc 100%);">
+          <!-- Bild hier einfügen: <img src="DEINE_URL" alt="Anwendungen"> -->
+          <div class="station-top">
+            <span class="station-topic">Daten erleben</span>
+            <span class="station-level"><span class="dots"><span class="dot-filled">●</span><span class="dot-empty">●●</span></span>Einstieg</span>
+          </div>
+          <span class="station-name">Anwendungen</span>
+          <span class="station-open" aria-hidden="true">→</span>
+        </div>
+        <div class="station-body">
+          <h2>Was wurde mit offenen Daten bereits erstellt?</h2>
+          <p>Beispielanwendungen, die auf offenen Verwaltungsdaten basieren.</p>
+          <div class="station-tags">
+            <span class="station-tag">Kirschblüten</span>
+            <span class="station-tag">Velounfälle</span>
+            <span class="station-tag">Strassennamen</span>
+            <span class="station-tag">OGD4All</span>
+            <span class="station-tag">Baumbestand</span>
           </div>
         </div>
       </a>
@@ -344,7 +347,7 @@
         </div>
         <div class="station-body">
           <h2>Wie kann ich sofort mit offenen Daten loslegen?</h2>
-          <p>Erste Schritte mit offenen Daten — Code-Beispiele zum Anpassen und Ausführen.</p>
+          <p>Erste Schritte mit offenen Daten — Code-Beispiele anpassen und ausführen.</p>
           <div class="station-tags">
             <span class="station-tag">Python</span>
             <span class="station-tag">R</span>

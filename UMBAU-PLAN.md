@@ -261,7 +261,11 @@ Ebenfalls unverändert bleiben:
 
 - Die Bindung ans Corporate Design der Stadt Zürich (jetzt über `shared/tokens.css`)
 - Der Ansatz «rein statisches HTML/CSS/JS ohne Build-System»
-- Navigationsstruktur: Übersicht / Daten erleben / Daten finden / Daten abfragen / Daten nutzen
+- Navigationsstruktur mit fünf Punkten. Die Reihenfolge wurde am 10. September 2026
+  angepasst auf Übersicht / Daten finden / Daten erleben / Daten abfragen / Daten nutzen,
+  damit sie den Niveau-Badges folgt (Einstieg, Einstieg, Erkunden, Vertiefen); vorher
+  stand «Daten erleben» vorne. Kacheln in derselben Reihenfolge, die Farbskala «Brücke»
+  bleibt an der Position.
 
 ## 4. Offene Punkte
 
