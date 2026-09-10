@@ -7,6 +7,27 @@
 > aktiviert.
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
 
+### Sicherungspunkt vor Phase 4
+
+Der Stand unmittelbar vor dem Umbau auf Responsive ist als Git-Tag **`vor-responsive`**
+gesichert (Branch `feature-erweiterung`, auch auf GitHub). Zusätzlich liegt eine ZIP-Kopie
+des ganzen Projektordners — inklusive `.git`, `CLAUDE.md` und `farbskalen.html`, die nicht
+im Repo sind — unter
+`G:\sszsim\1_github_odz\ssz_odz_schnelleinstieg_vor-responsive_2026-09-10.zip`.
+
+Zurück auf diesen Stand:
+
+```bash
+git switch -c wiederherstellung vor-responsive    # neuen Branch ab dem Tag anlegen, nichts geht verloren
+# oder, wenn feature-erweiterung selbst zurück soll (verwirft spätere Commits!):
+git switch feature-erweiterung && git reset --hard vor-responsive
+```
+
+Stand des Tags: Einleitung, Kapitelreihenfolge, Video-Grossansicht, gekürzte Untertitel,
+Logo «Stadt Zürich / Open Data», Einleitungssatz nach dem Reglement über offene
+Verwaltungsdaten. `main` steht noch auf der Einleitungsbox (`990770e`), der PR
+`feature-erweiterung` → `main` ist offen.
+
 ## 1. Vorhaben
 
 Die für die [Scientifica 2026](https://scientifica.ch) gebaute OGD-Station wird zu einer
@@ -190,8 +211,9 @@ Die Seite ist hart auf die Event-Laptops optimiert (1920×1200 bei 150 % = 1280�
       einspaltige Variante
 - [ ] `index.html`: der Kachelkopf ist auf `66px` fixiert, abgeleitet aus dem Budget
       bei 1280×800; auf anderen Höhen sollte er mitgehen
-- [ ] `index.html`: die Einleitungsbox ist bei 1280px zweizeilig, auf schmalen
-      Bildschirmen wird sie deutlich höher — Innenabstand auf Mobile prüfen
+- [ ] `index.html`: die Einleitungsbox ist bei 1280px zweizeilig (erste Zeile 1133 von
+      1136px, also knapp), auf schmalen Bildschirmen wird sie deutlich höher —
+      Innenabstand auf Mobile prüfen
 - [ ] `starter-code/index.html`: das links gefloatete Video auf Mobile über den Text stellen
 - [ ] Test auf Mobile, Tablet, Desktop
 
@@ -205,6 +227,14 @@ An der Scientifica erklärte Standpersonal die Station. Im Web muss die Seite da
       1280×800 sichtbar bleibt: Kachelköpfe 84 → 66px, `main`-Padding 32/32 → 16/8px;
       die Rechnung steht bei `.station-header` in `index.html`. Ein Titel «Was ist Open
       Government Data?» wurde ausprobiert und wieder verworfen.
+- [x] Einleitungssatz auf das **Reglement über offene Verwaltungsdaten** abgestützt
+      (AS 170.410, in Kraft seit 1. September 2021, Begründung STRB 743/2021):
+      «Die Stadt Zürich stellt offene Verwaltungsdaten – das sind Datensätze, die keine
+      schutzbedürftigen Inhalte enthalten – ohne Nutzungseinschränkung im OGD-Katalog zur
+      Verfügung.» Einschub nach Art. 9, «ohne Nutzungseinschränkung» nach Art. 3. Die
+      Breitenbegrenzung `58rem` («jeder Satz eine Zeile») ist entfallen, der Text läuft
+      ohne feste Umbrüche über die ganze Box und bleibt bei 1280px zweizeilig.
+      Hinweis: Die OGD-Hauptseite der Stadt nennt fälschlich STRB 741/2021.
 - [ ] Footer erweitern: Impressum- und Datenschutz-Link (für eine öffentliche
       Stadt-Zürich-Seite erforderlich)
 - [ ] Kontakt/Feedback: `opendata@stadt-zuerich.ch`
