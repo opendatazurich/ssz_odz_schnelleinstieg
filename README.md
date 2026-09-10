@@ -6,10 +6,9 @@ Daten in natürlicher Sprache abfragen und mit fertigem Starter Code sofort losl
 
 Die Seite ist aus der OGD-Station für die [Scientifica 2026](https://scientifica.ch)
 hervorgegangen und für den dauerhaften Betrieb ausserhalb eines Anlasses umgebaut.
-Der Umbau ist in [UMBAU-PLAN.md](UMBAU-PLAN.md) dokumentiert — dort steht auch, was noch offen ist.
 
 > **Stand:** Die Seite ist noch nicht über GitHub Pages veröffentlicht und noch nicht
-> responsiv. Beides ist im Umbauplan als nächster Schritt vermerkt.
+> responsiv. Beides folgt als Nächstes.
 
 ## Inhalt
 
@@ -52,7 +51,6 @@ normale Webseite.
 ├── katalog/index.html      OGD-Katalog: Einführung, Kategorien, Formate
 ├── mcp-abfragen/index.html MCP-Server: Intro, Kurzanleitung, Server-Karten
 ├── starter-code/index.html Starter Code: Video, Schritte, Beispielauswertungen
-├── UMBAU-PLAN.md           Stand und offene Schritte des Umbaus
 └── shared/
     ├── tokens.css          Design-Tokens Stadt Zürich (Farben, Typo, Abstände)
     ├── style.css           Gemeinsames CSS, nutzt ausschliesslich Tokens
@@ -72,8 +70,7 @@ Rein statische HTML/CSS/JS-Seiten ohne Build-System oder Abhängigkeiten.
   JS-Höhenangleichung der Karten
 
 > **Bekannte Einschränkung:** Die Seite ist noch nicht responsiv — sie stammt aus dem
-> Kiosk-Betrieb auf Geräten mit 1280×800 CSS-Pixeln. Siehe Phase 4 im
-> [UMBAU-PLAN.md](UMBAU-PLAN.md).
+> Kiosk-Betrieb auf Geräten mit 1280×800 CSS-Pixeln.
 
 ## Lizenz
 
