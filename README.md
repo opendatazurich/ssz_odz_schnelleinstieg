@@ -1,7 +1,7 @@
 # Schnelleinstieg Open Government Data — Stadt Zürich
 
 Eine Webseite von Statistik Stadt Zürich (SSZ), die zeigt, was mit den offenen Daten der
-Stadt Zürich möglich ist: bestehende Anwendungen anschauen, den Datenkatalog durchsuchen,
+Stadt Zürich möglich ist: den Datenkatalog durchsuchen, bestehende Anwendungen anschauen,
 Daten in natürlicher Sprache abfragen und mit fertigem Starter Code sofort loslegen.
 
 Die Seite ist aus der OGD-Station für die [Scientifica 2026](https://scientifica.ch)
@@ -15,8 +15,8 @@ Der Umbau ist in [UMBAU-PLAN.md](UMBAU-PLAN.md) dokumentiert — dort steht auch
 
 | Seite | Beschreibung |
 |---|---|
-| [Anwendungen](anwendungen/) | Bestehende OGD-Anwendungen erkunden (Hanami, Velounfälle, OGD4All u.a.) |
 | [OGD-Katalog](katalog/) | Über 900 Datensätze durchsuchen — Kategorien, Formate, Suchschritte |
+| [Anwendungen](anwendungen/) | Bestehende OGD-Anwendungen erkunden (Hanami, Velounfälle, OGD4All u.a.) |
 | [MCP-Abfragen](mcp-abfragen/) | Daten in natürlicher Sprache abfragen — Beispielfragen öffnen Claude.ai mit dem passenden MCP-Server |
 | [Starter Code](starter-code/) | Python/R-Notebooks und SQL Workbench ausprobieren, Beispielauswertungen zum Kopieren |
 

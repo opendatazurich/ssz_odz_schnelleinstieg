@@ -26,6 +26,10 @@ function resetIdleTimer() {
 }
 
 function showResetOverlay() {
+  /* Offene Dialoge (z.B. die Video-Grossansicht) liegen in der obersten
+     Ebene des Browsers und würden das Overlay verdecken — darum zuerst
+     schliessen. */
+  document.querySelectorAll('dialog[open]').forEach(function(d) { d.close(); });
   const overlay = document.getElementById('resetOverlay');
   if (overlay) {
     overlay.classList.add('visible');

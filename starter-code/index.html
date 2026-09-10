@@ -7,12 +7,130 @@
   <link rel="stylesheet" href="../shared/tokens.css">
   <link rel="stylesheet" href="../shared/style.css">
   <style>
+    /* Das Demo-Video ist ein Knopf: Ein Klick öffnet es gross in einem
+       Dialog. Das kleine Video läuft ohne Bedienelemente — mit ihnen würde
+       der Klick in Chrome Play/Pause auslösen statt vergrössern. */
     .hero-video {
       float: left;
+      position: relative;
+      display: block;
       width: 400px;
       margin: 0 2rem 1.5rem 0;
+      padding: 0;
+      border: none;
+      background: none;
+      font: inherit;
       border-radius: var(--radius);
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .hero-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-video:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Hinweis im Video, gleiche Pillenform wie die Niveau-Badges der
+       Startseite. Er ist dauernd sichtbar, weil man einem Video sonst
+       nicht ansieht, dass es sich vergrössern lässt. */
+    .video-zoom-hint {
+      position: absolute;
+      right: var(--stzh-space-small);
+      bottom: var(--stzh-space-small);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--stzh-space-xsmall);
+      padding: var(--stzh-space-xxsmall) var(--stzh-space-small);
+      border-radius: 1rem;
+      background: rgba(0,0,0,0.6);
+      color: var(--stzh-white);
+      font-size: var(--stzh-font-micro);
+      font-weight: 500;
+      pointer-events: none;
+      transition: background 0.15s ease;
+    }
+
+    .video-zoom-hint svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hero-video:hover .video-zoom-hint,
+    .hero-video:focus-visible .video-zoom-hint {
+      background: rgba(0,0,0,0.8);
+    }
+
+    /* Grossansicht. <dialog> mit showModal() bringt Esc zum Schliessen,
+       Fokusführung und die Rückkehr des Fokus zum Knopf selbst mit.
+       Geschlossen wird ausserdem über die Schaltfläche und per Klick neben
+       das Video. Das Video ist hochkant (900 × 1126), darum steht die
+       Schaltfläche daneben statt darüber: So bleibt die volle Höhe. */
+    .video-dialog {
+      margin: auto;
+      padding: 0;
+      border: none;
+      background: transparent;
+      max-width: none;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .video-dialog[open] {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--stzh-space-medium);
+    }
+
+    .video-dialog::backdrop {
+      background: rgba(0,0,0,0.85);
+    }
+
+    /* Höhe: Bildschirmhöhe abzüglich Rand, höchstens die Originalgrösse,
+       und so begrenzt, dass die Breite (Höhe × 900/1126) neben der
+       Schaltfläche Platz hat. */
+    .video-dialog video {
+      display: block;
+      height: min(calc(100vh - 3rem), 1126px, calc((100vw - 14rem) * 1.2511));
+      width: auto;
+      aspect-ratio: 900 / 1126;
+      border-radius: var(--radius);
+      background: var(--stzh-black);
+    }
+
+    .video-dialog-close {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--stzh-space-xsmall);
+      background: var(--stzh-white);
+      color: var(--blue);
+      font: inherit;
+      font-weight: 700;
+      padding: var(--stzh-space-xsmall) var(--stzh-space-medium);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .video-dialog-close:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .video-dialog-close span {
+      font-size: var(--stzh-font-deci);
+      line-height: 1;
     }
 
     .clearfix::after {
@@ -71,13 +189,24 @@
       margin-bottom: 2.5rem;
     }
 
+    /* Gestaltet wie die Vorteil-Boxen oben (.benefit in shared/style.css):
+       weisse Karte mit leichtem Schatten, Titel fett in Schwarz. Vorher
+       Midnightblue 10 — das hebt sich vom Seitengrund nur um 1.02:1 ab,
+       die Flächen waren kaum zu erkennen.
+
+       Text horizontal und vertikal zentriert. Vertikal zählt das, sobald
+       ein Eintrag umbricht: Die Boxen einer Rasterzeile sind gleich hoch. */
     .audience-item {
-      background: var(--blue-light);
+      background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--blue);
+      padding: var(--stzh-space-large);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: var(--stzh-font-milli);
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
 
@@ -363,15 +492,15 @@
     <img class="header-logo-stzh" src="../shared/logo_stzh_rgb_weiss_digital.svg" alt="Stadt Zürich">
     <div class="header-text">
       <h1>Schnelleinstieg Open Government Data</h1>
-      <p>Vom Datenkatalog direkt ins Notebook — ohne Installation, ohne Setup. Ein Browser genügt.</p>
+      <p>Vom Datenkatalog direkt ins Notebook — ein Browser genügt.</p>
     </div>
     <img class="header-logo" src="../shared/OGD_STICKER_final_zueriblau_hintergrund_quadr_noFill.png" alt="Open Data Zürich">
   </header>
 
   <nav>
     <a href="../index.html">Übersicht</a>
-    <a href="../anwendungen/index.html">Daten erleben</a>
     <a href="../katalog/index.html">Daten finden</a>
+    <a href="../anwendungen/index.html">Daten erleben</a>
     <a href="../mcp-abfragen/index.html">Daten abfragen</a>
     <a class="active" href="../starter-code/index.html">Daten nutzen</a>
   </nav>
@@ -379,9 +508,15 @@
   <main>
 
     <div class="clearfix">
-      <video class="hero-video" autoplay loop muted playsinline controls>
-        <source src="../shared/starterCode.mp4" type="video/mp4">
-      </video>
+      <button type="button" class="hero-video" id="heroVideoButton" aria-haspopup="dialog" aria-label="Video vergrössern">
+        <video id="heroVideo" width="900" height="1126" autoplay loop muted playsinline>
+          <source src="../shared/starterCode.mp4" type="video/mp4">
+        </video>
+        <span class="video-zoom-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          Vergrössern
+        </span>
+      </button>
       <div class="intro-text">
         <h2>Was ist Starter Code?</h2>
         <p>Der Open-Data-Katalog der Stadt Zürich bietet eine neue Funktion: <strong>Starter Code</strong>. Mit einem einzigen Klick öffnen Sie zu jedem tabellarischen (CSV) oder geografischen (GeoJSON) Datensatz eine fix fertige Analyseumgebung in der Cloud — inklusive vorbereiteter Code-Bausteine in Python oder R.</p>
@@ -702,7 +837,53 @@ df_namen &lt;- df %&gt;%
     <p>Berühren Sie den Bildschirm, um zu starten.</p>
   </div>
 
+  <dialog class="video-dialog" id="videoDialog" aria-label="Video: Starter Code im Einsatz">
+    <video id="dialogVideo" width="900" height="1126" loop muted playsinline controls preload="none">
+      <source src="../shared/starterCode.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="video-dialog-close" id="videoDialogClose">
+      Schliessen <span aria-hidden="true">×</span>
+    </button>
+  </dialog>
+
   <script>
+    /* Grossansicht des Demo-Videos. Sie setzt an der Stelle fort, an der das
+       kleine Video gerade steht, und gibt die Stelle beim Schliessen zurück.
+       Das 'close'-Ereignis kommt bei allen drei Wegen: Schaltfläche, Esc,
+       Klick neben das Video. */
+    (function () {
+      var dialog = document.getElementById('videoDialog');
+      var small = document.getElementById('heroVideo');
+      var large = document.getElementById('dialogVideo');
+
+      document.getElementById('heroVideoButton').addEventListener('click', function () {
+        var t = small.currentTime;
+        small.pause();
+        dialog.showModal();
+        if (large.readyState >= 1) {
+          large.currentTime = t;
+        } else {
+          large.addEventListener('loadedmetadata', function () { large.currentTime = t; }, { once: true });
+        }
+        large.play();
+      });
+
+      document.getElementById('videoDialogClose').addEventListener('click', function () {
+        dialog.close();
+      });
+
+      // Ein Klick auf den abgedunkelten Hintergrund trifft den Dialog selbst.
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener('close', function () {
+        large.pause();
+        if (large.readyState >= 1) small.currentTime = large.currentTime;
+        small.play();
+      });
+    })();
+
     /* Die Beispielauswertungen sind von Anfang an aufgeklappt; der Knopf im
        CTA-Banner blendet sie bei Bedarf aus. Die Beschriftung folgt dem
        Zustand, sonst verspricht sie nach dem ersten Klick das Falsche. */
