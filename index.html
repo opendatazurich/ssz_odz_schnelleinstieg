@@ -9,9 +9,58 @@
   <style>
     /* Das Kachelraster füllte an der Scientifica exakt den Viewport der
        Event-Laptops (1280×800 CSS-Pixel). Für den Webbetrieb wachsen die
-       Kacheln mit ihrem Inhalt und die Seite darf scrollen. */
+       Kacheln mit ihrem Inhalt und die Seite darf scrollen.
+
+       Knappe Ränder, weil das Höhenbudget (siehe .station-header) sonst
+       nicht aufgeht: oben 16px bis zur Einleitung, unten 8px — die
+       Fusszeile bringt selbst noch 24px Innenabstand mit. */
     main {
-      padding: 2rem 3rem;
+      padding: var(--stzh-space-medium) var(--stzh-container-margin) var(--stzh-space-xsmall);
+    }
+
+    /* Einleitung als Box über den Kacheln, aufgebaut wie eine Kachel: weisse
+       Karte mit Rundung und demselben weichen Schatten. Darüber liegt ein
+       Verlauf Cyan 75 → 65 mit 20 % Deckkraft, im 135°-Winkel wie die
+       Kachelköpfe. Cyan 75 und 65 sind aus den Nachbarstufen gemittelt
+       und stehen nicht in der Palette des Stadtauftritts.
+
+       Zusätzlich eine weisse Innenlinie von 1px, die dem Rand Schärfe gibt;
+       sie steht im Schatten vorne, damit sie über dem Verlauf liegt.
+
+       Anders als die Kacheln hat sie keinen Hover — sie ist kein Link.
+
+       Text in Cyan 90, rund 12:1 an der dunkelsten Stelle. Grundtext im
+       Medium-Schnitt, der Begriff im Heavy-Schnitt; beide reichen gleich
+       weit über und unter die Grundlinie, die Zeile bleibt 24px.
+
+       Ausprobiert und verworfen: weiss wie .info-note und Züriblau auf
+       Midnightblue 10 (zu unauffällig), volle Züriblau-Fläche (zu nah am
+       Kopfbereich), dazu diverse Voll- und Verlaufsfarben aus der
+       Stadtpalette.
+
+       Die Textbreite ist so begrenzt, dass jeder Satz eine eigene Zeile
+       bekommt: Satz 1 misst 909px, mit dem ersten Wort von Satz 2 wären es
+       943px. Wird der Text geändert, die Breite prüfen. */
+    .ogd-intro {
+      background:
+        linear-gradient(135deg, rgba(0, 64, 99, 0.2) 0%, rgba(0, 98, 144, 0.2) 100%),
+        var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: inset 0 0 0 1px var(--card-bg), 0 2px 12px rgba(0,0,0,0.06);
+      padding: var(--stzh-space-small) var(--stzh-space-xlarge);
+      margin-bottom: var(--stzh-space-xlarge);
+    }
+
+    .ogd-intro p {
+      max-width: 58rem;
+      font-size: var(--stzh-font-milli);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--stzh-cyan90);
+    }
+
+    .ogd-intro strong {
+      font-weight: 700;
     }
 
     .cards {
@@ -41,27 +90,38 @@
     }
 
     /* Kachelkopf-Höhe folgt dem vertikalen Budget bei 1280×800 CSS-Pixeln,
-       der Zielauflösung der Event-Geräte:
+       der Zielauflösung der Event-Geräte. Zeilenhöhen und Textbreiten sind
+       aus den Metriken der Helvetica-Neue-Dateien gerechnet
+       (line-height: normal = 1.18–1.19), Werte aufgerundet:
 
-         Seitengerüst  331px   Navigation 45, Kopfbereich 128,
-                               main-Padding 64, Fusszeile 94
-         Rest          469px   zwei Reihen plus 24px Abstand
-         pro Kachel    222px   abzüglich Rumpf 134px (Beschreibung
-                               zweizeilig, schlechtester Fall)
-                             = 88px maximal möglich
+         Seitengerüst  291px   Kopfbereich 128, Navigation 45,
+                               main-Padding 16 + 8, Fusszeile 94
+         Einleitung     96px   Box 72 (zwei Zeilen à 24, Innenabstand
+                               12 + 12), Abstand zu den Kacheln 24
+         Kacheln       276px   Rumpf Reihe 1: 110 (Beschreibungen
+                               einzeilig), Reihe 2: 134 (zweizeilig),
+                               Rahmen 2 × 4, Reihenabstand 24
+         Rest          137px   für zwei Kachelköpfe
+                             = 68px maximal möglich
 
-       Gesetzt sind 84px: Die Rechnung beruht auf angenommenen Zeilenhöhen
-       (line-height: normal ≈ 1.2), deshalb bleiben bewusst 9px Reserve
-       statt der rechnerisch möglichen 1px. Ändert sich am Seitengerüst
-       oder am Kachelrumpf etwas, muss der Wert nachgerechnet werden. */
+       Gesetzt sind 66px, 5px bleiben als Reserve (die Aufrundungen oben
+       bringen rund 3px dazu). Nach unten begrenzt der Inhalt: Zwischen
+       Badge und den Grossbuchstaben des Kachelnamens bleiben bei 66px
+       knapp 8px, bei 60px noch 2px.
+
+       Knapp ist Reihe 1: «Über 900 Datensätze …» belegt 506 der 538px
+       Zeilenbreite. Bricht eine Beschreibung dort um, wächst die Reihe um
+       24px und die zweite Reihe rutscht aus dem Bild. Ändert sich am
+       Seitengerüst, an der Einleitung oder an den Kacheltexten etwas,
+       muss der Wert nachgerechnet werden. */
     .station-header {
       position: relative;
-      height: 84px;
+      height: 66px;
       flex-shrink: 0;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1.2rem;
     }
 
     .station-header img {
@@ -74,7 +134,7 @@
 
     .station-top {
       position: absolute;
-      top: 0.6rem;
+      top: 0.5rem;
       left: 0.8rem;
       right: 0.8rem;
       display: flex;
@@ -197,6 +257,10 @@
   </nav>
 
   <main>
+    <div class="ogd-intro">
+      <p>Die Stadt Zürich stellt Verwaltungsdaten ohne Nutzungseinschränkungen als <strong>Open Government Data</strong> allen zur Verfügung. Hier erhalten Sie einen direkten Einstieg und sehen, was sich damit alles machen lässt:</p>
+    </div>
+
     <div class="cards">
 
       <a class="station-card" href="anwendungen/index.html">

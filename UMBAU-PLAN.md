@@ -1,8 +1,8 @@
 # Umbau-Plan: von der Scientifica-Station zur allgemeinen OGD-Webseite
 
-**Stand:** 2026-09-09 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
+**Stand:** 2026-09-10 · **Repo:** `ssz_odz_schnelleinstieg` · **Quelle:** `ssz_odz_scientifica` (Commit `81d566d`)
 
-> **Fortschritt:** Phasen 0–3, 3b und 3c erledigt, Teile von Phase 6 vorgezogen.
+> **Fortschritt:** Phasen 0–3, 3b und 3c erledigt, Teile von Phase 5 und 6 vorgezogen.
 > Das Repo liegt seit dem 9. September 2026 auf GitHub, GitHub Pages ist noch nicht
 > aktiviert.
 > **Als Nächstes: Phase 4 (Responsive Layout)** — der grösste verbleibende Posten.
@@ -147,7 +147,8 @@ selbst, nicht im ausgelieferten CSS — nicht auslesbar.
 Kleinere Korrekturen aus dem Durchgang am Bildschirm.
 
 **Startseite**
-- [x] Kachelköpfe auf `84px`, aus dem Höhenbudget bei 1280×800 abgeleitet
+- [x] Kachelköpfe auf `84px`, aus dem Höhenbudget bei 1280×800 abgeleitet (mit der
+      Einleitung aus Phase 5 später auf `66px`)
 - [x] «Öffnen»-Hinweis im Kachelrumpf durch einen Pfeil im Kachelkopf ersetzt — der
       Text war kein Link, die ganze Kachel ist das `<a>`
 - [x] Navigation unter den Header verschoben, wie beim Stadtauftritt
@@ -187,8 +188,10 @@ Die Seite ist hart auf die Event-Laptops optimiert (1920×1200 bei 150 % = 1280�
 - [ ] `starter-code/index.html`: `.try-cta-buttons` ist ein Raster mit drei festen
       Spalten und bricht nicht um — auf schmalen Bildschirmen braucht es eine
       einspaltige Variante
-- [ ] `index.html`: der Kachelkopf ist auf `84px` fixiert, abgeleitet aus dem Budget
+- [ ] `index.html`: der Kachelkopf ist auf `66px` fixiert, abgeleitet aus dem Budget
       bei 1280×800; auf anderen Höhen sollte er mitgehen
+- [ ] `index.html`: die Einleitungsbox ist bei 1280px zweizeilig, auf schmalen
+      Bildschirmen wird sie deutlich höher — Innenabstand auf Mobile prüfen
 - [ ] `starter-code/index.html`: das links gefloatete Video auf Mobile über den Text stellen
 - [ ] Test auf Mobile, Tablet, Desktop
 
@@ -196,12 +199,17 @@ Die Seite ist hart auf die Event-Laptops optimiert (1920×1200 bei 150 % = 1280�
 
 An der Scientifica erklärte Standpersonal die Station. Im Web muss die Seite das selbst tun.
 
-- [ ] Abschnitt «Über diese Seite» auf `index.html`: 2–3 Sätze, was OGD ist und was man
-      hier findet
+- [x] Einleitung auf `index.html` als Box direkt über den Kacheln (10. September 2026),
+      zwei Sätze ohne Titel: was OGD ist und was die Seite bietet. Die Definition stand
+      bisher nur auf «Daten finden» und war dort zu versteckt. Damit alles bei
+      1280×800 sichtbar bleibt: Kachelköpfe 84 → 66px, `main`-Padding 32/32 → 16/8px;
+      die Rechnung steht bei `.station-header` in `index.html`. Ein Titel «Was ist Open
+      Government Data?» wurde ausprobiert und wieder verworfen.
 - [ ] Footer erweitern: Impressum- und Datenschutz-Link (für eine öffentliche
       Stadt-Zürich-Seite erforderlich)
 - [ ] Kontakt/Feedback: `opendata@stadt-zuerich.ch`
-- [ ] Lizenzhinweis (CC BY) und «Stand: <Datum>»
+- [ ] Lizenzhinweis (CC0 — Standardlizenz für fast alle Datensätze der Stadt Zürich)
+      und «Stand: <Datum>»
 - [ ] Prüfen, ob ein Hinweis auf den OGD-Newsletter sinnvoll ist
 
 ### Phase 6 — Aufräumen und Dokumentation
