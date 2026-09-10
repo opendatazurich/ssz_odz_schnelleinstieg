@@ -280,10 +280,12 @@ im Handbuch unter `designsystem.stadt-zuerich.ch`, nicht im ausgelieferten CSS.
 Aus der Entwicklungsumgebung ist diese Domain nicht erreichbar (502 am Proxy), die
 Seite muss also von Hand aufgerufen und der Abschnitt übertragen werden.
 
-Dabei ebenfalls zu klären: Der Stadtauftritt verwendet das Logo in der Fassung
-`250.1 × 81.5` (`/content/dam/corporate-design/de/logos/stadt-zuerich.svg`), diese
-Seite die weisse Digitalfassung `250 × 59.4`. Zwei unterschiedliche Lockups — welches
-für diesen Einsatz das richtige ist, sollte jemand mit CD-Kenntnis bestätigen.
+~~Dabei ebenfalls zu klären: welcher Lockup der richtige ist.~~ **Entschieden
+(10. September 2026):** Die Seite verwendet den Lockup «Stadt Zürich / Open Data»
+(`250.1 × 81.5`) statt der bisherigen Digitalfassung `250 × 59.4`. Geliefert wurde er
+in Züriblau (`logo_stzh_ssz_open_data_rgb_blau_digital.svg`); die weisse Fassung für
+den Züriblau-Header (`…_weiss_digital.svg`) ist daraus abgeleitet, nur die Füllfarbe
+ist ersetzt. Falls es eine offizielle weisse Datei gibt, diese einsetzen.
 
 ### Grundsätzliches
 
