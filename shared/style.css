@@ -228,6 +228,20 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* Stand der Inhalte, von Hand gesetzt — bei inhaltlichen Änderungen auf
+   allen fünf Seiten nachführen. Kleiner als die Zeilen darüber. */
+.footer-stand {
+  margin-top: var(--stzh-space-xsmall);
+  font-size: var(--stzh-font-micro);
+}
+
+/* Im Kiosk-Modus ausgeblendet: Die zusätzliche Zeile würde auf der
+   Startseite das Höhenbudget bei 1280 × 800 sprengen (siehe
+   .station-header in index.html; Reserve 5px). */
+body.kiosk .footer-stand {
+  display: none;
+}
+
 /* Intro */
 .intro {
   display: flex;
