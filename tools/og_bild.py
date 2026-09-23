@@ -1,13 +1,13 @@
 """Vorschaubild (Open Graph, 1200 x 630) und Favicons für den Schnelleinstieg OGD.
 
-Setzt zusammen: Züriblau-Fläche, weisses Logo «Stadt Zürich / Open Data» (SVG,
-gerendert mit PyMuPDF), OGD-Sticker, Titel und Untertitel in Helvetica Neue
-(WOFF2 -> TTF mit fontTools), unten die vier Farben der Kachelskala «Brücke».
+Setzt zusammen: Züriblau-Fläche, das Scientifica-Auge links (am Rand
+angeschnitten wie im Seitenkopf), OGD-Sticker, Titel und Untertitel in
+Helvetica Neue (WOFF2 -> TTF mit fontTools), unten die vier Farben der
+Kachelskala «Brücke».
 """
 import io
 import sys
 
-import fitz
 from fontTools.ttLib import TTFont
 from PIL import Image, ImageDraw, ImageFont
 
@@ -30,27 +30,14 @@ def font(file, size):
     return ImageFont.truetype(buf, size)
 
 
-def svg_to_image(path, height):
-    # PyMuPDF wertet <style>-Klassen nicht aus: das Rechteck mit fill:none
-    # würde schwarz, die weissen Pfade ebenfalls. Klassen darum als
-    # Attribute ausschreiben.
-    import re
-    svg = open(path, encoding="utf-8").read()
-    svg = re.sub(r"<style.*?</style>", "", svg, flags=re.S)
-    svg = svg.replace('class="st0"', 'fill="none"').replace('class="st1"', 'fill="#FFFFFF"')
-    doc = fitz.open(stream=svg.encode("utf-8"), filetype="svg")
-    page = doc[0]
-    zoom = height / page.rect.height
-    pix = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), alpha=True)
-    return Image.frombytes("RGBA", (pix.width, pix.height), pix.samples)
-
-
 img = Image.new("RGB", (W, H), BLUE)
 draw = ImageDraw.Draw(img)
 
-# Logo oben links
-logo = svg_to_image(SHARED + "logo_stzh_ssz_open_data_rgb_weiss_digital.svg", 120)
-img.paste(logo, (MARGIN, MARGIN), logo)
+# Auge links, über den Rand hinaus angeschnitten wie im Seitenkopf.
+# Die Mitte liegt auf der Höhe der Stickermitte (38 + 190 / 2 = 133).
+EYE = 200
+eye = Image.open(SHARED + "eth_Auge1_transparent.png").convert("RGBA").resize((EYE, EYE), Image.LANCZOS)
+img.paste(eye, (-60, 133 - EYE // 2), eye)
 
 # Sticker oben rechts
 def load_sticker():

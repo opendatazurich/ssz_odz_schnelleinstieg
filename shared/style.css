@@ -73,27 +73,22 @@ header {
   flex-shrink: 0;
 }
 
-/* Stadt-Zürich-Logo links und OGD-Sticker rechts teilen sich dieselbe
-   Flex-Basis, damit der Titel exakt in der Seitenmitte steht.
-
-   Die Logohöhe entspricht dem Textblock aus Titel und Untertitel:
-     h1  hecto 1.75rem × line-height 1.2 = 33.6px
-     p   milli 1rem    × line-height 1.4 = 22.4px
-                                         = 56px
-   Die line-height von h1 ist unten fix gesetzt, damit diese Rechnung
-   nicht von den Schriftmetriken des jeweiligen Systems abhängt.
-
-   Logo ist der Lockup «Stadt Zürich / Open Data» in Weiss
-   (logo_stzh_ssz_open_data_rgb_weiss_digital.svg, 250.1 × 81.5). Bei 56px
-   Höhe ist er rund 172px breit und steht linksbündig in seiner Spalte.
-   Die Flex-Basis von 236px stammt noch vom früheren, breiteren Logo
-   (250 × 59.4) und bleibt, damit Titel und Untertitel nicht verrutschen. */
-.header-logo-stzh {
-  flex: 0 0 236px;
-  height: 56px;
-  object-fit: contain;
-  object-position: left center;
-  z-index: 1;
+/* Scientifica-Auge links, wie in der OGD-Station an der Scientifica: als
+   Kreis über den linken Rand hinaus angeschnitten. Es liegt absolut und
+   nimmt darum keinen Platz im Flex-Fluss ein — der Titelblock rückt
+   entsprechend nach links, was den Anschnitt optisch ausgleicht.
+   Sichtbar sind 140px (220 − 80), der Titel steht rund 60px links der
+   Seitenmitte. Das Auge ist rein dekorativ (alt="", pointer-events: none). */
+.header-eye {
+  position: absolute;
+  left: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .header-text {
@@ -119,16 +114,22 @@ header p {
 }
 
 .header-logo {
-  flex: 0 0 236px;
+  flex: 0 0 auto;
   height: 88px;
   object-fit: contain;
-  object-position: right center;
   z-index: 1;
 }
 
+/* Oben nur 1rem: Die Startseite kommt aus dem Kiosk-Betrieb und braucht den
+   knappen Rand, damit Einleitung und alle vier Kacheln bei 800px Bildschirm-
+   höhe ohne Scrollen sichtbar bleiben. Die übrigen Seiten übernehmen ihn,
+   damit der Abstand zwischen Navigation und Inhalt beim Wechsel zwischen den
+   Seiten nicht springt — sonst wirkt der Kopfbereich auf der Startseite
+   gedrungener, obwohl Header und Navigation überall gleich hoch sind.
+   Unten bleibt es bei 2.5rem; die Startseite setzt dort ihren eigenen Wert. */
 main {
   flex: 1;
-  padding: var(--stzh-space-xxxlarge) var(--stzh-container-margin);
+  padding: var(--stzh-space-medium) var(--stzh-container-margin) var(--stzh-space-xxxlarge);
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -472,45 +473,38 @@ body.kiosk .footer-stand {
    (1280 × 800) bleibt unverändert. Seitenspezifisches steht jeweils am
    Ende des <style>-Blocks der Seite. */
 
-/* ≤ 1199px: Zwischen den 236px breiten Seitenspalten passt der Titel
-   (534px) nur bis rund 1170px auf eine Zeile, der längste Untertitel
-   (572px) bis rund 1200px. Die Spalten schrumpfen darum auf die
-   tatsächliche Logobreite von 172px, der Abstand auf 1.5rem. Der Titel
-   steht weiterhin exakt mittig, weil beide Spalten gleich breit sind.
-   Platz für den Text bei 1024px: 1024 − 2 × 32 − 2 × 172 − 2 × 24 = 568px,
-   der Titel bleibt einzeilig. */
+/* ≤ 1199px: Der Abstand zwischen Titelblock und Sticker schrumpft, damit
+   der Titel (534px) und der längste Untertitel (572px) einzeilig bleiben.
+   Platz für den Text bei 1024px: 1024 − 2 × 32 − 88 (Sticker) − 24 = 848px. */
 @media (max-width: 1199px) {
   header {
     gap: var(--stzh-space-xlarge);
   }
-
-  .header-logo-stzh,
-  .header-logo {
-    flex-basis: 172px;
-  }
 }
 
-/* ≤ 1023px: Nebeneinander reicht der Platz nicht mehr. Logo und Sticker
+/* ≤ 1023px: Nebeneinander reicht der Platz nicht mehr. Auge und Sticker
    teilen sich die obere Zeile, Titel und Untertitel stehen darunter über
-   die volle Breite. Die Höhengleichheit von Logo und Textblock (siehe
-   .header-logo-stzh) gilt nur im breiten Kopfbereich. */
+   die volle Breite. Das Auge steht hier im Raster statt angeschnitten am
+   Rand — quer über dem umbrechenden Titel läge es sonst im Text. */
 @media (max-width: 1023px) {
   header {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "logo    sticker"
+      "eye     sticker"
       "text    text";
     align-items: center;
     gap: var(--stzh-space-small) var(--stzh-space-medium);
     padding-block: var(--stzh-space-medium) var(--stzh-space-large);
   }
 
-  .header-logo-stzh {
-    grid-area: logo;
+  .header-eye {
+    grid-area: eye;
+    position: static;
+    transform: none;
     justify-self: start;
-    width: auto;
-    height: 48px;
+    width: 56px;
+    height: 56px;
   }
 
   .header-logo {
@@ -542,8 +536,9 @@ body.kiosk .footer-stand {
     font-size: var(--stzh-font-micro);
   }
 
-  .header-logo-stzh {
-    height: 40px;
+  .header-eye {
+    width: 48px;
+    height: 48px;
   }
 
   .header-logo {
