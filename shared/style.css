@@ -78,7 +78,14 @@ header {
    nimmt darum keinen Platz im Flex-Fluss ein — der Titelblock rückt
    entsprechend nach links, was den Anschnitt optisch ausgleicht.
    Sichtbar sind 140px (220 − 80), der Titel steht rund 60px links der
-   Seitenmitte. Das Auge ist rein dekorativ (alt="", pointer-events: none). */
+   Seitenmitte.
+
+   Das Auge trägt den einzigen Hinweis auf die Scientifica 2026 — als
+   Tooltip (title) und als Alternativtext, nirgends als sichtbarer Satz;
+   so gewünscht. Es braucht darum Mauszeiger-Ereignisse und darf nicht
+   auf pointer-events: none stehen. cursor: help ist der einzige
+   sichtbare Wink, dass hier etwas hinterlegt ist. Im Kopfbereich liegt
+   kein Link, das Auge nimmt also keinem Element den Klick weg. */
 .header-eye {
   position: absolute;
   left: -80px;
@@ -88,7 +95,7 @@ header {
   height: 220px;
   object-fit: cover;
   border-radius: 50%;
-  pointer-events: none;
+  cursor: help;
 }
 
 .header-text {
