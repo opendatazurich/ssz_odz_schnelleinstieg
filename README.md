@@ -56,9 +56,9 @@ normale Webseite.
 │   ├── kiosk.js            Kiosk-Modus, nur aktiv mit ?kiosk=1
 │   ├── fonts/              Helvetica Neue (Hausschrift, 5 Schnitte)
 │   ├── og-bild.png         Vorschaubild für geteilte Links (1200 × 630)
-│   └── logo_stzh_ssz_open_data_rgb_weiss_digital.svg
+│   └── eth_Auge1_transparent.png  Scientifica-Auge (Header links, Vorschaubild)
 └── tools/
-    └── og_bild.py          Erzeugt og-bild.png und die Favicons (Python mit PyMuPDF, Pillow, fontTools)
+    └── og_bild.py          Erzeugt og-bild.png und die Favicons (Python mit Pillow, fontTools)
 ```
 
 ## Technologie
